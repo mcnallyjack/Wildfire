@@ -10,7 +10,7 @@ namespace Wildfire
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MainTabPage();
         }
 
         protected override void OnStart()
