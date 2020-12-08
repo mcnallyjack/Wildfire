@@ -23,6 +23,7 @@ namespace Wildfire.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsGoogleMaps.Init("AIzaSyAKErMHtqt31v3KNrM1T68myGiMKYfgNXA");
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
