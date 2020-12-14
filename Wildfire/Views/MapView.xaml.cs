@@ -17,16 +17,8 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-            Pin pinTokyo = new Pin()
-            {
-                Type = PinType.Generic,
-                Label = "Tokyo",
-                Address = "Sumida-ku, Tokyo, Japan",
-                Position = new Position(35.71d, 139.81d),
-                
-                Tag = "id_Tokyo"
-            };
-            map.Pins.Add(pinTokyo);
+           
+           
             Pin pinCarlow = new Pin()
             {
                 Type = PinType.Place,
@@ -37,16 +29,20 @@ namespace Wildfire.Views
                 Tag = "id_Tokyo"
             };
             map.Pins.Add(pinCarlow);
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(pinTokyo.Position, Distance.FromMeters(5000)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(5000)));
         }
 
        
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private void Search_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new SearchView());
+           
+            popupSearch.IsVisible = true;
         }
 
-       
+        void RemovePopupTapped(object sender, EventArgs e)
+        {
+            popupSearch.IsVisible = false;
+        }
     }
 }

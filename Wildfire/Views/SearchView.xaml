@@ -10,6 +10,7 @@
             <Button Text="Go"
                     Clicked="searchLocation"
                     />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
