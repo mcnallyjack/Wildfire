@@ -5,7 +5,6 @@ namespace Wildfire.Services
 {
     public interface IGoogleMapsApiService
     {
-       
         Task<GooglePlaceAutoCompleteResult> GetPlaces(string text);
         Task<GooglePlace> GetPlaceDetails(string placeId);
     }

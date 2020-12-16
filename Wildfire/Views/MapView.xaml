@@ -4,8 +4,12 @@
              x:Class="Wildfire.Views.MapView"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              Title="Map"
+             xmlns:vm="clr-namespace:Wildfire.ViewModels"
+             
              >
-
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
 
     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <maps:Map x:Name="map" 
@@ -36,7 +40,7 @@
                 Clicked="Search_Clicked"/>
 
         <!-- Pop Up Modal -->
-
+        <!--Search-->
         <Frame
             x:Name="popupSearch"
             BackgroundColor="Transparent"
@@ -50,39 +54,112 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 BorderColor="Black"
-                HasShadow="true">
-                <StackLayout
-                    Orientation="Vertical"
-                    HeightRequest="470"
-                    WidthRequest="300"
-                    BackgroundColor="White"
-                    
-                    >
-                    <Image
-                        HorizontalOptions="End"
-                        Source="cancel.png"
-                        HeightRequest="24"
-                        WidthRequest="24">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="RemovePopupTapped"
-                                NumberOfTapsRequired="1">
-                                
-                            </TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                        
-                    </Image>
-                    <Entry
-                        Placeholder="Enter Location"
-                        PlaceholderColor="LightGray"
-                        TextColor="Black"
-                        FontSize="20">
+                HasShadow="true"
+                WidthRequest="300"
+                HeightRequest="500">
+                <Grid VerticalOptions="FillAndExpand"
+              BackgroundColor="White"
+              RowSpacing="0"
+              ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0"  
+                             Padding="10"
+                             BackgroundColor="White"
+                             Orientation="Horizontal">
+                        <Image Source="ic_search"
+                               HeightRequest="20"
+                               WidthRequest="20"/>
+                        <Entry Placeholder="Search a location"
+                               Text="{Binding PickupText}"
+                               FontSize="18"
+                               x:Name="originEntry"
+                               ClassId="origin"
+                               FontAttributes="Italic"
+                               ReturnType="Search"
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <ListView VerticalOptions="FillAndExpand"
+                        BackgroundColor="Transparent"
+                        Grid.Row="2"
+                        Footer=""
+                        SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
+                        x:Name="list"
+                        ItemsSource="{Binding Places}"
+                        HasUnevenRows="true"
+                        SeparatorColor="Gray"
+                        >
+                        <ListView.Triggers>
+                            <DataTrigger TargetType="ListView"
+                                 Binding="{Binding ShowRecentPlaces}"
+                                 Value="True">
+                                <Setter Property="ItemsSource" Value="{Binding RecentPlaces}" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="ListView"
+                                 Binding="{Binding ShowRecentPlaces}"
+                                 Value="False">
+                                <Setter Property="ItemsSource" Value="{Binding Places}" />
+                            </DataTrigger>
+                        </ListView.Triggers>
+                        <ListView.Header>
+                            <StackLayout  x:Name="recentSearchText"
+                                      IsVisible="{Binding ShowRecentPlaces}">
+                                <Label LineBreakMode="WordWrap"
+                                 FontAttributes="Bold"
+                                 Margin="20,10"
+                                 x:Name="recentSearch"
+                                 Text="History"/>
+                            </StackLayout>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="15"
+                                      RowSpacing="2"
+                                      ColumnSpacing="15">
 
-                    </Entry>
-                </StackLayout>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="ic_location"
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             VerticalOptions="Start"
+                                             Grid.Row="0"
+                                             Grid.Column="0"
+                                             Grid.RowSpan="2"/>
+
+                                        <Label LineBreakMode="MiddleTruncation"
+                                               Text="{Binding StructuredFormatting.MainText}"
+                                               Grid.Row="0"
+                                               Grid.Column="1"/>
+
+                                        <Label LineBreakMode="MiddleTruncation"
+                                                 Text="{Binding StructuredFormatting.SecondaryText}" 
+                                                 TextColor="Gray" 
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Frame>
         </Frame>
-
+<!--Search-->
         <Button AbsoluteLayout.LayoutBounds="0.98,0.95,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="52"

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Wildfire.Views;
 using Xamarin.Essentials;
 
 
@@ -17,8 +18,6 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-           
-           
             Pin pinCarlow = new Pin()
             {
                 Type = PinType.Place,
@@ -26,7 +25,6 @@ namespace Wildfire.Views
                 Address = "Carlow, Ireland",
                 Position = new Position(52.8365d, -6.9341d),
 
-                Tag = "id_Tokyo"
             };
             map.Pins.Add(pinCarlow);
             map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(5000)));
@@ -34,10 +32,11 @@ namespace Wildfire.Views
 
        
 
-        private void Search_Clicked(object sender, EventArgs e)
+        private async void Search_Clicked(object sender, EventArgs e)
         {
-           
-            popupSearch.IsVisible = true;
+
+            await Navigation.PushModalAsync(new SearchView() { BindingContext = this.BindingContext }, false);
+
         }
 
         void RemovePopupTapped(object sender, EventArgs e)

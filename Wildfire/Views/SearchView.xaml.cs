@@ -1,27 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
+
 using Xamarin.Forms.Xaml;
 
 namespace Wildfire.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchView : ContentPage
     {
+        public static readonly BindableProperty FocusOriginCommandProperty =
+           BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchView), null, BindingMode.TwoWay);
+
+        public ICommand FocusOriginCommand
+        {
+            get { return (ICommand)GetValue(FocusOriginCommandProperty); }
+            set { SetValue(FocusOriginCommandProperty, value); }
+        }
+
         public SearchView()
         {
             InitializeComponent();
-
         }
 
-        private void searchLocation(object sender, EventArgs e)
+        protected override void OnBindingContextChanged()
         {
-            var searchPlace = loc.Text;
+            base.OnBindingContextChanged();
+            if (BindingContext != null)
+            {
+                FocusOriginCommand = new Command(OnOriginFocus);
+            }
+        }
+
+        void OnOriginFocus()
+        {
+            originEntry.Focus();
+        }
+
+        private async void searchPlace_Clicked(object sender, EventArgs e)
+        {
+
+            
+            await Navigation.PushModalAsync(new MapView());
+            
 
         }
+
     }
 }

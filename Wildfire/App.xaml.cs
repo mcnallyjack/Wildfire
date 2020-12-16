@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Wildfire.Services;
 
 namespace Wildfire
 {
@@ -9,7 +10,7 @@ namespace Wildfire
         public App()
         {
             InitializeComponent();
-
+            GoogleMapsApiService.Initialize(Constants.GoogleMapsApiKey);
             MainPage = new MainTabPage();
         }
 

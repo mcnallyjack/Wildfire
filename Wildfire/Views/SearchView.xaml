@@ -1,16 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.SearchView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Entry
-                x:Name="loc"
-                Placeholder="Search a Location"/>
-            <Button Text="Go"
-                    Clicked="searchLocation"
-                    />
-            
+             x:Class="Wildfire.Views.SearchView"
+             FocusOriginCommand="{Binding FocusOriginCommand}">
+
+    <Grid VerticalOptions="FillAndExpand"
+              BackgroundColor="White"
+              RowSpacing="0"
+              ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Row="0"  
+                             Padding="10"
+                             BackgroundColor="White"
+                             Orientation="Horizontal">
+            <Image Source="search.png"
+                               HeightRequest="20"
+                               WidthRequest="20"/>
+            <Entry Placeholder="Search a Location"
+                               Text="{Binding PickupText}"
+                               FontSize="18"
+                               x:Name="originEntry"
+                               ClassId="origin"
+                               FontAttributes="Italic"
+                               ReturnType="Search"
+                               HorizontalOptions="FillAndExpand" />
+            <Button ImageSource="search.png"
+                    Clicked="searchPlace_Clicked"/>
+
         </StackLayout>
-    </ContentPage.Content>
+
+        
+
+        <ListView VerticalOptions="FillAndExpand"
+                        BackgroundColor="Transparent"
+                        Grid.Row="2"
+                        Footer=""
+                        SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
+                        x:Name="list"
+                        ItemsSource="{Binding Places}"
+                        HasUnevenRows="true"
+                        SeparatorColor="Gray"
+                        >
+            <ListView.Triggers>
+                <DataTrigger TargetType="ListView"
+                                 Binding="{Binding ShowRecentPlaces}"
+                                 Value="True">
+                    <Setter Property="ItemsSource" Value="{Binding RecentPlaces}" />
+                </DataTrigger>
+                <DataTrigger TargetType="ListView"
+                                 Binding="{Binding ShowRecentPlaces}"
+                                 Value="False">
+                    <Setter Property="ItemsSource" Value="{Binding Places}" />
+                </DataTrigger>
+            </ListView.Triggers>
+            <ListView.Header>
+                <StackLayout  x:Name="recentSearchText"
+                                      IsVisible="{Binding ShowRecentPlaces}">
+                    <Label LineBreakMode="WordWrap"
+                                 FontAttributes="Bold"
+                                 Margin="20,10"
+                                 x:Name="recentSearch"
+                                 Text="History"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="15"
+                                      RowSpacing="2"
+                                      ColumnSpacing="15">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="pin.png"
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             VerticalOptions="Start"
+                                             Grid.Row="0"
+                                             Grid.Column="0"
+                                             Grid.RowSpan="2"/>
+
+                            <Label LineBreakMode="MiddleTruncation"
+                                               Text="{Binding StructuredFormatting.MainText}"
+                                               Grid.Row="0"
+                                               Grid.Column="1"/>
+
+                            <Label LineBreakMode="MiddleTruncation"
+                                                 Text="{Binding StructuredFormatting.SecondaryText}" 
+                                                 TextColor="Gray" 
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

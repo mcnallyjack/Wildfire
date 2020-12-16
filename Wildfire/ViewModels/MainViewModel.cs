@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using Wildfire.Models;
 using Wildfire.Services;
 using Xamarin.Essentials;
@@ -16,15 +17,20 @@ namespace Wildfire.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        public ICommand CalculateRouteCommand { get; set; }
         public ICommand UpdatePositionCommand { get; set; }
 
+        public ICommand LoadRouteCommand { get; set; }
+        public ICommand StopRouteCommand { get; set; }
         IGoogleMapsApiService googleMapsApi = new GoogleMapsApiService();
 
-        string _locLatitude;
-        string _locLongitude;
+        public bool HasRouteRunning { get; set; }
+        string _originLatitud;
+        string _originLongitud;
+        string _destinationLatitud;
+        string _destinationLongitud;
 
         GooglePlaceAutoCompletePrediction _placeSelected;
-
         public GooglePlaceAutoCompletePrediction PlaceSelected
         {
             get
@@ -35,25 +41,20 @@ namespace Wildfire.ViewModels
             {
                 _placeSelected = value;
                 if (_placeSelected != null)
-                    GetPlacesDetailCommand.Execute(_placeSelected);
-
+                    GetPlaceDetailCommand.Execute(_placeSelected);
             }
-
         }
+        public ICommand FocusOriginCommand { get; set; }
         public ICommand GetPlacesCommand { get; set; }
-
-        public ICommand GetPlacesDetailCommand { get; set; }
-
+        public ICommand GetPlaceDetailCommand { get; set; }
 
         public ObservableCollection<GooglePlaceAutoCompletePrediction> Places { get; set; }
-
         public ObservableCollection<GooglePlaceAutoCompletePrediction> RecentPlaces { get; set; } = new ObservableCollection<GooglePlaceAutoCompletePrediction>();
 
         public bool ShowRecentPlaces { get; set; }
         bool _isPickupFocused = true;
 
         string _pickupText;
-
         public string PickupText
         {
             get
@@ -71,15 +72,34 @@ namespace Wildfire.ViewModels
             }
         }
 
-        public ICommand GetLocationNameCommand { get; set; }
-
-        public MainViewModel()
+        string _originText;
+        public string OriginText
         {
-            GetPlacesCommand = new Command<string>(async (param) => await GetPlacesByName(param));
-            GetPlacesDetailCommand = new Command<GooglePlaceAutoCompletePrediction>(async (param) => GetPlacesDetail(param));
-            GetLocationNameCommand = new Command<Position>(async (param) => await GetLocationName(param));
+            get
+            {
+                return _originText;
+            }
+            set
+            {
+                _originText = value;
+                if (!string.IsNullOrEmpty(_originText))
+                {
+                    _isPickupFocused = false;
+                    GetPlacesCommand.Execute(_originText);
+                }
+            }
         }
+         public MainViewModel()
+         {
+           
+                GetPlacesCommand = new Command<string>(async (param) => await GetPlacesByName(param));
+                GetPlaceDetailCommand = new Command<GooglePlaceAutoCompletePrediction>(async (param) => await GetPlacesDetail(param));
+                   
+         }
 
+       
+
+  
         public async Task GetPlacesByName(string placeText)
         {
             var places = await googleMapsApi.GetPlaces(placeText);
@@ -88,6 +108,7 @@ namespace Wildfire.ViewModels
             {
                 Places = new ObservableCollection<GooglePlaceAutoCompletePrediction>(placeResult);
             }
+
             ShowRecentPlaces = (placeResult == null || placeResult.Count == 0);
         }
 
@@ -99,51 +120,45 @@ namespace Wildfire.ViewModels
                 if (_isPickupFocused)
                 {
                     PickupText = place.Name;
-                    _locLatitude = $"{place.Latitude}";
-                    _locLongitude = $"{place.Longitude}";
+                    _originLatitud = $"{place.Latitude}";
+                    _originLongitud = $"{place.Longitude}";
                     _isPickupFocused = false;
-
+                    FocusOriginCommand.Execute(null);
                 }
                 else
                 {
-                    _locLatitude = $"{place.Latitude}";
-                    _locLongitude = $"{place.Longitude}";
+                    _destinationLatitud = $"{place.Latitude}";
+                    _destinationLongitud = $"{place.Longitude}";
 
                     RecentPlaces.Add(placeA);
 
-                    await App.Current.MainPage.Navigation.PopModalAsync(false);
-                    CleanFields();
+                    if (_originLatitud == _destinationLatitud && _originLongitud == _destinationLongitud)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Origin route should be different than destination route", "Ok");
+                    }
+                    else
+                    {
+                        LoadRouteCommand.Execute(null);
+                        await App.Current.MainPage.Navigation.PopAsync(false);
+                        CleanFields();
+                    }
+
                 }
             }
         }
+
         void CleanFields()
         {
-            PickupText = string.Empty;
+            PickupText = OriginText = string.Empty;
             ShowRecentPlaces = true;
             PlaceSelected = null;
         }
 
-        public async Task GetLocationName(Position position)
-        {
-            try
-            {
-                var placemarks = await Geocoding.GetPlacemarksAsync(position.Latitude, position.Longitude);
-                var placemark = placemarks?.FirstOrDefault();
-                if(placemark != null)
-                {
-                    PickupText = placemark.FeatureName;
-                }
-                else
-                {
-                    PickupText = string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-        }
-      
+
+        
+        
+
         public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

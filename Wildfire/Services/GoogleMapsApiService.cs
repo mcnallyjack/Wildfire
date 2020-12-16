@@ -30,7 +30,7 @@ namespace Wildfire.Services
             _googleMapsKey = googleMapsKey;
         }
 
-       
+        
 
         public async Task<GooglePlaceAutoCompleteResult> GetPlaces(string text)
         {
