@@ -24,7 +24,7 @@ namespace Wildfire.ViewModels
         public ICommand StopRouteCommand { get; set; }
         IGoogleMapsApiService googleMapsApi = new GoogleMapsApiService();
 
-        public bool HasRouteRunning { get; set; }
+        public bool _hasRouteRunning { get; set; }
         string _originLatitud;
         string _originLongitud;
         string _destinationLatitud;
@@ -92,14 +92,20 @@ namespace Wildfire.ViewModels
          public MainViewModel()
          {
            
-                GetPlacesCommand = new Command<string>(async (param) => await GetPlacesByName(param));
-                GetPlaceDetailCommand = new Command<GooglePlaceAutoCompletePrediction>(async (param) => await GetPlacesDetail(param));
+            StopRouteCommand = new Command(StopRoute);  
+            GetPlacesCommand = new Command<string>(async (param) => await GetPlacesByName(param));
+            GetPlaceDetailCommand = new Command<GooglePlaceAutoCompletePrediction>(async (param) => await GetPlacesDetail(param));
                    
          }
 
-       
+        
+        public void StopRoute()
+        {
+            _hasRouteRunning = false;
+        }
 
-  
+
+
         public async Task GetPlacesByName(string placeText)
         {
             var places = await googleMapsApi.GetPlaces(placeText);
@@ -139,7 +145,7 @@ namespace Wildfire.ViewModels
                     else
                     {
                         LoadRouteCommand.Execute(null);
-                        await App.Current.MainPage.Navigation.PopAsync(false);
+                        await App.Current.MainPage.Navigation.PopModalAsync(false);
                         CleanFields();
                     }
 

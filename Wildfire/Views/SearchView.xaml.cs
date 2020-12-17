@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.GoogleMaps;
-
-using Xamarin.Forms.Xaml;
+using System;
 
 namespace Wildfire.Views
 {
@@ -40,11 +37,10 @@ namespace Wildfire.Views
         private async void searchPlace_Clicked(object sender, EventArgs e)
         {
 
-            
+
             await Navigation.PushModalAsync(new MapView());
-            
+
 
         }
-
     }
 }
