@@ -38,8 +38,8 @@ namespace Wildfire.Views
         {
 
 
-            await Navigation.PushModalAsync(new MapView());
-
+            await Navigation.PushModalAsync(new MainTabPage());
+           
 
         }
     }

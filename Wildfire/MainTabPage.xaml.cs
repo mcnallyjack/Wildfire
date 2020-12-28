@@ -15,6 +15,7 @@ namespace Wildfire
         public MainTabPage()
         {
             InitializeComponent();
+            CurrentPage = Children[1];
         }
     }
 }
