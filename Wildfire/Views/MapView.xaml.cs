@@ -43,5 +43,19 @@ namespace Wildfire.Views
         {
             popupSearch.IsVisible = false;
         }
+
+        private async void map_MapClicked(object sender, MapClickedEventArgs e)
+        {
+            Pin newFire = new Pin()
+            {
+                Label = "New Fire",
+                Position = new Position(e.Point.Latitude, e.Point.Longitude),
+                IsDraggable = true
+                
+            };
+            map.Pins.Add(newFire);
+            await Task.Delay(2000);
+            await Navigation.PushModalAsync(new ReportFireInfoView() { BindingContext = this.BindingContext }, false);
+        }
     }
 }

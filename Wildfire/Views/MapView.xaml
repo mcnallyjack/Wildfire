@@ -17,6 +17,7 @@
                AbsoluteLayout.LayoutFlags="All" 
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
+               maps:MapLongClicked="map_MapClicked"
                ></maps:Map>
         
         <Button AbsoluteLayout.LayoutBounds="0.98,0.73,AutoSize,AutoSize"
@@ -27,7 +28,9 @@
                 BackgroundColor="LightGray"
                 BorderColor="Black"
                 BorderWidth="3"
-                ImageSource="pin.png"/>
+                ImageSource="pin.png"
+                />
+        
         <Button AbsoluteLayout.LayoutBounds="0.98, 0.84, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="52"
@@ -39,8 +42,7 @@
                 ImageSource="search.png"
                 Clicked="Search_Clicked"/>
 
-        <!-- Pop Up Modal -->
-        <!--Search-->
+       
         <Frame
             x:Name="popupSearch"
             BackgroundColor="Transparent"
