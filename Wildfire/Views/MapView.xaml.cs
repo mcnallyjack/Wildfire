@@ -55,6 +55,8 @@ namespace Wildfire.Views
             };
             map.Pins.Add(newFire);
             await Task.Delay(2000);
+            var Lat = e.Point.Latitude;
+            var Long = e.Point.Longitude;
             await Navigation.PushModalAsync(new ReportFireInfoView() { BindingContext = this.BindingContext }, false);
         }
     }

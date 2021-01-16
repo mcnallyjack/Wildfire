@@ -6,24 +6,79 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame
+                BorderColor="Black"
+                HeightRequest="150"
+                WidthRequest="100"
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="LightGray"
+                HasShadow="True"
+                >
+                <Label Text="Report Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
+            </Frame>
             
-
-            <Label Text="Report Fire" Grid.Row="1" HorizontalOptions="Start" FontSize="35" BackgroundColor="Aqua"  />
+            <Label Text="Time Found @" Grid.Row="3" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
             
+            <TimePicker
+                Grid.Row="4"
+                Grid.Column="1">
+                
+            </TimePicker>
+            <Label Grid.Row="5" Grid.Column="1" BindingContext="Label"></Label>
+            <Label Text="enter fire name" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
+            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium">
 
+            </Entry>
 
+            <Button  Text="add" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="10" Grid.Column="1" Clicked="btn_Add_Clicked"></Button>
+   
+
+               
+            <!--<Label Text="Wind Direction(if known)?" Grid.Row="10" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
+            <Picker Grid.Row="12" Grid.Column="1" Title="Select" TitleColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>North</x:String>
+                        <x:String>North-East</x:String>
+                        <x:String>North-West</x:String>
+                        <x:String>East</x:String>
+                        <x:String>West</x:String>
+                        <x:String>South-West</x:String>
+                        <x:String>South-East</x:String>
+                        <x:String>South</x:String>
+                    </x:Array>
+
+                </Picker.ItemsSource>
+
+            </Picker>-->
+            <Label Text="Photos" Grid.Row="14" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
+            <Button Grid.Row="16" Grid.Column="1">
+                
+            </Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
