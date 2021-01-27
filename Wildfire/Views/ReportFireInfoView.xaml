@@ -48,12 +48,9 @@
                 Grid.Column="1">
                 
             </TimePicker>
-            <Label Grid.Row="5" Grid.Column="1" BindingContext="Label"></Label>
-            <Label Text="enter fire name" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium">
-
-            </Entry>
-
+            <Label x:Name="myLat" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
+            <Label x:Name="myLong" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
+            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium"></Entry>
             <Button  Text="add" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="10" Grid.Column="1" Clicked="btn_Add_Clicked"></Button>
    
 

@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Wildfire.Views;
 using Xamarin.Essentials;
+using Wildfire.Helper;
+using Xamarin.Forms.Internals;
 
 
 namespace Wildfire.Views
@@ -15,6 +17,7 @@ namespace Wildfire.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage
     {
+        FirebaseHelper firebaseHelper = new FirebaseHelper();
         public MapView()
         {
             InitializeComponent();
@@ -28,8 +31,24 @@ namespace Wildfire.Views
             };
             map.Pins.Add(pinCarlow);
             map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(5000)));
+
+            Task.Run(LoadFires);
         }
 
+        async Task LoadFires()
+        {
+            var displayFires = await firebaseHelper.GetAllFires();
+            foreach(var i in displayFires)
+            {
+                Pin newFire = new Pin()
+                {
+                    Label = i.FireID.ToString(),
+                    Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
+                };
+                map.Pins.Add(newFire);
+            }
+
+        }
        
 
         private async void Search_Clicked(object sender, EventArgs e)
@@ -57,7 +76,10 @@ namespace Wildfire.Views
             await Task.Delay(2000);
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
-            await Navigation.PushModalAsync(new ReportFireInfoView() { BindingContext = this.BindingContext }, false);
+
+            Lat.ToString();
+            Long.ToString();
+            await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
         }
     }
 }
