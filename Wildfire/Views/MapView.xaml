@@ -173,13 +173,5 @@
                 ImageSource="crosshair"
                 
                />
-
-        <ListView x:Name="lstPersons">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding FireID}"></TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </AbsoluteLayout>
 </ContentPage>

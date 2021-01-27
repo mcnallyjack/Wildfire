@@ -21,17 +21,15 @@ namespace Wildfire.Helper
                 .Child("Fire")
                 .OnceAsync<Fire>()).Select(item => new Fire
                 {
-                    FireID = item.Object.FireID,
-                    Latitude = item.Object.Latitude,
-                    Longitude = item.Object.Longitude
+                    FireID = item.Object.FireID
                 }).ToList();
         }
 
-        public async Task AddFire(int fireId, string lat, string longi)
+        public async Task AddFire(int fireId)
         {
             await firebase
                 .Child("Fire")
-                .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi });
+                .PostAsync(new Fire() { FireID = fireId });
         }
 
         public async Task<Fire> GetFire(int fireId)
