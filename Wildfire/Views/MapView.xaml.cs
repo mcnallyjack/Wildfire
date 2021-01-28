@@ -30,8 +30,8 @@ namespace Wildfire.Views
 
             };
             map.Pins.Add(pinCarlow);
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(5000)));
-
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(10000)));
+            Task.Run(LoadCurrentPosition);
             Task.Run(LoadFires);
         }
 
@@ -50,6 +50,21 @@ namespace Wildfire.Views
 
         }
        
+        async Task LoadCurrentPosition()
+        {
+
+            var location = await Geolocation.GetLocationAsync();
+            if (location != null)
+            {
+                Pin newLoc = new Pin()
+                {
+                    Label = "Current Location",
+                    Position = new Position(location.Latitude, location.Longitude)
+                };
+                map.Pins.Add(newLoc);
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+            }
+        }
 
         private async void Search_Clicked(object sender, EventArgs e)
         {
@@ -80,6 +95,21 @@ namespace Wildfire.Views
             Lat.ToString();
             Long.ToString();
             await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
+        }
+
+        private async void Location_Button_Clicked(object sender, EventArgs e)
+        {
+            var location = await Geolocation.GetLocationAsync();
+            if (location != null)
+            {
+                Pin newLoc = new Pin()
+                {
+                    Label = "Current Location",
+                    Position = new Position(location.Latitude, location.Longitude)
+                };
+                map.Pins.Add(newLoc);
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+            }
         }
     }
 }

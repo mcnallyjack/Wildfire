@@ -50,7 +50,7 @@
             </TimePicker>
             <Label x:Name="myLat" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
             <Label x:Name="myLong" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
-            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium"></Entry>
+            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium" Keyboard="Numeric"></Entry>
             <Button  Text="add" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="10" Grid.Column="1" Clicked="btn_Add_Clicked"></Button>
    
 

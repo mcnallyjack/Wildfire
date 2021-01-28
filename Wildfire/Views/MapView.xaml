@@ -172,7 +172,7 @@
                 BorderColor="Black"
                 BorderWidth="3"
                 ImageSource="crosshair"
-                
+                Clicked="Location_Button_Clicked"
                />
     </AbsoluteLayout>
 </ContentPage>
