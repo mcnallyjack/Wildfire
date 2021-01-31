@@ -9,5 +9,8 @@ namespace Wildfire.Models
         public int FireID { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public string Time { get; set; }
+        public string WindDirection { get; set; }
+
     }
 }

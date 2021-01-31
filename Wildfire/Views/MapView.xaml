@@ -18,9 +18,9 @@
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
                maps:MapLongClicked="map_MapClicked"
-                
+               PinClicked="map_PinClicked"
                ></maps:Map>
-        
+
         <Button AbsoluteLayout.LayoutBounds="0.98,0.73,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="52"
@@ -30,7 +30,8 @@
                 BorderColor="Black"
                 BorderWidth="3"
                 ImageSource="pin.png"
-                />
+                Clicked="ReportFire_Clicked"/>
+        
         
         <Button AbsoluteLayout.LayoutBounds="0.98, 0.84, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"

@@ -21,16 +21,7 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-            Pin pinCarlow = new Pin()
-            {
-                Type = PinType.Place,
-                Label = "Carlow",
-                Address = "Carlow, Ireland",
-                Position = new Position(52.8365d, -6.9341d),
-
-            };
-            map.Pins.Add(pinCarlow);
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(pinCarlow.Position, Distance.FromMeters(10000)));
+            
             Task.Run(LoadCurrentPosition);
             Task.Run(LoadFires);
         }
@@ -46,6 +37,7 @@ namespace Wildfire.Views
                     Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
                 };
                 map.Pins.Add(newFire);
+               
             }
 
         }
@@ -86,6 +78,7 @@ namespace Wildfire.Views
                 Position = new Position(e.Point.Latitude, e.Point.Longitude),
                 IsDraggable = true
                 
+                
             };
             map.Pins.Add(newFire);
             await Task.Delay(2000);
@@ -110,6 +103,33 @@ namespace Wildfire.Views
                 map.Pins.Add(newLoc);
                 map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
             }
+        }
+
+        private async void ReportFire_Clicked(object sender, EventArgs e)
+        {
+            var location = await Geolocation.GetLocationAsync();
+            if(location != null)
+            {
+                Pin newLoc = new Pin()
+                {
+                    Label = "New Fire",
+                    Position = new Position(location.Latitude, location.Longitude)
+                };
+                map.Pins.Add(newLoc);
+                var Lat = location.Latitude;
+                var Long = location.Longitude;
+                Lat.ToString();
+                Long.ToString();
+               
+                await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
+            }
+        }
+
+        private async void map_PinClicked(object sender, PinClickedEventArgs e)
+        {
+            var fires = await firebaseHelper.GetAllFires();
+            
+            await Navigation.PushModalAsync(new ResolveFireInfoView());
         }
     }
 }

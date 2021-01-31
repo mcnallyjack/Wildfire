@@ -10,6 +10,7 @@ using Firebase.Database.Query;
 using Wildfire.Helper;
 using Wildfire.Models;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace Wildfire.Views
 {
@@ -22,18 +23,27 @@ namespace Wildfire.Views
             InitializeComponent();
             myLat.Text = $"{Lat}";
             myLong.Text = $"{Long}";
+            timeFound.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            
+        
+
+            
         }
 
         private async void btn_Add_Clicked(object sender, EventArgs e)
         {
-            await firebaseHelper.AddFire(Convert.ToInt32(fireID.Text), myLat.Text, myLong.Text);
+            await firebaseHelper.AddFire(Convert.ToInt32(fireID.Text), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Text);
             fireID.Text = string.Empty;
             myLat.Text = string.Empty;
             myLong.Text = string.Empty;
+            timeFound.Text = string.Empty;
+            directionEntry.Text = string.Empty;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PopModalAsync();
             
         }
+
+      
     }
 }
