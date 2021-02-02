@@ -18,7 +18,7 @@ namespace Wildfire.Views
     public partial class ResolveFireInfoView : ContentPage
     {
         FirebaseHelper firebaseHelper = new FirebaseHelper();
-        public ResolveFireInfoView()
+        public ResolveFireInfoView(string Label)
         {
             InitializeComponent();
         }

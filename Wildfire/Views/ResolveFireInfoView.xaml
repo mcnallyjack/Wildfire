@@ -5,8 +5,9 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -27,8 +28,8 @@
                 <Label Text="Resolve Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
             </Frame>
             
-            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="1" Grid.Column="1" FontSize="Medium" Keyboard="Numeric"></Entry>
-            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="2" Grid.Column="1" Clicked="btn_Res_Clicked"></Button>
+            <Label x:Name="fireID" Grid.Row="2" Grid.Column="1" FontSize="Medium"></Label>
+            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="3" Grid.Column="1" Clicked="btn_Res_Clicked"></Button>
 
 
         </Grid>
