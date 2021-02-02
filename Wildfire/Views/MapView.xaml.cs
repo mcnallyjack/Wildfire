@@ -36,12 +36,19 @@ namespace Wildfire.Views
                     Label = i.FireID.ToString(),
                     Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
                 };
+                map.PinClicked += Map_PinClicked2;
                 map.Pins.Add(newFire);
                
             }
 
         }
-       
+
+        private async void Map_PinClicked2(object sender, PinClickedEventArgs e)
+        {
+            await Task.Delay(2000);
+            await Navigation.PushModalAsync(new ResolveFireInfoView() { BindingContext = this.BindingContext }, false);
+        }
+
         async Task LoadCurrentPosition()
         {
 
@@ -80,7 +87,9 @@ namespace Wildfire.Views
                 
                 
             };
+            map.PinClicked += Map_PinClicked1;
             map.Pins.Add(newFire);
+
             await Task.Delay(2000);
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
@@ -89,6 +98,12 @@ namespace Wildfire.Views
             Long.ToString();
             await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
         }
+
+        private async void Map_PinClicked1(object sender, PinClickedEventArgs e)
+        {
+            await Task.Delay(2000);
+            await Navigation.PushModalAsync(new ResolveFireInfoView() { BindingContext = this.BindingContext }, false);
+         }
 
         private async void Location_Button_Clicked(object sender, EventArgs e)
         {
@@ -115,6 +130,7 @@ namespace Wildfire.Views
                     Label = "New Fire",
                     Position = new Position(location.Latitude, location.Longitude)
                 };
+                map.PinClicked += Map_PinClicked;
                 map.Pins.Add(newLoc);
                 var Lat = location.Latitude;
                 var Long = location.Longitude;
@@ -125,11 +141,12 @@ namespace Wildfire.Views
             }
         }
 
-        private async void map_PinClicked(object sender, PinClickedEventArgs e)
+        private async void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
-            var fires = await firebaseHelper.GetAllFires();
-            
-            await Navigation.PushModalAsync(new ResolveFireInfoView());
+            await Task.Delay(2000);
+            await Navigation.PushModalAsync(new ResolveFireInfoView() { BindingContext = this.BindingContext }, false);
         }
+
+        
     }
 }

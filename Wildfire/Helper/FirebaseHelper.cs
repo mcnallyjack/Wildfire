@@ -36,6 +36,14 @@ namespace Wildfire.Helper
                 .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi, Time=time, WindDirection = direction});
         }
 
+        public async Task ResolveFire(int fireId)
+        {
+            var toResolve = (await firebase
+                .Child("Fire")
+                .OnceAsync<Fire>()).Where(a => a.Object.FireID == fireId).FirstOrDefault();
+            await firebase.Child("Fire").Child(toResolve.Key).DeleteAsync();
+        }
+
         public async Task<Fire> GetFire(int fireId)
         {
             var allFires = await GetAllFires();

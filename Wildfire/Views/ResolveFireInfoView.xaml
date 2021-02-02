@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.ResolveFireInfoView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame
+                BorderColor="Black"
+                HeightRequest="150"
+                WidthRequest="100"
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="LightGray"
+                HasShadow="True"
+                >
+                <Label Text="Resolve Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
+            </Frame>
+            
+            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="1" Grid.Column="1" FontSize="Medium" Keyboard="Numeric"></Entry>
+            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="2" Grid.Column="1" Clicked="btn_Res_Clicked"></Button>
+
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
