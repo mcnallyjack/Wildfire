@@ -21,13 +21,14 @@ namespace Wildfire.Views
         public ResolveFireInfoView(string Label)
         {
             InitializeComponent();
+            fireID.Text = $"{Label}";
         }
 
         private async void btn_Res_Clicked(object sender, EventArgs e)
         {
             await firebaseHelper.ResolveFire(Convert.ToInt32(fireID.Text));
             await DisplayAlert("Success", "Fire Resolved", "OK");
-            await Navigation.PopModalAsync();
+            await Navigation.PushModalAsync(new MapView());
         }
     }
 }
