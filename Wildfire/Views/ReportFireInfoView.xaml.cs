@@ -40,10 +40,13 @@ namespace Wildfire.Views
             directionEntry.Text = string.Empty;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
-            await Navigation.PushModalAsync(new MapView());
+            await Navigation.PushModalAsync(new MainTabPage());
             
         }
 
-      
+        private async void btn_Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }

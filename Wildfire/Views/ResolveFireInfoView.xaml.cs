@@ -28,7 +28,7 @@ namespace Wildfire.Views
         {
             await firebaseHelper.ResolveFire(Convert.ToInt32(fireID.Text));
             await DisplayAlert("Success", "Fire Resolved", "OK");
-            await Navigation.PushModalAsync(new MapView());
+            await Navigation.PushModalAsync(new MainTabPage());
         }
     }
 }

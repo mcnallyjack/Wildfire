@@ -13,11 +13,11 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="45"/>
-                <RowDefinition Height="55"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="70"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
@@ -48,7 +48,7 @@
 
             <!--Wind Direction // Start-->
             <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Entry x:Name="directionEntry" Grid.Row="7" Grid.Column="1" TextColor="Black" FontSize="16" BackgroundColor="LightGray"></Entry>
+            <Entry x:Name="directionEntry" Grid.Row="7" Grid.Column="1" TextColor="Black" FontSize="16" BackgroundColor="LightGray" Placeholder="E.g. North"></Entry>
             <!--Wind Direction // End-->
 
             <!-- Latitude & Longitude // Start-->
@@ -57,11 +57,11 @@
             <!-- Latitude & Longitude // End-->
             
             <!-- Place Name // Start-->
-            <Label x:Name="placeName" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="18"></Label>
+            <Label x:Name="placeName" Text="Place Name" Grid.Row="9" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
             <!-- PLace Name // End-->
-            <Entry x:Name="fireID" Placeholder="fireID" Grid.Row="8" Grid.Column="1" FontSize="Medium" Keyboard="Numeric"></Entry>
-            <Button  Text="add" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="10" Grid.Column="1" Clicked="btn_Add_Clicked"></Button>
-   
+            <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="10" Grid.Column="1" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
+            <Button  FontSize="25" Text="Report Fire" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="12" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
+            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="14" Grid.Column="1" Clicked="btn_Cancel_Clicked"></Button>
 
                
             
