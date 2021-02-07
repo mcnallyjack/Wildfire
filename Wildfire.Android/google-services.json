@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128475751950",
+    "firebase_url": "https://driven-bulwark-297919-default-rtdb.firebaseio.com",
+    "project_id": "driven-bulwark-297919",
+    "storage_bucket": "driven-bulwark-297919.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128475751950:android:9cac76497fdcb8d9093e5f",
+        "android_client_info": {
+          "package_name": "com.companyname.wildfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128475751950-6kp666mdnbqu293m7e3olq0vc535e3ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEgmqSYRzFc5oOOiMHMtWR1w0GZ4Ya55Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128475751950-6kp666mdnbqu293m7e3olq0vc535e3ne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
