@@ -7,11 +7,22 @@ namespace Wildfire
 {
     public partial class App : Application
     {
+        IAuth auth;
         public App()
         {
             InitializeComponent();
+            auth = DependencyService.Get<IAuth>();
             GoogleMapsApiService.Initialize(Constants.GoogleMapsApiKey);
             MainPage = new MainTabPage();
+
+            if (auth.SignIn())
+            {
+                MainPage = new MainTabPage();
+            }
+            else
+            {
+                MainPage = new MainTabPage();
+            }
         }
 
         protected override void OnStart()

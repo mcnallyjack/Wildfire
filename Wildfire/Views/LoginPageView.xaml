@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.LoginPageView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label 
+                Text="Login"
+                HorizontalOptions="Center"
+                TextColor="#4682B4"
+                FontSize="35"
+                Margin="0,20"/>
+
+            <Entry 
+                Placeholder="E-mail"
+                Keyboard="Email"
+                x:Name="EmailInput"/>
+
+            <Entry 
+                Placeholder="Password"
+                IsPassword="True"
+                x:Name="PasswordInput"/>
+
+            <Button 
+                Text="Login"
+                Clicked="Login_Clicked"
+                Margin="60,40"
+                BackgroundColor="#4682B4"
+                TextColor="White"/>
+
+            <Button 
+                Text="Create Account"
+                TextColor="#4682B4"
+                HorizontalOptions="Center"
+                BackgroundColor="Transparent"
+                Clicked="SignUp_Clicked"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

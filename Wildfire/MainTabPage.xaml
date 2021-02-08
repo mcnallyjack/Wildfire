@@ -20,7 +20,14 @@
         </Views:InfoView>
         
         <Views:MapView IconImageSource="location.png">
-            
+            <StackLayout>
+                <Button
+                    Clicked="SignOut_Clicked"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+                    
+                </Button>
+            </StackLayout>
         </Views:MapView>
 
         <Views:SettingsView IconImageSource="settings.png">
