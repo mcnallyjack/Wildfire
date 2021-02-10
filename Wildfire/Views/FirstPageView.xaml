@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.FirstPageView">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Button 
+                Text="Create Account"
+                TextColor="#4682B4"
+                HorizontalOptions="Center"
+                BackgroundColor="Transparent"
+                Clicked="CreateAcc_Clicked"/>
+
+            <Button 
+                Text="Login"
+                TextColor="#4682B4"
+                HorizontalOptions="Center"
+                BackgroundColor="Transparent"
+                Clicked="LoginIn_Clicked"/>
+
+            <Button 
+                Text="Continue without Account"
+                TextColor="#4682B4"
+                HorizontalOptions="Center"
+                BackgroundColor="Transparent"
+                Clicked="Continue_Clicked"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

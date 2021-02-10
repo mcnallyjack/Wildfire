@@ -25,7 +25,7 @@ namespace Wildfire.Views
             string token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
             if(token != string.Empty)
             {
-                Application.Current.MainPage = new MainTabPage();
+                await Navigation.PushModalAsync(new MainTabPage());
             }
             else
             {

@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Wildfire.Services;
+using Wildfire.Views;
 
 namespace Wildfire
 {
@@ -17,11 +18,11 @@ namespace Wildfire
 
             if (auth.SignIn())
             {
-                MainPage = new MainTabPage();
+                MainPage = new FirstPageView();
             }
             else
             {
-                MainPage = new MainTabPage();
+                MainPage = new FirstPageView();
             }
         }
 

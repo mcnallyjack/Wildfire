@@ -21,9 +21,9 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-            
-            Task.Run(LoadCurrentPosition);
             Task.Run(LoadFires);
+            Task.Run(LoadCurrentPosition);
+            
         }
 
         async Task LoadFires()
@@ -43,10 +43,10 @@ namespace Wildfire.Views
                     
                 };
                 map.Pins.Add(newFire);
-
+                
                 
             }
-
+            
         }
 
         
