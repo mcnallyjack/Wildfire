@@ -13,6 +13,7 @@ namespace Wildfire.Views
     public partial class LoginPageView : ContentPage
     {
         IAuth auth;
+        public static string token;
         public LoginPageView()
         {
 
@@ -22,7 +23,7 @@ namespace Wildfire.Views
 
         private async void Login_Clicked(object sender, EventArgs e)
         {
-            string token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+            token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
             if(token != string.Empty)
             {
                 await Navigation.PushModalAsync(new MainTabPage());
