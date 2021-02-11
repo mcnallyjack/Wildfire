@@ -41,6 +41,7 @@ namespace Wildfire.Views
 
         private async void Continue_Clicked(object sender, EventArgs e)
         {
+            
             await Navigation.PushModalAsync(new MainTabPage());
         }
         

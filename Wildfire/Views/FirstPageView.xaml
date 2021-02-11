@@ -8,12 +8,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="120"></RowDefinition>
-                <RowDefinition Height="250"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
+                <RowDefinition Height="130"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
             </Grid.RowDefinitions>
+            
             <Label Text="Wildfire"
                    Grid.Row="1"
                    FontSize="50"
@@ -21,7 +22,25 @@
                    TextColor="Black"
                    Margin="0,30"
                    FontAttributes="Bold"></Label>
-            <Button 
+            
+                <Label Text="If you are a Firefighter Please create an account"
+                   Grid.Row="2"
+                   FontSize="20"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="0,30"
+                   FontAttributes="Bold"
+                       WidthRequest="220"
+                       LineBreakMode="CharacterWrap"
+                       HorizontalTextAlignment="Center"></Label>
+                <Label Text="Please create an account"
+                   Grid.Row="3"
+                   FontSize="20"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="0,30"
+                   FontAttributes="Bold"></Label>
+                <Button 
                 Grid.Row="5"
                 Text="Create Account"
                 TextColor="Black"

@@ -1,40 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.LoginPageView">
+             x:Class="Wildfire.Views.LoginPageView"
+             >
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
             <Label 
-                Text="Login"
-                HorizontalOptions="Center"
-                TextColor="#4682B4"
-                FontSize="35"
-                Margin="0,20"/>
+               Text="Login"
+                   Grid.Row="1"
+                   FontSize="50"
+                   HorizontalOptions="Center"
+                   TextColor="Black"
+                   Margin="0,30"
+                   FontAttributes="Bold"></Label>
 
             <Entry 
+                Grid.Row="3"
                 Placeholder="E-mail"
                 Keyboard="Email"
-                x:Name="EmailInput"/>
+                x:Name="EmailInput"
+                BackgroundColor="LightGray"
+                WidthRequest="200"
+                Margin="50,5"/>
 
             <Entry 
+                Grid.Row="4"
                 Placeholder="Password"
                 IsPassword="True"
-                x:Name="PasswordInput"/>
+                x:Name="PasswordInput"
+                BackgroundColor="LightGray"
+                Margin="50,5"/>
 
             <Button 
+                Grid.Row="5"
                 Text="Login"
                 Clicked="Login_Clicked"
                 Margin="60,40"
-                BackgroundColor="#4682B4"
-                TextColor="White"/>
+                WidthRequest="200"
+                BorderColor="Black"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                BackgroundColor="#ff8c19"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="16"
+                FontAttributes="Bold"/>
 
             <Button 
+                Grid.Row="6"
                 Text="Create Account"
-                TextColor="#4682B4"
+                TextColor="Black"
                 HorizontalOptions="Center"
-                BackgroundColor="Transparent"
-                Clicked="SignUp_Clicked"/>
+                BackgroundColor="LightGray"
+                BorderColor="Black"
+                BorderWidth="3"
+                CornerRadius="10"
+                Clicked="SignUp_Clicked"
+                />
             
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

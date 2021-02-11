@@ -28,6 +28,7 @@ namespace Wildfire.Views
 
         async Task LoadFires()
         {
+            
             var displayFires = await firebaseHelper.GetAllFires();
             foreach(var i in displayFires)
             {

@@ -25,6 +25,7 @@ namespace Wildfire.Droid
             {
                 var newUser = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 var token = newUser.User.Uid;
+                
                 return token;
             }
             catch (FirebaseAuthInvalidUserException e)
