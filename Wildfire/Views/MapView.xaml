@@ -18,7 +18,7 @@
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
                maps:MapLongClicked="map_MapClicked"
-               
+               PinClicked="map_PinClicked"
                ></maps:Map>
 
         <Button AbsoluteLayout.LayoutBounds="0.98,0.73,AutoSize,AutoSize"

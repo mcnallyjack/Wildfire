@@ -10,6 +10,7 @@ using Wildfire.Views;
 using Xamarin.Essentials;
 using Wildfire.Helper;
 using Xamarin.Forms.Internals;
+using Wildfire.Services;
 
 
 namespace Wildfire.Views
@@ -23,7 +24,7 @@ namespace Wildfire.Views
             InitializeComponent();
             Task.Run(LoadFires);
             Task.Run(LoadCurrentPosition);
-            
+               
         }
 
         async Task LoadFires()
@@ -39,8 +40,12 @@ namespace Wildfire.Views
                 };
                 map.PinClicked += async (sender, e) =>
                 {
-                    await Task.Delay(2000);
-                    await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
+                    
+                        //await Task.Delay(2000);
+                        //await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
+                    
+                   
+                      
                     
                 };
                 map.Pins.Add(newFire);
@@ -64,7 +69,43 @@ namespace Wildfire.Views
                     Position = new Position(location.Latitude, location.Longitude)
                 };
                 map.Pins.Add(newLoc);
+
+                Circle circle = new Circle()
+                {
+                    Center = new Position(location.Latitude, location.Longitude),
+                    Radius = new Distance(1000),
+                    StrokeColor = Color.FromHex("#88FF0000"),
+                    StrokeWidth = 4,
+                    FillColor = Color.FromHex("#88FFC0CB")
+                };
+                map.Circles.Add(circle);
+                
                 map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+                var allFires = await firebaseHelper.GetAllFires();
+                foreach(var i in allFires)
+                {
+                    var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
+                    
+                    var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
+                    comp.ToString();
+                    try
+                    {
+                        if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
+                        {
+                            DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Faild", ex.Message, "OK");
+                    }
+
+                }
+                
             }
         }
 
@@ -140,8 +181,19 @@ namespace Wildfire.Views
             }
         }
 
-       
+        private async void map_PinClicked(object sender, PinClickedEventArgs e)
+        {
 
-        
+            if (LoginPageView.token == null)
+            {
+               
+            }
+            else
+            {
+                
+                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
+            } 
+            
+        }
     }
 }
