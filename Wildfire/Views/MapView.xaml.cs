@@ -11,13 +11,23 @@ using Xamarin.Essentials;
 using Wildfire.Helper;
 using Xamarin.Forms.Internals;
 using Wildfire.Services;
-
+using Wildfire.Models;
+using System.Windows.Input;
 
 namespace Wildfire.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage
     {
+        public static readonly BindableProperty FocusOriginCommandProperty =
+           BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchView), null, BindingMode.TwoWay);
+
+        public ICommand FocusOriginCommand
+        {
+            get { return (ICommand)GetValue(FocusOriginCommandProperty); }
+            set { SetValue(FocusOriginCommandProperty, value); }
+        }
+
         FirebaseHelper firebaseHelper = new FirebaseHelper();
         public MapView()
         {
@@ -25,6 +35,19 @@ namespace Wildfire.Views
             Task.Run(LoadFires);
             Task.Run(LoadCurrentPosition);
                
+        }
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (BindingContext != null)
+            {
+                FocusOriginCommand = new Command(OnOriginFocus);
+            }
+        }
+
+        void OnOriginFocus()
+        {
+            originEntry.Focus();
         }
 
         async Task LoadFires()
@@ -35,10 +58,11 @@ namespace Wildfire.Views
             {
                 Pin newFire = new Pin()
                 {
+                    Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
                     Label = i.FireID.ToString(),
                     Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
                 };
-                map.PinClicked += async (sender, e) =>
+                map.PinClicked += (sender, e) =>
                 {
                     
                         //await Task.Delay(2000);
@@ -109,10 +133,12 @@ namespace Wildfire.Views
             }
         }
 
-        private async void Search_Clicked(object sender, EventArgs e)
+        private void Search_Clicked(object sender, EventArgs e)
         {
+            popupSearch.IsVisible = true;
 
-            await Navigation.PushModalAsync(new SearchView() { BindingContext = this.BindingContext }, false);
+
+            //await Navigation.PushModalAsync(new SearchView() { BindingContext = this.BindingContext }, false);
 
         }
 
@@ -125,6 +151,7 @@ namespace Wildfire.Views
         {
             Pin newFire = new Pin()
             {
+                Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
                 Label = "New Fire",
                 Position = new Position(e.Point.Latitude, e.Point.Longitude),
                 IsDraggable = true
@@ -167,6 +194,7 @@ namespace Wildfire.Views
             {
                 Pin newLoc = new Pin()
                 {
+                    Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
                     Label = "New Fire",
                     Position = new Position(location.Latitude, location.Longitude)
                 };
@@ -194,6 +222,28 @@ namespace Wildfire.Views
                 await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
             } 
             
+        }
+
+        private async void SearchPlace_Clicked(object sender, EventArgs e)
+        {
+            var search = originEntry.Text;
+            var searchLocation = await Geocoding.GetLocationsAsync(search);
+            var sourceLocations = searchLocation?.FirstOrDefault();
+            Location sourceCoordinates = new Location(sourceLocations.Latitude, sourceLocations.Longitude);
+
+            Pin pin = new Pin()
+            {
+                Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("SearchPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "SearchPins.png", WidthRequest= 20, HeightRequest = 20}),
+                Type = PinType.Place,
+                Label = originEntry.Text,
+                Position = new Position(sourceCoordinates.Latitude, sourceCoordinates.Longitude)
+            };
+            map.Pins.Add(pin);
+
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(sourceCoordinates.Latitude, sourceCoordinates.Longitude), Distance.FromMeters(500)));
+            originEntry.Text = string.Empty;
+            search = string.Empty;
+            popupSearch.IsVisible = false;
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Wildfire.Droid
             }
             catch(Exception ex)
             {
-                //
+                ex.ToString();
             }
         }
     }

@@ -5,7 +5,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              Title="Map"
              xmlns:vm="clr-namespace:Wildfire.ViewModels"
-             
+             FocusOriginCommand="{Binding FocusOriginCommand}"
              >
     <ContentPage.BindingContext>
         <vm:MainViewModel/>
@@ -42,8 +42,12 @@
                 BorderColor="Black"
                 BorderWidth="3"
                 ImageSource="search.png"
+                x:Name="searchPopup"
                 Clicked="Search_Clicked"/>
 
+        
+        
+       
        
         <Frame
             x:Name="popupSearch"
@@ -73,14 +77,15 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+
                     <StackLayout Grid.Row="0"  
                              Padding="10"
                              BackgroundColor="White"
                              Orientation="Horizontal">
-                        <Image Source="ic_search"
+                        <Image Source="search.png"
                                HeightRequest="20"
                                WidthRequest="20"/>
-                        <Entry Placeholder="Search a location"
+                        <Entry Placeholder="Search a Location"
                                Text="{Binding PickupText}"
                                FontSize="18"
                                x:Name="originEntry"
@@ -88,7 +93,13 @@
                                FontAttributes="Italic"
                                ReturnType="Search"
                                HorizontalOptions="FillAndExpand" />
+                        <Button ImageSource="search.png"
+                    Clicked="SearchPlace_Clicked"/>
+
                     </StackLayout>
+
+
+
                     <ListView VerticalOptions="FillAndExpand"
                         BackgroundColor="Transparent"
                         Grid.Row="2"
@@ -137,7 +148,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Source="ic_location"
+                                        <Image Source="pin.png"
                                              HeightRequest="20"
                                              WidthRequest="20"
                                              VerticalOptions="Start"
