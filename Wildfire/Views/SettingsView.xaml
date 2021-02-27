@@ -5,12 +5,41 @@
              Title="Settings">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Label Text="Welcome to Xamarin.Forms!"
-                   TextColor="Black"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-     
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<Label Text="Welcome" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>-->
+
+            <Label x:Name="settingsDay" Grid.Row="2" Grid.Column="1" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
+            <Label x:Name="settingsDate" Grid.Row="4" Grid.Column="1" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
+
+
+            <Button Text="Logout"  Grid.Row="6" Grid.Column="1" Clicked="Logout_Button_Clicked" HorizontalOptions="CenterAndExpand" VerticalOptions="End"></Button>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
