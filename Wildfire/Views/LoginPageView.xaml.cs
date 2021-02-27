@@ -40,7 +40,7 @@ namespace Wildfire.Views
 
             if (signOut)
             {
-                Application.Current.MainPage = new SignUpPageView();
+                Application.Current.MainPage = new FirstPageView();
             }
         }
     }
