@@ -18,9 +18,9 @@
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
@@ -61,16 +61,20 @@
             <!-- PLace Name // End-->
             <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="10" Grid.Column="1" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
             <Button  FontSize="25" Text="Report Fire" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="12" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
-            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="14" Grid.Column="1" Clicked="btn_Cancel_Clicked"></Button>
+
+
+
+
+            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="14" Grid.Column="1" WidthRequest="100" HeightRequest=" 50" BackgroundColor="LightGray" Clicked="btn_Cancel_Clicked"></Button>
 
                
             
            
 
-            <Label Text="Photos" Grid.Row="14" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Button Grid.Row="16" Grid.Column="1">
+           
+            <!--<Button Grid.Row="16" Grid.Column="1" Clicked="Back_Button_Clicked">
                 
-            </Button>
+            </Button>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

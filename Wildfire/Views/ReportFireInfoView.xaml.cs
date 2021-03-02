@@ -11,6 +11,7 @@ using Wildfire.Helper;
 using Wildfire.Models;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using Xamarin.Forms.GoogleMaps;
 
 namespace Wildfire.Views
 {
@@ -46,7 +47,10 @@ namespace Wildfire.Views
 
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
+           
             await Navigation.PopModalAsync();
         }
+
+        
     }
 }
