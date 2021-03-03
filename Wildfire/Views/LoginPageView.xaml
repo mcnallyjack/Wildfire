@@ -11,8 +11,12 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="140"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                
+                
             </Grid.RowDefinitions>
             <Label 
                Text="Login"
@@ -66,7 +70,20 @@
                 CornerRadius="10"
                 Clicked="SignUp_Clicked"
                 />
-            
+
+            <Button
+                Grid.Row="7"
+                Text="Back"
+                Clicked="Back_Clicked"
+                HorizontalOptions="Center"
+                BackgroundColor="LightGray"
+                TextColor="black"
+                BorderColor="Black"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="16"
+                FontAttributes="Bold"/>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

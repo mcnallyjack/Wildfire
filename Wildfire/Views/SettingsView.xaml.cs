@@ -17,6 +17,14 @@ namespace Wildfire.Views
         public SettingsView()
         {
             InitializeComponent();
+            if (Application.Current.Properties.ContainsKey("Nickname"))
+            {
+                nameSettings.Text = Application.Current.Properties["Nickname"].ToString();
+            }
+            if (Application.Current.Properties.ContainsKey("NotificationEnabled"))
+            {
+                notificationSettings.IsChecked = (bool)Application.Current.Properties["NotificationEnabled"];
+            }
             auth = DependencyService.Get<IAuth>();
             settingsDay.Text = DateTime.Now.DayOfWeek.ToString();
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
@@ -38,6 +46,17 @@ namespace Wildfire.Views
             {
                 DisplayAlert("Not Logged in", "", "Yes");
             }
+        }
+
+        private void OnChange(object sender, EventArgs e)
+        {
+            Application.Current.Properties["Nickname"] = nameSettings.Text;
+            Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
     }
 }

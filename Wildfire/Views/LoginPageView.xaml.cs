@@ -43,5 +43,10 @@ namespace Wildfire.Views
                 Application.Current.MainPage = new FirstPageView();
             }
         }
+
+        private async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new FirstPageView());
+        }
     }
 }

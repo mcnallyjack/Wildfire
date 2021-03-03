@@ -10,30 +10,58 @@
             <Label
                 Text="Create an Account"
                 HorizontalOptions="Center"
-                TextColor="#4682B4"
+                TextColor="Black"
                 FontSize="30"
-                Margin="0, 20">
+                Margin="0, 20"
+                FontAttributes="Bold">
                 
             </Label>
 
             <Entry 
                 Placeholder="E-mail"
                 Keyboard="Email"
-                x:Name="EmailInput"/>
+                x:Name="EmailInput"
+                BackgroundColor="LightGray"
+                Margin="50,5"/>
 
             <Entry
                 Placeholder="Password"
                 IsPassword="True"
-                x:Name="PasswordInput"/>
+                x:Name="PasswordInput"
+                BackgroundColor="LightGray"
+                Margin="50,5"/>
+
+            <Label Text="Please confirm you are a verified Firefighter"/>
+
+            <CheckBox>
+                
+            </CheckBox>
 
             <Button
                 Text="Sign Up"
                 Clicked="SignUp_Clicked"
                 Margin="60,40"
-                BackgroundColor="#4682B4"
-                TextColor="White"/>
-            
-           
+                BackgroundColor="#F5Ad42"
+                TextColor="White"
+                BorderColor="Black"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="16"
+                FontAttributes="Bold"/>
+
+            <Button
+                Text="Back"
+                Clicked="Back_Clicked"
+                Margin="60,40"
+                BackgroundColor="LightGray"
+                TextColor="black"
+                BorderColor="Black"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="16"
+                FontAttributes="Bold"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
