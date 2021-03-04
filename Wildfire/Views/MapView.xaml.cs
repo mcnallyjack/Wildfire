@@ -114,6 +114,7 @@ namespace Wildfire.Views
                     comp.ToString();
                     try
                     {
+
                         if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
                         {
                             DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");

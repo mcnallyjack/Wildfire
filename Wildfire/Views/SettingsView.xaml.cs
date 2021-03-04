@@ -14,6 +14,8 @@ namespace Wildfire.Views
     public partial class SettingsView : ContentPage
     {
         IAuth auth;
+        //public static string radius;
+        //public static bool isChecked;
         public SettingsView()
         {
             InitializeComponent();
@@ -25,9 +27,41 @@ namespace Wildfire.Views
             {
                 notificationSettings.IsChecked = (bool)Application.Current.Properties["NotificationEnabled"];
             }
+           // if (Application.Current.Properties.ContainsKey("Radius"))
+            //{
+              //  radiusSettings.Text = Application.Current.Properties["Radius"].ToString();
+            //}
             auth = DependencyService.Get<IAuth>();
             settingsDay.Text = DateTime.Now.DayOfWeek.ToString();
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
+        }
+
+        private void Login_Button_Clicked(object sender, EventArgs e)
+        {
+            
+
+            if (LoginPageView.token == null)
+            {
+                Application.Current.MainPage = new LoginPageView();
+            }
+            else
+            {
+                DisplayAlert("Already Logged in", "", "Yes");
+            }
+        }
+
+        private void Signup_Button_Clicked(object sender, EventArgs e)
+        {
+            
+
+            if (LoginPageView.token != null)
+            {
+                DisplayAlert("You already have an account", "", "Yes");
+            }
+            else
+            {
+                Application.Current.MainPage = new SignUpPageView();
+            }
         }
 
         private void Logout_Button_Clicked(object sender, EventArgs e)
@@ -39,6 +73,7 @@ namespace Wildfire.Views
 
                 if (signOut)
                 {
+                    LoginPageView.token = null;
                     Application.Current.MainPage = new FirstPageView();
                 }
             }
@@ -52,6 +87,9 @@ namespace Wildfire.Views
         {
             Application.Current.Properties["Nickname"] = nameSettings.Text;
             Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
+           // Application.Current.Properties["Radius"] = radiusSettings.Text;
+           /// radius = radiusSettings.Text;
+            //isChecked = notificationSettings.IsChecked;
         }
 
         protected override void OnDisappearing()
