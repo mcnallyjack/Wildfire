@@ -96,7 +96,6 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-
                     Circle circle = new Circle()
                     {
                         Center = new Position(location.Latitude, location.Longitude),

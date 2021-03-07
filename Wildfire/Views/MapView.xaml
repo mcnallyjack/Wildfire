@@ -29,7 +29,7 @@
                 BackgroundColor="LightGray"
                 BorderColor="Black"
                 BorderWidth="3"
-                ImageSource="pin.png"
+                ImageSource="flame.png"
                 Clicked="ReportFire_Clicked"/>
         
         
@@ -195,7 +195,7 @@
                 BackgroundColor="LightGray"
                 BorderColor="Black"
                 BorderWidth="3"
-                ImageSource="crosshair"
+                ImageSource="pin.png"
                 Clicked="Location_Button_Clicked"
                />
     </AbsoluteLayout>
