@@ -14,8 +14,8 @@ namespace Wildfire.Views
     public partial class SettingsView : ContentPage
     {
         IAuth auth;
-        //public static string radius;
-        //public static bool isChecked;
+        public static string radius;
+        public static bool isChecked;
         public SettingsView()
         {
             InitializeComponent();
@@ -23,14 +23,14 @@ namespace Wildfire.Views
             {
                 nameSettings.Text = Application.Current.Properties["Nickname"].ToString();
             }
+            if (Application.Current.Properties.ContainsKey("Radius"))
+            {
+                radiusSettings.Text = Application.Current.Properties["Radius"].ToString();
+            }
             if (Application.Current.Properties.ContainsKey("NotificationEnabled"))
             {
                 notificationSettings.IsChecked = (bool)Application.Current.Properties["NotificationEnabled"];
             }
-           // if (Application.Current.Properties.ContainsKey("Radius"))
-            //{
-              //  radiusSettings.Text = Application.Current.Properties["Radius"].ToString();
-            //}
             auth = DependencyService.Get<IAuth>();
             settingsDay.Text = DateTime.Now.DayOfWeek.ToString();
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
@@ -86,10 +86,18 @@ namespace Wildfire.Views
         private void OnChange(object sender, EventArgs e)
         {
             Application.Current.Properties["Nickname"] = nameSettings.Text;
+            Application.Current.Properties["Radius"] = radiusSettings.Text;
             Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
-           // Application.Current.Properties["Radius"] = radiusSettings.Text;
-           /// radius = radiusSettings.Text;
-            //isChecked = notificationSettings.IsChecked;
+            if(radiusSettings.Text == string.Empty)
+            {
+                radiusSettings.Text = null;
+            }
+            else if (radiusSettings.Text == "0")
+            {
+                radiusSettings.Text = null;
+            }
+            radius = radiusSettings.Text;
+            isChecked = notificationSettings.IsChecked;
         }
 
         protected override void OnDisappearing()

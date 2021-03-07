@@ -87,51 +87,180 @@ namespace Wildfire.Views
             var location = await Geolocation.GetLocationAsync();
             if (location != null)
             {
-                Pin newLoc = new Pin()
+                //Notification SET + Raduis SET
+                if (SettingsView.isChecked == true && SettingsView.radius != null)
                 {
-                    Label = "Current Location",
-                    Position = new Position(location.Latitude, location.Longitude)
-                };
-                map.Pins.Add(newLoc);
-
-                Circle circle = new Circle()
-                {
-                    Center = new Position(location.Latitude, location.Longitude),
-                    Radius = new Distance(1000),
-                    StrokeColor = Color.FromHex("#88FF0000"),
-                    StrokeWidth = 4,
-                    FillColor = Color.FromHex("#88FFC0CB")
-                };
-                map.Circles.Add(circle);
-                
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
-                var allFires = await firebaseHelper.GetAllFires();
-                foreach(var i in allFires)
-                {
-                    var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
-                    
-                    var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
-                    comp.ToString();
-                    try
+                    Pin newLoc = new Pin()
                     {
+                        Label = "Current Location",
+                        Position = new Position(location.Latitude, location.Longitude)
+                    };
+                    map.Pins.Add(newLoc);
 
-                        if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
-                        {
-                            DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
-                        }
-                        else
+                    Circle circle = new Circle()
+                    {
+                        Center = new Position(location.Latitude, location.Longitude),
+                        Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
+                        StrokeColor = Color.FromHex("#88FF0000"),
+                        StrokeWidth = 4,
+                        FillColor = Color.FromHex("#88FFC0CB")
+                    };
+                    map.Circles.Add(circle);
+
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+                    var allFires = await firebaseHelper.GetAllFires();
+                    foreach (var i in allFires)
+                    {
+                        var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
+
+                        var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
+                        comp.ToString();
+                        try
                         {
 
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
+                            {
+                                DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                            }
+                            else
+                            {
+
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        await DisplayAlert("Faild", ex.Message, "OK");
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Faild", ex.Message, "OK");
+                        }
+
                     }
 
                 }
-                
+                //Notification SET + Raduis NOT SET
+                else if (SettingsView.isChecked == true && SettingsView.radius == null)
+                {
+                    Pin newLoc = new Pin()
+                    {
+                        Label = "Current Location",
+                        Position = new Position(location.Latitude, location.Longitude)
+                    };
+                    map.Pins.Add(newLoc);
+
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+                    var allFires = await firebaseHelper.GetAllFires();
+                    foreach (var i in allFires)
+                    {
+                        var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
+
+                        var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
+                        comp.ToString();
+                        try
+                        {
+
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
+                            {
+                                DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Faild", ex.Message, "OK");
+                        }
+
+                    }
+
+                }
+                //Notification NOT SET  + Raduis SET
+                else if (SettingsView.isChecked == false && SettingsView.radius != null)
+                {
+                    Pin newLoc = new Pin()
+                    {
+                        Label = "Current Location",
+                        Position = new Position(location.Latitude, location.Longitude)
+                    };
+                    map.Pins.Add(newLoc);
+
+                    Circle circle = new Circle()
+                    {
+                        Center = new Position(location.Latitude, location.Longitude),
+                        Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
+                        StrokeColor = Color.FromHex("#88FF0000"),
+                        StrokeWidth = 4,
+                        FillColor = Color.FromHex("#88FFC0CB")
+                    };
+                    map.Circles.Add(circle);
+
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+                    var allFires = await firebaseHelper.GetAllFires();
+                    foreach (var i in allFires)
+                    {
+                        var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
+
+                        var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
+                        comp.ToString();
+                        try
+                        {
+
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))//needs to be worked on
+                            {
+                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Faild", ex.Message, "OK");
+                        }
+
+                    }
+
+                }
+                //Notification NOT SET + Raduis NOT SET
+                else if (SettingsView.isChecked == false && SettingsView.radius == null)
+                {
+                    Pin newLoc = new Pin()
+                    {
+                        Label = "Current Location",
+                        Position = new Position(location.Latitude, location.Longitude)
+                    };
+                    map.Pins.Add(newLoc);
+
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
+                    var allFires = await firebaseHelper.GetAllFires();
+                    foreach (var i in allFires)
+                    {
+                        var Loc = new Location(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude));
+
+                        var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
+                        comp.ToString();
+                        try
+                        {
+
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))//needs work
+                            {
+                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Faild", ex.Message, "OK");
+                        }
+
+                    }
+
+                }
             }
+
         }
 
         private void Search_Clicked(object sender, EventArgs e)
