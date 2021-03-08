@@ -26,7 +26,7 @@ namespace Wildfire.Views
 
         private async void btn_Res_Clicked(object sender, EventArgs e)
         {
-            await firebaseHelper.ResolveFire(Convert.ToInt32(fireID.Text));
+            await firebaseHelper.ResolveFire(Convert.ToString(fireID.Text));
             await DisplayAlert("Success", "Fire Resolved", "OK");
             await Navigation.PushModalAsync(new MainTabPage());
         }

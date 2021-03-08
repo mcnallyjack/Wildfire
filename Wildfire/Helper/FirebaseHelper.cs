@@ -29,14 +29,14 @@ namespace Wildfire.Helper
                 }).ToList();
         }
 
-        public async Task AddFire(int fireId, string lat, string longi, string time, string direction)
+        public async Task AddFire(string fireId, string lat, string longi, string time, string direction)
         {
             await firebase
                 .Child("Fire")
                 .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi, Time=time, WindDirection = direction});
         }
 
-        public async Task ResolveFire(int fireId)
+        public async Task ResolveFire(string fireId)
         {
             var toResolve = (await firebase
                 .Child("Fire")
@@ -44,7 +44,7 @@ namespace Wildfire.Helper
             await firebase.Child("Fire").Child(toResolve.Key).DeleteAsync();
         }
 
-        public async Task<Fire> GetFire(int fireId)
+        public async Task<Fire> GetFire(string fireId)
         {
             var allFires = await GetAllFires();
             await firebase
