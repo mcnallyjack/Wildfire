@@ -357,7 +357,10 @@ namespace Wildfire.Views
         {
             var search = originEntry.Text;
             var searchLocation = await Geocoding.GetLocationsAsync(search);
+            
             var sourceLocations = searchLocation?.FirstOrDefault();
+            if(sourceLocations != null)
+            {
             Location sourceCoordinates = new Location(sourceLocations.Latitude, sourceLocations.Longitude);
 
             Pin pin = new Pin()
@@ -373,6 +376,12 @@ namespace Wildfire.Views
             originEntry.Text = string.Empty;
             search = string.Empty;
             popupSearch.IsVisible = false;
+            }
+            else
+            {
+                search = string.Empty;
+                await DisplayAlert("Cant Find Location", "", "Yes");
+            }
         }
     }
 }

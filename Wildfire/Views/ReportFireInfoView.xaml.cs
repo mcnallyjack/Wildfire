@@ -25,20 +25,26 @@ namespace Wildfire.Views
             myLat.Text = $"{Lat}";
             myLong.Text = $"{Long}";
             timeFound.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+           
+            
+
 
            
 
             
         }
 
+      
+
         private async void btn_Add_Clicked(object sender, EventArgs e)
         {
-            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Text);
+            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Text, FireDesc.Text);
             fireID.Text = string.Empty;
             myLat.Text = string.Empty;
             myLong.Text = string.Empty;
             timeFound.Text = string.Empty;
             directionEntry.Text = string.Empty;
+            FireDesc.Text = string.Empty;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PushModalAsync(new MainTabPage());

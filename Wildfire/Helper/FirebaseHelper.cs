@@ -25,15 +25,16 @@ namespace Wildfire.Helper
                     Latitude = item.Object.Latitude,
                     Longitude = item.Object.Longitude,
                     Time = item.Object.Time,
-                    WindDirection = item.Object.WindDirection
+                    WindDirection = item.Object.WindDirection,
+                    Description = item.Object.Description
                 }).ToList();
         }
 
-        public async Task AddFire(string fireId, string lat, string longi, string time, string direction)
+        public async Task AddFire(string fireId, string lat, string longi, string time, string direction, string desc)
         {
             await firebase
                 .Child("Fire")
-                .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi, Time=time, WindDirection = direction});
+                .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi, Time=time, WindDirection = direction, Description = desc});
         }
 
         public async Task ResolveFire(string fireId)

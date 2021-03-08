@@ -7,20 +7,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="45" />
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="2" />
+                <RowDefinition Height="1"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="10"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Frame
+           <Frame
                 BorderColor="Black"
                 HeightRequest="150"
                 WidthRequest="100"
@@ -37,14 +37,21 @@
                 Grid.Column="1"
                 BackgroundColor="LightGray"
                 HasShadow="True"
+                
                 >
                 <Label Text="Report Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
-            </Frame>
+               
+            </Frame> 
+
+            <FlexLayout Grid.Row="3" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
+                 
+                <Label Text="   Time Found @   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
+                <Label x:Name="timeFound" TextColor="Black" FontSize="18" BackgroundColor="#2daff0" ></Label>
+                
+            </FlexLayout>
+
             
-            <!--Time Found // Start-->
-            <Label Text="Time Found @" Grid.Row="3" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Label x:Name="timeFound" Grid.Row="4" Grid.Column="1" TextColor="Black" FontSize="16" BackgroundColor="LightGray"></Label>
-            <!--Time Found // End-->
+
 
             <!--Wind Direction // Start-->
             <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
@@ -57,15 +64,17 @@
             <!-- Latitude & Longitude // End-->
             
             <!-- Place Name // Start-->
-            <Label x:Name="placeName" Text="Place Name" Grid.Row="9" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
+            <Label x:Name="FireDescription" Text="Fire Description" Grid.Row="9" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
             <!-- PLace Name // End-->
-            <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="10" Grid.Column="1" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
-            <Button  FontSize="25" Text="Report Fire" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="12" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
+            <Editor x:Name="FireDesc" Placeholder="E.g. Type" HeightRequest="100" Grid.Row="10" FontSize="16" TextColor="Black" BackgroundColor="LightGray" Grid.Column="1" Keyboard="Chat"></Editor>
+            <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="100" Grid.Column="0" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
+            <Button Grid.Row="12" Grid.Column="1" FontSize="20" Text="Add Photo +" BackgroundColor="LightGray"></Button>
+            <Button  FontSize="25" Text="Report Fire" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="14" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
 
 
 
 
-            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="14" Grid.Column="1" WidthRequest="100" HeightRequest=" 50" BackgroundColor="LightGray" Clicked="btn_Cancel_Clicked"></Button>
+            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="15" Grid.Column="1" WidthRequest="100" HeightRequest=" 50" BackgroundColor="LightGray" Clicked="btn_Cancel_Clicked"></Button>
 
                
             
