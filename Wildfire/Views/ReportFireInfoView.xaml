@@ -9,7 +9,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="2" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="45"/>
@@ -46,16 +46,21 @@
             <FlexLayout Grid.Row="3" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
                  
                 <Label Text="   Time Found @   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="timeFound" TextColor="Black" FontSize="18" BackgroundColor="#2daff0" ></Label>
+                <Label x:Name="timeFound" TextColor="Black" FontSize="14" BackgroundColor="#2daff0" ></Label>
                 
             </FlexLayout>
 
-            
+            <FlexLayout Grid.Row="4" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
+
+                <Label Text="   Place Name   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
+                <Label x:Name="placeName" TextColor="Black" FontSize="14" BackgroundColor="#2daff0" ></Label>
+
+            </FlexLayout>
 
 
             <!--Wind Direction // Start-->
             <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Entry x:Name="directionEntry" Grid.Row="7" Grid.Column="1" TextColor="Black" FontSize="16" BackgroundColor="LightGray" Placeholder="E.g. North"></Entry>
+            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" Grid.Column="1" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
             <!--Wind Direction // End-->
 
             <!-- Latitude & Longitude // Start-->

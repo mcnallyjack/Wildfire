@@ -293,10 +293,15 @@ namespace Wildfire.Views
             await Task.Delay(2000);
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
-
+            var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
+            var placemarkDetails = placemarks?.FirstOrDefault();
+            string code = placemarkDetails.PostalCode;
+            string countryName = placemarkDetails.CountryName;
+            string adminArea = placemarkDetails.AdminArea;
+            string Place =  adminArea+ "," + code ;
             Lat.ToString();
             Long.ToString();
-            await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
+            await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long, Place) { BindingContext = this.BindingContext }, false);
         }
 
        
@@ -331,10 +336,15 @@ namespace Wildfire.Views
                 map.Pins.Add(newLoc);
                 var Lat = location.Latitude;
                 var Long = location.Longitude;
+                var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
+                var placemarkDetails = placemarks?.FirstOrDefault();
+                string countryName = placemarkDetails.CountryName;
+                string localityName = placemarkDetails.Locality;
+                string Place = localityName + " " + countryName;
                 Lat.ToString();
                 Long.ToString();
                
-                await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long) { BindingContext = this.BindingContext }, false);
+                await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long, Place) { BindingContext = this.BindingContext }, false);
             }
         }
 
