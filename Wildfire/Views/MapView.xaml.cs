@@ -56,24 +56,55 @@ namespace Wildfire.Views
             var displayFires = await firebaseHelper.GetAllFires();
             foreach(var i in displayFires)
             {
-                Pin newFire = new Pin()
+                if (i.Description.Length <= 10)
                 {
-                    Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
-                    Label = i.FireID.ToString(),
-                    Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
-                };
-                map.PinClicked += (sender, e) =>
-                {
-                    
+                    Pin newFire = new Pin()
+                    {
+                        Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
+                        Label = i.Description.ToString(),
+                        Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
+                        Address = i.PlaceName.ToString(),
+                        Tag = i.FireID.ToString()
+
+                    };
+                    map.PinClicked += (sender, e) =>
+                    {
+
                         //await Task.Delay(2000);
                         //await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
-                    
-                   
-                      
-                    
+
+
+
+
+                    };
+                    map.Pins.Add(newFire);
+                }
+                else if (i.Description.Length > 10)
+                {
+                    string newW = String.Concat(i.Description.Select((c, j) => j > 0 && (j % 20) == 0 ? c.ToString() + Environment.NewLine : c.ToString()));
+
+
+                    Pin newFire = new Pin()
+                    {
+                        Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
+                        Label = newW.ToString(),
+                        Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
+                        Address = i.PlaceName.ToString(),
+                        Tag = i.FireID.ToString()
+
+                    };
+                    map.PinClicked += (sender, e) =>
+                    {
+
+                    //await Task.Delay(2000);
+                    //await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
+
+
+
+
                 };
-                map.Pins.Add(newFire);
-                
+                    map.Pins.Add(newFire);
+                } 
                 
             }
             
@@ -117,7 +148,7 @@ namespace Wildfire.Views
                         try
                         {
 
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
                             {
                                 DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
@@ -155,7 +186,7 @@ namespace Wildfire.Views
                         try
                         {
 
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
                             {
                                 DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
@@ -203,7 +234,7 @@ namespace Wildfire.Views
                         try
                         {
 
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))//needs to be worked on
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))//needs to be worked on
                             {
                                 //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
@@ -241,7 +272,7 @@ namespace Wildfire.Views
                         try
                         {
 
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(1))//needs work
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))//needs work
                             {
                                 //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
@@ -278,11 +309,21 @@ namespace Wildfire.Views
 
         private async void map_MapClicked(object sender, MapClickedEventArgs e)
         {
+            var location = await Geolocation.GetLocationAsync();
+            var plLat = location.Latitude;
+            var plLong = location.Longitude;
+            var placemark1 = await Geocoding.GetPlacemarksAsync(plLat, plLong);
+            var placemarkDetails1 = placemark1?.FirstOrDefault();
+            string locality1 = placemarkDetails1.Locality;
+            string areaCode1 = placemarkDetails1.CountryCode;
+            string Place1 = locality1 + ", " + areaCode1;
+
             Pin newFire = new Pin()
             {
                 Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
                 Label = "New Fire",
                 Position = new Position(e.Point.Latitude, e.Point.Longitude),
+                Address = Place1,
                 IsDraggable = true
                 
                 
@@ -293,12 +334,13 @@ namespace Wildfire.Views
             await Task.Delay(2000);
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
-            var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
+            /*var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
             var placemarkDetails = placemarks?.FirstOrDefault();
             string code = placemarkDetails.PostalCode;
             string countryName = placemarkDetails.CountryName;
             string adminArea = placemarkDetails.AdminArea;
-            string Place =  adminArea+ "," + code ;
+            string Place =  adminArea+ "," + code ; */
+            var Place = Place1;
             Lat.ToString();
             Long.ToString();
             await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long, Place) { BindingContext = this.BindingContext }, false);
@@ -324,13 +366,21 @@ namespace Wildfire.Views
         private async void ReportFire_Clicked(object sender, EventArgs e)
         {
             var location = await Geolocation.GetLocationAsync();
+            var plLat = location.Latitude;
+            var plLong = location.Longitude;
+            var placemark1 = await Geocoding.GetPlacemarksAsync(plLat, plLong);
+            var placemarkDetails1 = placemark1?.FirstOrDefault();
+            string locality1 = placemarkDetails1.Locality;
+            string areaCode1 = placemarkDetails1.CountryCode;
+            string Place1 = locality1 + ", " + areaCode1;
             if(location != null)
             {
                 Pin newLoc = new Pin()
                 {
                     Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
                     Label = "New Fire",
-                    Position = new Position(location.Latitude, location.Longitude)
+                    Position = new Position(location.Latitude, location.Longitude),
+                    Address = Place1
                 };
                
                 map.Pins.Add(newLoc);
@@ -338,9 +388,9 @@ namespace Wildfire.Views
                 var Long = location.Longitude;
                 var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
                 var placemarkDetails = placemarks?.FirstOrDefault();
-                string countryName = placemarkDetails.CountryName;
+                string areaCode = placemarkDetails.CountryCode;
                 string localityName = placemarkDetails.Locality;
-                string Place = localityName + " " + countryName;
+                string Place = localityName + " " + areaCode;
                 Lat.ToString();
                 Long.ToString();
                
@@ -358,7 +408,7 @@ namespace Wildfire.Views
             else
             {
                 
-                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
+                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label, e.Pin.Address, e.Pin.Tag.ToString() ));
             } 
             
         }

@@ -9,6 +9,8 @@
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -28,8 +30,10 @@
                 <Label Text="Resolve Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
             </Frame>
             
-            <Label x:Name="fireID" Grid.Row="2" Grid.Column="1" FontSize="Medium"></Label>
-            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="3" Grid.Column="1" Clicked="btn_Res_Clicked" BackgroundColor="#ff8c19"></Button>
+            <Label x:Name="fireID" Grid.Row="0" Grid.Column="0" FontSize="1"></Label>
+            <Label x:Name="firePlaceName" Grid.Row="2" Grid.Column="1" FontSize="Medium"></Label>
+            <Label x:Name="fireTag" Grid.Row="3" Grid.Column="1" FontSize="Medium"></Label>
+            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="4" Grid.Column="1" Clicked="btn_Res_Clicked" BackgroundColor="#ff8c19"></Button>
 
 
             

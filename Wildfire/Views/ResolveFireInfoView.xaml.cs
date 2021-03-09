@@ -18,15 +18,17 @@ namespace Wildfire.Views
     public partial class ResolveFireInfoView : ContentPage
     {
         FirebaseHelper firebaseHelper = new FirebaseHelper();
-        public ResolveFireInfoView(string Label)
+        public ResolveFireInfoView(string Label, string placeName, string tag)
         {
             InitializeComponent();
-            fireID.Text = $"{Label}";
+            fireID.Text = $"{placeName}";
+            firePlaceName.Text = $"{Label}";
+            fireTag.Text = $"{tag}";
         }
 
         private async void btn_Res_Clicked(object sender, EventArgs e)
         {
-            await firebaseHelper.ResolveFire(Convert.ToString(fireID.Text));
+            await firebaseHelper.ResolveFire(Convert.ToString(fireTag.Text));
             await DisplayAlert("Success", "Fire Resolved", "OK");
             await Navigation.PushModalAsync(new MainTabPage());
         }

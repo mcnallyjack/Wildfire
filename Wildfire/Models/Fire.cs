@@ -12,6 +12,7 @@ namespace Wildfire.Models
         public string Time { get; set; }
         public string WindDirection { get; set; }
         public string Description { get; set; }
+        public string PlaceName { get; set; }
 
     }
 }

@@ -57,13 +57,14 @@ namespace Wildfire.Views
             {
 
             }
-            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Items[directionEntry.SelectedIndex], FireDesc.Text);
+            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Items[directionEntry.SelectedIndex], FireDesc.Text, placeName.Text);
             fireID.Text = string.Empty;
             myLat.Text = string.Empty;
             myLong.Text = string.Empty;
             timeFound.Text = string.Empty;
             directionEntry.Items[directionEntry.SelectedIndex] = string.Empty;
             FireDesc.Text = string.Empty;
+            placeName.Text = string.Empty;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PushModalAsync(new MainTabPage());
