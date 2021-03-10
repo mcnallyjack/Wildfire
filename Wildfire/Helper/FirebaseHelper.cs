@@ -27,7 +27,8 @@ namespace Wildfire.Helper
                     Time = item.Object.Time,
                     WindDirection = item.Object.WindDirection,
                     Description = item.Object.Description, 
-                    PlaceName = item.Object.PlaceName
+                    PlaceName = item.Object.PlaceName,
+                    ResolvedDescription = item.Object.ResolvedDescription
                 }).ToList();
         }
 
@@ -44,6 +45,13 @@ namespace Wildfire.Helper
                 .Child("Fire")
                 .OnceAsync<Fire>()).Where(a => a.Object.FireID == fireId).FirstOrDefault();
             await firebase.Child("Fire").Child(toResolve.Key).DeleteAsync();
+        }
+
+        public async Task AddResolvedFire(string fireId, string desc, string place, string newDesc)
+        {
+            await firebase
+                .Child("ResolvedFire")
+                .PostAsync(new Fire() { FireID = fireId, Description = desc, PlaceName = place, ResolvedDescription = newDesc });
         }
 
         public async Task<Fire> GetFire(string fireId)

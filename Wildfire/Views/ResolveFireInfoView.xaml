@@ -7,8 +7,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="90"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
@@ -19,6 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <Frame
+                
                 BorderColor="Black"
                 HeightRequest="150"
                 WidthRequest="100"
@@ -26,17 +30,58 @@
                 Grid.Column="1"
                 BackgroundColor="LightGray"
                 HasShadow="True"
+                
                 >
                 <Label Text="Resolve Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
             </Frame>
             
-            <Label x:Name="fireID" Grid.Row="0" Grid.Column="0" FontSize="1"></Label>
-            <Label x:Name="firePlaceName" Grid.Row="2" Grid.Column="1" FontSize="Medium"></Label>
-            <Label x:Name="fireTag" Grid.Row="3" Grid.Column="1" FontSize="Medium"></Label>
-            <Button  Text="resolve" x:Name="btn_Res" WidthRequest="100" HeightRequest=" 50" Grid.Row="4" Grid.Column="1" Clicked="btn_Res_Clicked" BackgroundColor="#ff8c19"></Button>
+            <Label x:Name="fireTag" Grid.Row="22" Grid.Column="1" FontSize="20"></Label>
+            <Label x:Name="firePlaceName" Grid.Row="2" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Grid.Column="1" FontSize="20"></Label>
+            <Label x:Name="fireID" Grid.Row="3" Grid.Column="1" FontSize="20" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="Black"></Label>
 
+            <Image 
+                x:Name="imgChoose" 
+                HeightRequest="150" 
+                Grid.Row="4" 
+                Grid.Column="1" 
+                Source="photo.png"></Image>
 
+            <Label x:Name="FireDescription" Text="Fire Description" Grid.Row="5" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
+
+            <Editor x:Name="newDesc" Placeholder=" Information about Resolved Fire" MaxLength="100" HeightRequest="100" BackgroundColor="LightGray" Grid.Row="6" Grid.Column="1" TextColor="Black" Keyboard="Text"></Editor>
+
+            <Button  Text="Resolve"
+                     x:Name="btn_Res" 
+                     WidthRequest="100" 
+                     HeightRequest=" 50" 
+                     Grid.Row="7" 
+                     Grid.Column="1" 
+                     Clicked="btn_Res_Clicked" 
+                     BackgroundColor="#ff8c19"
+                     FontSize="20"
+                     FontAttributes="Bold"
+                     CornerRadius="10"
+                     BorderWidth="3"
+                     BorderColor="Black"
+                     TextColor="Black"></Button>
             
+            <Button  Text="Cancel" 
+                     x:Name="btn_Cancel" 
+                     WidthRequest="100" 
+                     HeightRequest=" 50" 
+                     Grid.Row="8" 
+                     Grid.Column="1" 
+                     Clicked="btn_Cancel_Clicked" 
+                     BackgroundColor="LightGray"
+                     FontSize="20"
+                     FontAttributes="Bold"
+                     CornerRadius="10"
+                     BorderWidth="3"
+                     BorderColor="Black"
+                     TextColor="Black"></Button>
+
+
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

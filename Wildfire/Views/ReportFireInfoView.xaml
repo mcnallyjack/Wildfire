@@ -15,10 +15,10 @@
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="5"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="55"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="25"/>
@@ -46,14 +46,14 @@
             <FlexLayout Grid.Row="3" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
                  
                 <Label Text="   Time Found @   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="timeFound" TextColor="Black" FontSize="14" BackgroundColor="#2daff0" ></Label>
+                <Label x:Name="timeFound" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" BackgroundColor="#2daff0" ></Label>
                 
             </FlexLayout>
 
             <FlexLayout Grid.Row="4" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
 
                 <Label Text="   Place Name   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="placeName" TextColor="Black" FontSize="14" BackgroundColor="#2daff0" ></Label>
+                <Label x:Name="placeName" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" BackgroundColor="#2daff0" ></Label>
 
             </FlexLayout>
 
@@ -67,19 +67,65 @@
             <Label x:Name="myLat" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
             <Label x:Name="myLong" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
             <!-- Latitude & Longitude // End-->
-            
-            <!-- Place Name // Start-->
+
+            <!-- Description // Start-->
             <Label x:Name="FireDescription" Text="Fire Description" Grid.Row="9" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <!-- PLace Name // End-->
             <Editor x:Name="FireDesc" Placeholder="Quick Description" MaxLength="100" HeightRequest="100" Grid.Row="10" FontSize="16" TextColor="Black" BackgroundColor="LightGray" Grid.Column="1" Keyboard="Text"></Editor>
+            <!-- Description // End-->
+            
+            
             <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="70" Grid.Column="0" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
-            <Button Grid.Row="12" Grid.Column="1" FontSize="20" Text="Add Photo +" BackgroundColor="LightGray"></Button>
-            <Button  FontSize="25" Text="Report Fire" x:Name="btn_Add" WidthRequest="100" HeightRequest=" 50" Grid.Row="14" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
+
+            <!-- Photo // Start-->
+            <Button 
+                x:Name="photo_Add"
+                Grid.Row="11" 
+                Grid.Column="1" 
+                FontSize="20" 
+                Text="Add Photo +" 
+                BackgroundColor="LightGray" 
+                WidthRequest="300"
+                BorderColor="Black"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontAttributes="Bold"
+                Clicked="photo_Add_Clicked"></Button>
+            
+            <Image 
+                x:Name="imgChoose" 
+                HeightRequest="150" 
+                Grid.Row="12" 
+                Grid.Column="1" 
+                Source="photo.png"
+               ></Image>
+            <!-- Photo // End-->
+            
+            
+            <Button  
+                WidthRequest="300"
+                BorderColor="Black"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                Text="Report Fire"
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="20"
+                FontAttributes="Bold" Grid.Row="14" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
 
 
 
 
-            <Button FontSize="25" Text="Cancel" x:Name="btn_Cancel" Grid.Row="15" Grid.Column="1" WidthRequest="100" HeightRequest=" 50" BackgroundColor="LightGray" Clicked="btn_Cancel_Clicked"></Button>
+            <Button  Text="Cancel" x:Name="btn_Cancel" Grid.Row="15" Grid.Column="1"  WidthRequest="300"
+                BorderColor="Black"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                
+                CornerRadius="10"
+                BorderWidth="3"
+                FontSize="16"
+                FontAttributes="Bold" Clicked="btn_Cancel_Clicked"></Button>
 
                
             
