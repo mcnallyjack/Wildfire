@@ -44,9 +44,9 @@ namespace Wildfire.Views
             directionEntry.Items.Add("South-East");
             directionEntry.Items.Add("South-West");
             directionEntry.Items.Add("Unknown");
-
+            deviceID.Text = Android.OS.Build.GetSerial().ToString();
             
-
+           
 
 
 
@@ -65,7 +65,7 @@ namespace Wildfire.Views
             {
 
             }
-            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Items[directionEntry.SelectedIndex], FireDesc.Text, placeName.Text);
+            await firebaseHelper.AddFire(Convert.ToString(Id), myLat.Text, myLong.Text, timeFound.Text, directionEntry.Items[directionEntry.SelectedIndex], FireDesc.Text, placeName.Text, deviceID.Text);
             fireID.Text = string.Empty;
             myLat.Text = string.Empty;
             myLong.Text = string.Empty;
@@ -73,6 +73,7 @@ namespace Wildfire.Views
             directionEntry.Items[directionEntry.SelectedIndex] = string.Empty;
             FireDesc.Text = string.Empty;
             placeName.Text = string.Empty;
+            deviceID.Text = string.Empty;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PushModalAsync(new MainTabPage());
@@ -115,6 +116,30 @@ namespace Wildfire.Views
             }
            await StoreImages(file.GetStream());
         }
+
+        private async void photo_Take_Clicked(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                var result = await MediaPicker.CapturePhotoAsync();
+
+                var imageStream = await result.OpenReadAsync();
+
+                imgChoose.Source = ImageSource.FromStream(() =>
+                {
+                    var imageStram = imageStream;
+                    return imageStram;
+                });
+                await StoreImages(imageStream);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+
 
         public async Task<string> StoreImages(Stream imageStream)
         {

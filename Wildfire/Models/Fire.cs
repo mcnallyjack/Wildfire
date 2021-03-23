@@ -14,6 +14,7 @@ namespace Wildfire.Models
         public string Description { get; set; }
         public string PlaceName { get; set; }
         public string ResolvedDescription { get; set; }
+        public string DeviceID { get; set; }
 
     }
 }
