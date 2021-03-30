@@ -19,7 +19,7 @@ namespace Wildfire.Views
             auth = DependencyService.Get<IAuth>();
         }
 
-         async void SignUp_Clicked(object sender, EventArgs e)
+        async void SignUp_Clicked(object sender, EventArgs e)
         {
             var user = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
             if(user != null)

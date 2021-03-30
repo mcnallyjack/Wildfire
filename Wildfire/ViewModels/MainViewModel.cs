@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+using Wildfire.Views;
 using Wildfire.Models;
 using Wildfire.Services;
 using Xamarin.Essentials;
@@ -140,7 +140,11 @@ namespace Wildfire.ViewModels
 
                     if (_originLatitud == _destinationLatitud && _originLongitud == _destinationLongitud)
                     {
-                        await App.Current.MainPage.DisplayAlert("Error", "Origin route should be different than destination route", "Ok");
+                        var search = new MapView();
+                       
+                        
+                        
+                        await App.Current.MainPage.DisplayAlert("", "Please Click the Search Button", "Ok");
                     }
                     else
                     {

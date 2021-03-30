@@ -16,7 +16,6 @@ namespace Wildfire.Views
         public static string token;
         public LoginPageView()
         {
-
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
         }
@@ -24,13 +23,20 @@ namespace Wildfire.Views
         private async void Login_Clicked(object sender, EventArgs e)
         {
             token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
-            if(token != string.Empty)
-            {
-                await Navigation.PushModalAsync(new MainTabPage());
+            try
+            { 
+                if (token != string.Empty)
+                    {
+                        await Navigation.PushModalAsync(new MainTabPage());
+                    }
+                else
+                    {
+                        await DisplayAlert("Auth Failed", "Email & Password Incorrect", "Ok");
+                    }
             }
-            else
+            catch (Exception ex)
             {
-                await DisplayAlert("Auth Failed", "Email & Password Incorrect", "Ok");
+                ex.Message.ToString();
             }
         }
 
@@ -38,15 +44,29 @@ namespace Wildfire.Views
         {
             var signOut = auth.SignOut();
 
-            if (signOut)
+            try
             {
-                Application.Current.MainPage = new FirstPageView();
+                if (signOut)
+                    {
+                        Application.Current.MainPage = new FirstPageView();
+                    }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
             }
         }
 
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new FirstPageView());
+            try
+            {
+                await Navigation.PushModalAsync(new FirstPageView());
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
     }
 }

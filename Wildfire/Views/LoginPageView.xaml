@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.LoginPageView"
+             BackgroundColor="White"
              >
     <ContentPage.Content>
         <Grid>
@@ -12,7 +13,7 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="140"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 
@@ -34,7 +35,9 @@
                 x:Name="EmailInput"
                 BackgroundColor="LightGray"
                 WidthRequest="200"
-                Margin="50,5"/>
+                Margin="50,5"
+                PlaceholderColor="DarkGray"
+                TextColor="black"/>
 
             <Entry 
                 Grid.Row="4"
@@ -42,7 +45,9 @@
                 IsPassword="True"
                 x:Name="PasswordInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"/>
+                Margin="50,5"
+                PlaceholderColor="DarkGray"
+                TextColor="black"/>
 
             <Button 
                 Grid.Row="5"
@@ -69,6 +74,9 @@
                 BorderWidth="3"
                 CornerRadius="10"
                 Clicked="SignUp_Clicked"
+                FontAttributes="Bold"
+                WidthRequest="170"
+                FontSize="16"
                 />
 
             <Button

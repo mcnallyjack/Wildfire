@@ -29,7 +29,7 @@ namespace Wildfire.Views
             var filename = fireTag.Text;
 
             imgChoose.Source = LoadImage().ToString();
-            Task.Delay(1000);
+            Task.Delay(500);
             
         }
 

@@ -19,10 +19,6 @@ namespace Wildfire.Views
         public SettingsView()
         {
             InitializeComponent();
-            if (Application.Current.Properties.ContainsKey("Nickname"))
-            {
-                nameSettings.Text = Application.Current.Properties["Nickname"].ToString();
-            }
             if (Application.Current.Properties.ContainsKey("Radius"))
             {
                 radiusSettings.Text = Application.Current.Properties["Radius"].ToString();
@@ -38,8 +34,6 @@ namespace Wildfire.Views
 
         private void Login_Button_Clicked(object sender, EventArgs e)
         {
-            
-
             if (LoginPageView.token == null)
             {
                 Application.Current.MainPage = new LoginPageView();
@@ -52,8 +46,6 @@ namespace Wildfire.Views
 
         private void Signup_Button_Clicked(object sender, EventArgs e)
         {
-            
-
             if (LoginPageView.token != null)
             {
                 DisplayAlert("You already have an account", "", "Yes");
@@ -85,7 +77,7 @@ namespace Wildfire.Views
 
         private void OnChange(object sender, EventArgs e)
         {
-            Application.Current.Properties["Nickname"] = nameSettings.Text;
+           
             Application.Current.Properties["Radius"] = radiusSettings.Text;
             Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
             if(radiusSettings.Text == string.Empty)
@@ -98,6 +90,7 @@ namespace Wildfire.Views
             }
             radius = radiusSettings.Text;
             isChecked = notificationSettings.IsChecked;
+            Application.Current.SavePropertiesAsync();
         }
 
         protected override void OnDisappearing()

@@ -23,9 +23,16 @@ namespace Wildfire.Views
         {
             var signOut = auth.SignOut();
 
-            if (signOut)
+            try
             {
-                Application.Current.MainPage = new SignUpPageView();
+                if (signOut)
+                    {
+                        Application.Current.MainPage = new SignUpPageView();
+                    } 
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
             }
         }
 
@@ -33,16 +40,29 @@ namespace Wildfire.Views
         {
             var signOut = auth.SignOut();
 
-            if (signOut)
+            try
             {
-                Application.Current.MainPage = new LoginPageView();
+                if (signOut)
+                    {
+                        Application.Current.MainPage = new LoginPageView();
+                    }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
             }
         }
 
         private async void Continue_Clicked(object sender, EventArgs e)
         {
-            
-            await Navigation.PushModalAsync(new MainTabPage());
+            try
+            {
+                await Navigation.PushModalAsync(new MainTabPage());
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
         
     }

@@ -46,10 +46,6 @@ namespace Wildfire.Views
             directionEntry.Items.Add("Unknown");
             deviceID.Text = Android.OS.Build.GetSerial().ToString();
             
-           
-
-
-
         }
 
       
@@ -82,14 +78,26 @@ namespace Wildfire.Views
 
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
-           
-            await Navigation.PopModalAsync();
+            try
+            {
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
 
         private void directionEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var name = directionEntry.Items[directionEntry.SelectedIndex];
-            
+            try
+            {
+                var name = directionEntry.Items[directionEntry.SelectedIndex];
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
 
         private async void photo_Add_Clicked(object sender, EventArgs e)
@@ -119,7 +127,6 @@ namespace Wildfire.Views
 
         private async void photo_Take_Clicked(object sender, EventArgs e)
         {
-           
             try
             {
                 var result = await MediaPicker.CapturePhotoAsync();
@@ -138,8 +145,6 @@ namespace Wildfire.Views
                 Debug.WriteLine(ex.Message);
             }
         }
-
-
 
         public async Task<string> StoreImages(Stream imageStream)
         {

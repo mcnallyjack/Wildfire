@@ -36,6 +36,15 @@ namespace Wildfire.Views
             Task.Run(LoadCurrentPosition);
                
         }
+
+        /*protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadFires();
+            await LoadCurrentPosition();
+        }*/
+
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -150,7 +159,7 @@ namespace Wildfire.Views
 
                             if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
                             {
-                                DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                               DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
                             else
                             {
@@ -188,7 +197,7 @@ namespace Wildfire.Views
 
                             if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
                             {
-                                DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
                             }
                             else
                             {
@@ -331,7 +340,7 @@ namespace Wildfire.Views
             
             map.Pins.Add(newFire);
 
-            await Task.Delay(2000);
+            await Task.Delay(1500);
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
             /*var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
@@ -413,7 +422,7 @@ namespace Wildfire.Views
             
         }
 
-        private async void SearchPlace_Clicked(object sender, EventArgs e)
+        public async void SearchPlace_Clicked(object sender, EventArgs e)
         {
             var search = originEntry.Text;
             var searchLocation = await Geocoding.GetLocationsAsync(search);

@@ -103,10 +103,17 @@
                                ClassId="origin"
                                FontAttributes="Italic"
                                ReturnType="Search"
-                               HorizontalOptions="FillAndExpand" />
+                               HorizontalOptions="FillAndExpand"
+                               TextColor="Black"
+                               PlaceholderColor="LightGray"
+                               BackgroundColor="DarkGray"/>
                         <Button ImageSource="search.png"
                     Clicked="SearchPlace_Clicked"
-                                />
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="2"
+                                CornerRadius="10"
+                                WidthRequest="80"/>
 
                     </StackLayout>
 

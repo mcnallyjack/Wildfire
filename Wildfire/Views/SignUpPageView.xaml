@@ -1,20 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.SignUpPageView">
+             x:Class="Wildfire.Views.SignUpPageView"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout
-            VerticalOptions="Center"
-            Margin="20">
 
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="175"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+           
             <Label
                 Text="Create an Account"
-                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
                 TextColor="Black"
-                FontSize="30"
-                Margin="0, 20"
-                FontAttributes="Bold">
-                
+                FontSize="50"
+                Margin="0, 30"
+                FontAttributes="Bold"
+                Grid.Row="1"
+                Grid.Column="1">
+
             </Label>
 
             <Entry 
@@ -22,46 +46,68 @@
                 Keyboard="Email"
                 x:Name="EmailInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"/>
+                Margin="50,5"
+                PlaceholderColor="DarkGray"
+                TextColor="Black"
+                Grid.Row="3"
+                WidthRequest="200"
+                Grid.Column="1"/>
 
             <Entry
                 Placeholder="Password"
                 IsPassword="True"
                 x:Name="PasswordInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"/>
+                Margin="50,5"
+                TextColor="Black"
+                PlaceholderColor="DarkGray"
+                Grid.Row="5"
+                WidthRequest="200"
+                Grid.Column="1"/>
 
-            <Label Text="Please confirm you are a verified Firefighter"/>
+            <Label Text="Please confirm you are a verified Firefighter" TextColor="Black"
+                   HorizontalOptions="CenterAndExpand"
+                   Grid.Row="7"
+                   Grid.Column="1"
+                   FontSize="18"
+                   HorizontalTextAlignment="Start"/>
 
-            <CheckBox>
+            <CheckBox
+                Grid.Row="7"
+                Grid.Column="1"
+                HorizontalOptions="End">
                 
             </CheckBox>
 
             <Button
                 Text="Sign Up"
                 Clicked="SignUp_Clicked"
-                Margin="60,40"
-                BackgroundColor="#F5Ad42"
-                TextColor="White"
+                
+                BackgroundColor="#ff8c19"
+                TextColor="Black"
                 BorderColor="Black"
                 CornerRadius="10"
                 BorderWidth="3"
-                FontSize="16"
-                FontAttributes="Bold"/>
+                FontSize="20"
+                FontAttributes="Bold"
+                Grid.Row="9"
+                Grid.Column="1"/>
 
             <Button
                 Text="Back"
                 Clicked="Back_Clicked"
-                Margin="60,40"
+                
                 BackgroundColor="LightGray"
                 TextColor="black"
                 BorderColor="Black"
                 CornerRadius="10"
                 BorderWidth="3"
-                FontSize="16"
-                FontAttributes="Bold"/>
+                FontSize="20"
+                FontAttributes="Bold"
+                Grid.Row="10"
+                Grid.Column="1"/>
 
+        </Grid>
 
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

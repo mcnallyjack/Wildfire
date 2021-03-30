@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.ReportFireInfoView">
+             x:Class="Wildfire.Views.ReportFireInfoView"
+             BackgroundColor="White">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -139,7 +140,7 @@
                 BorderColor="Black"
                 TextColor="Black"
                 HorizontalOptions="Center"
-                
+                BackgroundColor="LightGray"
                 CornerRadius="10"
                 BorderWidth="3"
                 FontSize="20"
