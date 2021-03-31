@@ -5,21 +5,22 @@
              BackgroundColor="White"
              >
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="140"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                
-                
-            </Grid.RowDefinitions>
-            <Label 
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="140"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+
+
+                </Grid.RowDefinitions>
+                <Label 
                Text="Login"
                    Grid.Row="1"
                    FontSize="50"
@@ -28,7 +29,7 @@
                    Margin="0,30"
                    FontAttributes="Bold"></Label>
 
-            <Entry 
+                <Entry 
                 Grid.Row="3"
                 Placeholder="E-mail"
                 Keyboard="Email"
@@ -39,7 +40,7 @@
                 PlaceholderColor="DarkGray"
                 TextColor="black"/>
 
-            <Entry 
+                <Entry 
                 Grid.Row="4"
                 Placeholder="Password"
                 IsPassword="True"
@@ -49,7 +50,7 @@
                 PlaceholderColor="DarkGray"
                 TextColor="black"/>
 
-            <Button 
+                <Button 
                 Grid.Row="5"
                 Text="Login"
                 Clicked="Login_Clicked"
@@ -64,7 +65,7 @@
                 FontSize="16"
                 FontAttributes="Bold"/>
 
-            <Button 
+                <Button 
                 Grid.Row="6"
                 Text="Create Account"
                 TextColor="Black"
@@ -79,7 +80,7 @@
                 FontSize="16"
                 />
 
-            <Button
+                <Button
                 Grid.Row="7"
                 Text="Back"
                 Clicked="Back_Clicked"
@@ -92,6 +93,7 @@
                 FontSize="16"
                 FontAttributes="Bold"/>
 
-        </Grid>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

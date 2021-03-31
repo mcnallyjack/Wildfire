@@ -6,6 +6,7 @@
              BackgroundColor="White">
 
     <ContentPage.Content>
+        <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -71,7 +72,7 @@
                      CornerRadius="10"
                      BorderWidth="3"
                      BorderColor="Black"
-                     TextColor="Black" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="End"></Button>
+                     TextColor="Black" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="End" BackgroundColor="LightGray"></Button>
 
             <Button Text="Logout"  Grid.Row="14" Grid.Column="1" Clicked="Logout_Button_Clicked" FontSize="20"
                      FontAttributes="Bold"
@@ -80,6 +81,6 @@
                      BorderColor="Black"
                      TextColor="Black" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="End" BackgroundColor="#2daff0"></Button>
         </Grid>
-
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

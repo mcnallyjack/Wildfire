@@ -4,6 +4,8 @@
              x:Class="Wildfire.Views.ReportFireInfoView"
              BackgroundColor="White">
     <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -23,8 +25,8 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="1"/>
-            </Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="300"/>
@@ -77,7 +79,7 @@
             <!-- Description // End-->
             
             
-            <Entry x:Name="fireID" Placeholder="Place Name" Grid.Row="70" Grid.Column="0" FontSize="Medium" Keyboard="Numeric" BackgroundColor="LightGray"></Entry>
+            <Entry x:Name="fireID"  Grid.Row="0" Grid.Column="0" FontSize="1" Keyboard="Numeric"></Entry>
 
             <!-- Photo // Start-->
             <Button 
@@ -153,5 +155,7 @@
            
             
         </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

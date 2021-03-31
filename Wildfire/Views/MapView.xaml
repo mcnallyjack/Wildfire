@@ -178,11 +178,12 @@
                                         <Label LineBreakMode="MiddleTruncation"
                                                Text="{Binding StructuredFormatting.MainText}"
                                                Grid.Row="0"
-                                               Grid.Column="1"/>
+                                               Grid.Column="1"
+                                               TextColor="Black"/>
 
                                         <Label LineBreakMode="MiddleTruncation"
                                                  Text="{Binding StructuredFormatting.SecondaryText}" 
-                                                 TextColor="Gray" 
+                                                 TextColor="Black" 
                                                  Grid.Row="1"
                                                  Grid.Column="1"/>
                                     </Grid>

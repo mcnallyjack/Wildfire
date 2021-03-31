@@ -4,7 +4,7 @@
              x:Class="Wildfire.Views.FirstPageView"
              BackgroundImageSource="b_g.png">
     <ContentPage.Content>
-
+        <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
@@ -85,5 +85,6 @@
                 Clicked="Continue_Clicked"/>
             
         </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

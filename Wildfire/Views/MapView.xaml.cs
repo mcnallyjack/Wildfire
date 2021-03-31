@@ -32,17 +32,17 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-            Task.Run(LoadFires);
-            Task.Run(LoadCurrentPosition);
+            //Task.Run(LoadFires);
+            //Task.Run(LoadCurrentPosition);
                
         }
 
-        /*protected async override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             await LoadFires();
             await LoadCurrentPosition();
-        }*/
+        }
 
 
         protected override void OnBindingContextChanged()
@@ -318,12 +318,23 @@ namespace Wildfire.Views
 
         private async void map_MapClicked(object sender, MapClickedEventArgs e)
         {
+            var permissions = await Permissions.CheckStatusAsync<Permissions.Phone>();
+
+            if (permissions != PermissionStatus.Granted)
+            {
+                permissions = await Permissions.RequestAsync<Permissions.Phone>();
+            }
+
+            if (permissions != PermissionStatus.Granted)
+            {
+                return;
+            }
             var location = await Geolocation.GetLocationAsync();
             var plLat = location.Latitude;
             var plLong = location.Longitude;
             var placemark1 = await Geocoding.GetPlacemarksAsync(plLat, plLong);
             var placemarkDetails1 = placemark1?.FirstOrDefault();
-            string locality1 = placemarkDetails1.Locality;
+            string locality1 = placemarkDetails1.SubAdminArea;
             string areaCode1 = placemarkDetails1.CountryCode;
             string Place1 = locality1 + ", " + areaCode1;
 
@@ -374,6 +385,17 @@ namespace Wildfire.Views
 
         private async void ReportFire_Clicked(object sender, EventArgs e)
         {
+            var permissions = await Permissions.CheckStatusAsync<Permissions.Phone>();
+
+            if(permissions != PermissionStatus.Granted)
+            {
+                permissions = await Permissions.RequestAsync<Permissions.Phone>();
+            }
+
+            if(permissions != PermissionStatus.Granted)
+            {
+                return;
+            }
             var location = await Geolocation.GetLocationAsync();
             var plLat = location.Latitude;
             var plLong = location.Longitude;
