@@ -58,6 +58,7 @@ namespace Wildfire.Views
             try
             {
                 await Navigation.PushModalAsync(new MainTabPage());
+               
             }
             catch (Exception ex)
             {

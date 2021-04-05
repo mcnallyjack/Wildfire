@@ -34,7 +34,7 @@ namespace Wildfire.Views
             InitializeComponent();
             //Task.Run(LoadFires);
             //Task.Run(LoadCurrentPosition);
-               
+              
         }
 
         protected async override void OnAppearing()
@@ -419,7 +419,7 @@ namespace Wildfire.Views
                 var Long = location.Longitude;
                 var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
                 var placemarkDetails = placemarks?.FirstOrDefault();
-                string areaCode = placemarkDetails.CountryCode;
+                string areaCode = placemarkDetails.AdminArea;
                 string localityName = placemarkDetails.Locality;
                 string Place = localityName + " " + areaCode;
                 Lat.ToString();
