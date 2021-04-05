@@ -206,9 +206,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\xhdpi.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Untitled.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

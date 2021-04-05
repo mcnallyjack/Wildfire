@@ -12585,10 +12585,7 @@ namespace Wildfire.Droid
 			public const int tooltip_frame_light = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int Untitled = 2131165359;
-			
-			// aapt resource value: 0x7F0700B0
-			public const int xhdpi = 2131165360;
+			public const int xhdpi = 2131165359;
 			
 			static Drawable()
 			{
