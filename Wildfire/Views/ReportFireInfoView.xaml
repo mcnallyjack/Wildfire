@@ -63,7 +63,7 @@
 
             <!--Wind Direction // Start-->
             <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" Grid.Column="1" BackgroundColor="LightGray" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
+            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" TextColor="Black" Grid.Column="1" BackgroundColor="LightGray" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
             <!--Wind Direction // End-->
 
             <!-- Latitude & Longitude // Start-->

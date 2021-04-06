@@ -60,23 +60,23 @@ namespace Wildfire.Views
                 string areaCode1 = placemarkDetails1.CountryCode;
                 string Place1 = locality1 + ", " + areaCode1;
 
-                InfoLocation.Text = Place1.ToString();
+                //InfoLocation.Text = Place1.ToString();
 
                 if (areaCode1 == "IE")
                 {
                     var num = "999 or 112";
-                    EmerNum.Text = num;
+                    //EmerNum.Text = num;
                 }
                 else if (areaCode1 == "GB")
                 {
                     var num = "999";
-                    EmerNum.Text = num;
+                    //EmerNum.Text = num;
 
                 }
                 else
                 {
                     var num = "Doesn't Exist";
-                    EmerNum.Text = num;
+                   // EmerNum.Text = num;
                 }
             }
 

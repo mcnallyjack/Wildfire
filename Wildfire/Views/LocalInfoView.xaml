@@ -5,12 +5,11 @@
              BackgroundColor="White">
     <ContentPage.Content>
 
-        <RefreshView
-                     >
+        <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="115"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="215"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
@@ -25,22 +24,24 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="HomeInfo" Grid.Row="1" Grid.Column="1"  CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" 
-                        TextColor="Black" BackgroundColor="LightBlue" Text="Home">
+                 <Frame BorderColor="Black"
+                        HeightRequest="150"
+                        WidthRequest="100"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
+                        HasShadow="True">
 
-                </Button>
-
-                <Frame Grid.Row="3" Grid.Column="1" HasShadow="False"  BorderColor="black" CornerRadius="25">
-                    <StackLayout>
-                        <ContentView>
-                            <Label x:Name="InfoLocation" TextColor="Black"></Label>
-                            
-                        </ContentView>
-                    </StackLayout>
+                    <Label Text="Local Information"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
                 </Frame>
+                            
 
-                <Label Grid.Row="5" Grid.Column="1" x:Name="EmerNum" TextColor="Black"> </Label>
             </Grid>
-        </RefreshView> 
+        </ScrollView> 
     </ContentPage.Content>
 </ContentPage>

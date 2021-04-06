@@ -334,7 +334,7 @@ namespace Wildfire.Views
             var plLong = location.Longitude;
             var placemark1 = await Geocoding.GetPlacemarksAsync(plLat, plLong);
             var placemarkDetails1 = placemark1?.FirstOrDefault();
-            string locality1 = placemarkDetails1.SubAdminArea;
+            string locality1 = placemarkDetails1.AdminArea;
             string areaCode1 = placemarkDetails1.CountryCode;
             string Place1 = locality1 + ", " + areaCode1;
 
@@ -401,7 +401,7 @@ namespace Wildfire.Views
             var plLong = location.Longitude;
             var placemark1 = await Geocoding.GetPlacemarksAsync(plLat, plLong);
             var placemarkDetails1 = placemark1?.FirstOrDefault();
-            string locality1 = placemarkDetails1.Locality;
+            string locality1 = placemarkDetails1.AdminArea;
             string areaCode1 = placemarkDetails1.CountryCode;
             string Place1 = locality1 + ", " + areaCode1;
             if(location != null)

@@ -26,6 +26,7 @@ namespace Wildfire.Views
     public partial class ReportFireInfoView : ContentPage
     {
         MediaFile file;
+        MediaFile MediaFile;
         FirebaseHelper firebaseHelper = new FirebaseHelper();
         public ReportFireInfoView(double Lat, double Long, string Place)
         {
@@ -127,18 +128,25 @@ namespace Wildfire.Views
 
         private async void photo_Take_Clicked(object sender, EventArgs e)
         {
+            await CrossMedia.Current.Initialize();
             try
             {
-                var result = await MediaPicker.CapturePhotoAsync();
+                MediaFile = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                {
+                    PhotoSize = PhotoSize.Medium,
+                    AllowCropping = true
+                });
+                
+               // var result = await MediaPicker.CapturePhotoAsync();
 
-                var imageStream = await result.OpenReadAsync();
+               // var imageStream = await result.OpenReadAsync();
 
                 imgChoose.Source = ImageSource.FromStream(() =>
                 {
-                    var imageStram = imageStream;
+                    var imageStram = MediaFile.GetStream();
                     return imageStram;
                 });
-                await StoreImages(imageStream);
+                await StoreImages(MediaFile.GetStream());
             }
             catch (Exception ex)
             {
