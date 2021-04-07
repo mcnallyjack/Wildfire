@@ -75,7 +75,8 @@
             <CheckBox
                 Grid.Row="7"
                 Grid.Column="1"
-                HorizontalOptions="End">
+                HorizontalOptions="End"
+                x:Name ="firefighterCon">
                 
             </CheckBox>
 

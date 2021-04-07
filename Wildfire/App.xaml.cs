@@ -18,11 +18,11 @@ namespace Wildfire
 
             if (auth.SignIn())
             {
-                MainPage = new FirstPageView();
+                MainPage = new SplashScreen();
             }
             else
             {
-                MainPage = new FirstPageView();
+                MainPage = new SplashScreen();
             }
         }
 

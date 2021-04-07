@@ -40,8 +40,22 @@ namespace Wildfire.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await LoadFires();
+
+            overlay.IsVisible = true;
+            loading.IsVisible = true;
+            map.IsVisible = false;
+            Report_Clicked.IsVisible = false;
+            searchPopup.IsVisible = false;
+            Location_Clicked.IsVisible = false;
             await LoadCurrentPosition();
+            await LoadFires();
+
+            overlay.IsVisible = false;
+            loading.IsVisible = false;
+            map.IsVisible = true;
+            Report_Clicked.IsVisible = true;
+            searchPopup.IsVisible = true;
+            Location_Clicked.IsVisible = true;
         }
 
 

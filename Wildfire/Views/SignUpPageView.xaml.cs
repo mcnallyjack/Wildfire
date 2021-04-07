@@ -21,20 +21,34 @@ namespace Wildfire.Views
 
         async void SignUp_Clicked(object sender, EventArgs e)
         {
-            var user = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
-            if(user != null)
-            {
-                await DisplayAlert("Success", "Created", "Ok");
-                var signOut = auth.SignOut();
 
-                if (signOut)
+            if (PasswordInput.Text.Length < 8)
+            {
+                await DisplayAlert("Error", "Password must be greater than 8 characters", "ok");
+            }
+            else if (firefighterCon.IsChecked != true)
+            {
+                await DisplayAlert("Error", "Please verify is you are a firefighter", "ok");
+            }
+            else {
+
+
+                var user = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+                if (user != null)
                 {
-                    Application.Current.MainPage = new LoginPageView();
+                    await DisplayAlert("Success", "Created", "Ok");
+                    var signOut = auth.SignOut();
+
+                    if (signOut)
+                    {
+                        Application.Current.MainPage = new LoginPageView();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "unable to LogOut", "Ok");
+                    }
                 }
-                else
-                {
-                    await DisplayAlert("Error", "unable to LogOut", "Ok");
-                }
+            
             }
         }
         private async void Back_Clicked(object sender, EventArgs e)
