@@ -78,6 +78,22 @@ namespace Wildfire.Droid
                 return string.Empty;
             }
         }
+
+        public async Task ForgotPassword(string email)
+        {
+            await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
+        }
+
+        public async Task ChangePassword(string newPassword)
+        {
+            
+            var currentUser = FirebaseAuth.Instance.CurrentUser;
+
+            await currentUser.UpdatePasswordAsync(newPassword);
+                
+            
+            
+        }
     }
 
 }

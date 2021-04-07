@@ -13,7 +13,7 @@
                     <RowDefinition Height="2"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="140"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
@@ -61,7 +61,7 @@
                 Grid.Row="5"
                 Text="Login"
                 Clicked="Login_Clicked"
-                Margin="60,40"
+                Margin="60,20"
                 WidthRequest="200"
                 BorderColor="Black"
                 TextColor="Black"
@@ -99,6 +99,22 @@
                 BorderWidth="3"
                 FontSize="16"
                 FontAttributes="Bold"/>
+
+                <Button Grid.Row="8"
+                        Text="Forgot Password?"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#2daFF0"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        CornerRadius="10"
+                        BorderWidth="3"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="10,0"
+                        x:Name="Forgot_Button"
+                        Clicked="Forgot_Button_Clicked">
+                    
+                </Button>
 
             </Grid>
         </ScrollView>

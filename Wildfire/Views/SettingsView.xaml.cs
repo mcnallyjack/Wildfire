@@ -97,5 +97,17 @@ namespace Wildfire.Views
         {
             base.OnDisappearing();
         }
+
+        private async void ChangePass_Clicked(object sender, EventArgs e)
+        {
+            if (LoginPageView.token != null)
+            {
+                await Navigation.PushModalAsync(new ChangePass());
+            }
+            else
+            {
+                await DisplayAlert("Error", "Please Login", "ok");
+            }
+        }
     }
 }

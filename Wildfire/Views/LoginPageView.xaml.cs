@@ -68,5 +68,10 @@ namespace Wildfire.Views
                 ex.Message.ToString();
             }
         }
+
+        private async void Forgot_Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ForgotPassword());
+        }
     }
 }

@@ -11,6 +11,10 @@ namespace Wildfire.Services
 
         Task<string> SignUpWithEmailAndPassword(string email, string password);
 
+        Task ForgotPassword(string email);
+
+        Task ChangePassword(string newPassword);
+
         bool SignOut();
 
         bool SignIn();
