@@ -24,5 +24,10 @@ namespace Wildfire.Views
             await DisplayAlert("Success", "Please check email inbox", "ok");
             await Navigation.PushModalAsync(new LoginPageView());
         }
+
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new LoginPageView());
+        }
     }
 }

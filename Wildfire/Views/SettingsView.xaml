@@ -11,27 +11,22 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="10"/>
+                    <RowDefinition Height="42"/>
+                    <RowDefinition Height="10"/>
                 <RowDefinition Height="35" />
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="20
+                               "/>
                 <RowDefinition Height="45"/> <!-- 10 -->
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -55,7 +50,7 @@
                 </Image>
 
 
-                <Entry x:Name="nameSettings" Grid.Row="20" Grid.Column="1" Text="{Binding Nickname}" Placeholder="Insert Nickname" Completed="OnChange"></Entry>
+               
 
             <Label Grid.Row="8" Grid.Column="1" FontSize="18"  TextColor="black" HorizontalOptions="Start" Text="Notification ON/OFF"></Label>
             <CheckBox x:Name="notificationSettings" HorizontalOptions="End" Grid.Row="8" Grid.Column="1" IsChecked="{Binding NotificationEnabled}" CheckedChanged="OnChange"> </CheckBox>

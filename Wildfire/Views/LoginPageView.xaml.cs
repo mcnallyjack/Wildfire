@@ -18,6 +18,7 @@ namespace Wildfire.Views
         {
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
+            MapView.notificationCount = 0;
         }
 
         private async void Login_Clicked(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                     {
-                        Application.Current.MainPage = new FirstPageView();
+                        Application.Current.MainPage = new SignUpPageView();
                     }
             }
             catch (Exception ex)

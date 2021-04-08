@@ -34,5 +34,10 @@ namespace Wildfire.Views
                 await Navigation.PushModalAsync(new MainTabPage());
             }
             }
+
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
+    }
     }

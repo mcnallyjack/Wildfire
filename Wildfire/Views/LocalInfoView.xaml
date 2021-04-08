@@ -11,12 +11,17 @@
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="215"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="115"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="115"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -30,7 +35,10 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         BackgroundColor="LightGray"
-                        HasShadow="True">
+                        HasShadow="True"
+                        IsVisible="true"
+                        x:Name="FrameLabel"
+                        >
 
                     <Label Text="Local Information"
                            FontSize="24"
@@ -39,7 +47,118 @@
                            TextColor="Black"
                         ></Label>
                 </Frame>
-                            
+
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="Current Location"
+                    TextColor="Black"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    IsVisible="true"
+                    x:Name="TopLabel"
+                    >
+                    
+                </Label>
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    BackgroundColor="#2daff0"
+                    TextColor="Black"
+                    FontSize="18"
+                   
+                    Padding="10,0,0,0"
+                    WidthRequest="200"
+                    x:Name="InfoLocation"
+                    IsVisible="true"
+                    >
+                    
+                </Label>
+
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text="Local Emergency Contact Information"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    x:Name="EmerLabel"
+                    IsVisible="true"
+                    >
+                    
+                </Label>
+
+                <Label
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    BackgroundColor="#2daff0"
+                    TextColor="Black"
+                    
+                    Padding="10,0,0,0"
+                    FontSize="18"
+                    x:Name="EmerNum"
+                    IsVisible="true"
+                    >
+                    
+                    
+                </Label>
+
+                <Button
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    FontSize="20"
+                    BackgroundColor="#ff8c19"
+                    CornerRadius="10"
+                    Text="Dial Emergency Number"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    x:Name="DialerButton"
+                    Clicked="DialerButton_Clicked"
+                    IsVisible="true"
+                    >
+                    
+                </Button>
+
+                <Button
+                    Grid.Row="12"
+                    Grid.Column="1"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    FontSize="20"
+                    BackgroundColor="LightGray"
+                    CornerRadius="10"
+                    Text="Back"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    x:Name="BackButton"
+                    Clicked="BackButton_Clicked"
+                    IsVisible="true"
+                    >
+                    
+                </Button>
+
+
+                <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="Transparent"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional" 
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                                   Grid.Column="1"
+                                   Grid.Row="6"
+                                   
+                                   
+                                   >
+
+                </ActivityIndicator>
+
+                <Label x:Name="loading" Text="Loading Local Information..."
+                       TextColor="Black" FontSize="20" IsVisible="false" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                 AbsoluteLayout.LayoutBounds="0.5,0.6,-1,-1" HorizontalTextAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="8"
+                       ></Label>
 
             </Grid>
         </ScrollView> 

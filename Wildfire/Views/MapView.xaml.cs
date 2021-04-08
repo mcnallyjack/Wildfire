@@ -19,6 +19,9 @@ namespace Wildfire.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage
     {
+        public static int locationCount = 0;
+        public static int notificationCount = 0;
+
         public static readonly BindableProperty FocusOriginCommandProperty =
            BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchView), null, BindingMode.TwoWay);
 
@@ -47,15 +50,30 @@ namespace Wildfire.Views
             Report_Clicked.IsVisible = false;
             searchPopup.IsVisible = false;
             Location_Clicked.IsVisible = false;
-            await LoadCurrentPosition();
-            await LoadFires();
-
-            overlay.IsVisible = false;
-            loading.IsVisible = false;
-            map.IsVisible = true;
-            Report_Clicked.IsVisible = true;
-            searchPopup.IsVisible = true;
-            Location_Clicked.IsVisible = true;
+            await Task.Delay(500);
+            
+            if (locationCount == 0)
+            {
+                await LoadFires();
+                await LoadCurrentPosition();
+                overlay.IsVisible = false;
+                loading.IsVisible = false;
+                map.IsVisible = true;
+                Report_Clicked.IsVisible = true;
+                searchPopup.IsVisible = true;
+                Location_Clicked.IsVisible = true;
+                locationCount++;
+            }
+            else
+            {
+                await LoadFires();
+                overlay.IsVisible = false;
+                loading.IsVisible = false;
+                map.IsVisible = true;
+                Report_Clicked.IsVisible = true;
+                searchPopup.IsVisible = true;
+                Location_Clicked.IsVisible = true;
+            }
         }
 
 
@@ -137,7 +155,7 @@ namespace Wildfire.Views
 
         async Task LoadCurrentPosition()
         {
-
+           
             var location = await Geolocation.GetLocationAsync();
             if (location != null)
             {
@@ -170,13 +188,43 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
+                            if (LoginPageView.token != null)
                             {
-                               DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
+                                    {
+                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                        notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
                             }
                             else
                             {
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
+                                    {
+                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                        notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
 
                             }
                         }
@@ -208,13 +256,43 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
+                            if (LoginPageView.token != null)
                             {
-                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
+                                    {
+                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                        notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
                             }
                             else
                             {
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
+                                    {
+                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                        notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
 
                             }
                         }
@@ -256,13 +334,43 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))//needs to be worked on
+                            if (LoginPageView.token != null)
                             {
-                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
+                                    {
+                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                        //notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
                             }
                             else
                             {
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
+                                    {
+                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                        //notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
 
                             }
                         }
@@ -294,13 +402,43 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-
-                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))//needs work
+                            if (LoginPageView.token != null)
                             {
-                                //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
+                                    {
+                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                        //notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
                             }
                             else
                             {
+                                if (notificationCount == 0)
+                                {
+                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
+                                    {
+                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
+                                        //notificationCount++;
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
+                                {
+
+                                }
 
                             }
                         }

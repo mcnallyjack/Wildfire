@@ -36,6 +36,7 @@ namespace Wildfire.Views
         {
             if (LoginPageView.token == null)
             {
+                MapView.notificationCount = 0;
                 Application.Current.MainPage = new LoginPageView();
             }
             else
@@ -65,6 +66,7 @@ namespace Wildfire.Views
 
                 if (signOut)
                 {
+                    MapView.notificationCount = 0;
                     LoginPageView.token = null;
                     Application.Current.MainPage = new FirstPageView();
                 }
