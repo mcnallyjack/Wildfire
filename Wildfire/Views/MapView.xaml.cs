@@ -19,6 +19,7 @@ namespace Wildfire.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage
     {
+        public static int loginCount = 0;
         public static int locationCount = 0;
         public static int notificationCount = 0;
 
@@ -51,7 +52,7 @@ namespace Wildfire.Views
             searchPopup.IsVisible = false;
             Location_Clicked.IsVisible = false;
             await Task.Delay(500);
-            
+
             if (locationCount == 0)
             {
                 await LoadFires();
@@ -63,6 +64,17 @@ namespace Wildfire.Views
                 searchPopup.IsVisible = true;
                 Location_Clicked.IsVisible = true;
                 locationCount++;
+            }
+            else if (loginCount == 0)
+            {
+                await LoadFires();
+                await LoadCurrentPosition();
+                overlay.IsVisible = false;
+                loading.IsVisible = false;
+                map.IsVisible = true;
+                Report_Clicked.IsVisible = true;
+                searchPopup.IsVisible = true;
+                Location_Clicked.IsVisible = true;
             }
             else
             {
