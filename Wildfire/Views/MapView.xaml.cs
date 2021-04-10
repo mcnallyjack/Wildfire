@@ -45,6 +45,17 @@ namespace Wildfire.Views
         {
             base.OnAppearing();
 
+            var permissions = await Permissions.CheckStatusAsync<Permissions.Camera>();
+
+            if (permissions != PermissionStatus.Granted)
+            {
+                permissions = await Permissions.RequestAsync<Permissions.Camera>();
+            }
+
+            if (permissions != PermissionStatus.Granted)
+            {
+                return;
+            }
             overlay.IsVisible = true;
             loading.IsVisible = true;
             map.IsVisible = false;
