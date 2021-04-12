@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.ProResSelectedView"
+             BackgroundColor="white">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="120"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Frame BorderColor="Black"
+                        HeightRequest="150"
+                        WidthRequest="100"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
+                        HasShadow="True"
+                        IsVisible="true"
+                        x:Name="FrameLabel"
+                        >
+
+                    <Label Text="Resolved Fire Information"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
+                </Frame>
+
+                <Label Text="Placename" 
+                       Grid.Row="3" 
+                       TextColor="Black" 
+                       FontSize=" 20" 
+                       Grid.Column="1">
+
+                </Label>
+
+                <Label x:Name="placeName" 
+                       Grid.Row="4" 
+                       TextColor="Black" 
+                       FontSize="18" 
+                       Grid.Column="1"
+                       Padding="10,0,0,0"
+                       WidthRequest="200"
+                        BackgroundColor="#2daff0">
+
+                </Label>
+
+                <Label Text="Time Found" 
+                       Grid.Row="6" 
+                       TextColor="Black" 
+                       FontSize=" 20" 
+                       Grid.Column="1">
+
+                </Label>
+
+                <Label x:Name="time" 
+                       Grid.Row="7" 
+                       TextColor="Black" 
+                       FontSize=" 18" 
+                       Grid.Column="1"
+                       Padding="10,0,0,0"
+                       WidthRequest="200"
+                       BackgroundColor="#2daff0">
+
+                </Label>
+
+               
+
+                <Label
+                    Text="Description"
+                    Grid.Row="9"
+                    TextColor="Black"
+                    FontSize="20"
+                    Grid.Column="1"
+                    >
+
+                </Label>
+
+                <Label x:Name="description"
+                       Grid.Row="10"
+                       TextColor="Black"
+                       FontSize="18"
+                       Grid.Column="1"
+                       Padding="10,0,0,0"
+                       WidthRequest="200"
+                       VerticalOptions="CenterAndExpand"
+                       BackgroundColor="#2daff0">
+                </Label>
+
+                <Label 
+                    x:Name="fireID" 
+                    Grid.Row="0" 
+                    TextColor="White" 
+                    FontSize=" 0" 
+                    Grid.Column="0">
+                </Label>
+
+                <Image 
+                    x:Name="currentFire"
+                    Grid.Row="14"
+                    Grid.Column="1"
+                    HeightRequest="125"
+                    >
+                </Image>
+
+                <ActivityIndicator Grid.Row="14" Grid.Column="1" BindingContext="{x:Reference currentFire}" IsRunning="{Binding IsLoading}"></ActivityIndicator>
+
+                <Button  
+                    x:Name="BackButton"
+                    Text="Back" 
+                    WidthRequest="100"                      
+                    Grid.Row="16" 
+                    Grid.Column="1" 
+                    BackgroundColor="LightGray"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    BorderWidth="3"
+                    BorderColor="Black"
+                    TextColor="Black"
+                    Clicked="BackButton_Clicked">
+
+                </Button>
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

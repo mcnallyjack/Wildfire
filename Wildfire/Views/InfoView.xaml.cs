@@ -26,5 +26,24 @@ namespace Wildfire.Views
         {
             await Navigation.PushModalAsync(new LocalInfoView());
         }
+
+        private async void ProfessionalInfo_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if(LoginPageView.token != null)
+                {
+                    await Navigation.PushModalAsync(new ProFireInfoView());
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Only Firefighters can access this Page", "ok");
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+        }
     }
 }

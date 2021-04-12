@@ -22,6 +22,8 @@ namespace Wildfire.Views
         public static int loginCount = 0;
         public static int locationCount = 0;
         public static int notificationCount = 0;
+        public static int reportedIndicator = 0;
+        public static Pin recent;
 
         public static readonly BindableProperty FocusOriginCommandProperty =
            BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchView), null, BindingMode.TwoWay);
@@ -45,6 +47,7 @@ namespace Wildfire.Views
         {
             base.OnAppearing();
 
+            await ChecksFires();
             var permissions = await Permissions.CheckStatusAsync<Permissions.Camera>();
 
             if (permissions != PermissionStatus.Granted)
@@ -62,7 +65,7 @@ namespace Wildfire.Views
             Report_Clicked.IsVisible = false;
             searchPopup.IsVisible = false;
             Location_Clicked.IsVisible = false;
-            await Task.Delay(500);
+            await Task.Delay(200);
 
             if (locationCount == 0)
             {
@@ -113,6 +116,26 @@ namespace Wildfire.Views
         {
             originEntry.Focus();
         }
+
+        async Task ChecksFires()
+        {
+            if(reportedIndicator == 0)
+            {
+
+            }
+            if(reportedIndicator == 2)
+            {
+                reportedIndicator = 0;
+                map.Pins.Remove(recent);
+                OnPropertyChanged();
+            }
+            if(reportedIndicator == 1)
+            {
+                reportedIndicator = 0;
+
+            }
+        }
+
 
         async Task LoadFires()
         {
@@ -513,6 +536,7 @@ namespace Wildfire.Views
             string areaCode1 = placemarkDetails1.CountryCode;
             string Place1 = locality1 + ", " + areaCode1;
 
+
             Pin newFire = new Pin()
             {
                 Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
@@ -526,15 +550,10 @@ namespace Wildfire.Views
             
             map.Pins.Add(newFire);
 
-            await Task.Delay(1500);
+            await Task.Delay(500);
+            recent = newFire;
             var Lat = e.Point.Latitude;
             var Long = e.Point.Longitude;
-            /*var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
-            var placemarkDetails = placemarks?.FirstOrDefault();
-            string code = placemarkDetails.PostalCode;
-            string countryName = placemarkDetails.CountryName;
-            string adminArea = placemarkDetails.AdminArea;
-            string Place =  adminArea+ "," + code ; */
             var Place = Place1;
             Lat.ToString();
             Long.ToString();
@@ -592,6 +611,7 @@ namespace Wildfire.Views
                 map.Pins.Add(newLoc);
                 var Lat = location.Latitude;
                 var Long = location.Longitude;
+                var Indicator = 0;
                 var placemarks = await Geocoding.GetPlacemarksAsync(Lat, Long);
                 var placemarkDetails = placemarks?.FirstOrDefault();
                 string areaCode = placemarkDetails.AdminArea;
@@ -614,7 +634,7 @@ namespace Wildfire.Views
             else
             {
                 
-                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label, e.Pin.Address, e.Pin.Tag.ToString() ));
+                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label, e.Pin.Address, e.Pin.Tag.ToString()));
             } 
             
         }

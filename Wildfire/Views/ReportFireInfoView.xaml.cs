@@ -28,6 +28,7 @@ namespace Wildfire.Views
         MediaFile file;
         MediaFile MediaFile;
         FirebaseHelper firebaseHelper = new FirebaseHelper();
+        public static string recentFire;
         public ReportFireInfoView(double Lat, double Long, string Place)
         {
             InitializeComponent();
@@ -71,6 +72,7 @@ namespace Wildfire.Views
             FireDesc.Text = string.Empty;
             placeName.Text = string.Empty;
             deviceID.Text = string.Empty;
+            MapView.reportedIndicator = 1;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PushModalAsync(new MainTabPage());
@@ -81,6 +83,7 @@ namespace Wildfire.Views
         {
             try
             {
+                MapView.reportedIndicator = 2;
                 await Navigation.PopModalAsync();
             }
             catch (Exception ex)

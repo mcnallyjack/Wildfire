@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.ProCurrentFiresView"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+      <StackLayout>
+                    <Frame BorderColor="Black" CornerRadius="0" BackgroundColor="LightGray" >
+                        <Label Text="Current Fires"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                                   HeightRequest="50"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   
+                                   BackgroundColor="LightGray">
+
+                            </Label>
+                        </Frame>
+                            
+                        </StackLayout>
+        
+            <ListView x:Name="currentFires" HasUnevenRows="True" RowHeight="70" BackgroundColor="White" SeparatorColor="Black"  ItemTapped="CurrentFires_ItemTapped">
+                   
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <TextCell
+                                Grid.Row="1"
+                              Text="{Binding PlaceName}"
+                              Detail="{Binding Description}"
+                              TextColor="Black"
+                              DetailColor="Gray"
+                              
+                              >
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            <Button  
+                    x:Name="BackButton"
+                    Text="Back" 
+                    WidthRequest="100"   
+                    HeightRequest="50"
+                    BackgroundColor="LightGray"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    
+                    BorderWidth="3"
+                    BorderColor="Black"
+                    TextColor="Black"
+                    Clicked="BackButton_Clicked">
+
+            </Button>
+
+
+        </StackLayout>
+
+       
+  
+    </ContentPage.Content>
+</ContentPage>

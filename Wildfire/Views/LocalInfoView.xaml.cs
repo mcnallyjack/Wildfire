@@ -117,15 +117,15 @@ namespace Wildfire.Views
                 }
                 catch (ArgumentNullException anEx)
                 {
-                    // Number was null or white space
+                    anEx.Message.ToString();
                 }
                 catch (FeatureNotSupportedException ex)
                 {
-                    // Phone Dialer is not supported on this device.
+                    ex.Message.ToString();
                 }
                 catch (Exception ex)
                 {
-                    // Other error has occurred.
+                    ex.Message.ToString();
                 }
             }
             else

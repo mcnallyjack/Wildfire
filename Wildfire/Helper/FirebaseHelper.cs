@@ -33,6 +33,20 @@ namespace Wildfire.Helper
                 }).ToList();
         }
 
+        public async Task<List<Fire>> GetResolvedFires()
+        {
+            return (await firebase
+                .Child("ResolvedFire")
+                .OnceAsync<Fire>()).Select(item => new Fire
+                {
+                    FireID = item.Object.FireID,
+                    PlaceName = item.Object.PlaceName,
+                    Time = item.Object.Time,
+                    ResolvedDescription = item.Object.ResolvedDescription,
+                    
+                }).ToList();
+        }
+
         public async Task AddFire(string fireId, string lat, string longi, string time, string direction, string desc, string plaName, string deviceID)
         {
             await firebase
@@ -48,11 +62,11 @@ namespace Wildfire.Helper
             await firebase.Child("Fire").Child(toResolve.Key).DeleteAsync();
         }
 
-        public async Task AddResolvedFire(string fireId, string desc, string place, string newDesc)
+        public async Task AddResolvedFire(string fireId, string desc, string place, string newDesc, string time)
         {
             await firebase
                 .Child("ResolvedFire")
-                .PostAsync(new Fire() { FireID = fireId, Description = desc, PlaceName = place, ResolvedDescription = newDesc });
+                .PostAsync(new Fire() { FireID = fireId, Description = desc, PlaceName = place, ResolvedDescription = newDesc, Time = time });
         }
 
         public async Task<Fire> GetFire(string fireId)
