@@ -24,6 +24,7 @@ namespace Wildfire.Views
         public static int notificationCount = 0;
         public static int reportedIndicator = 0;
         public static Pin recent;
+        public static int fireNotCount = 0;
 
         public static readonly BindableProperty FocusOriginCommandProperty =
            BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchView), null, BindingMode.TwoWay);
@@ -180,32 +181,24 @@ namespace Wildfire.Views
                     };
                     map.PinClicked += (sender, e) =>
                     {
-
-                    //await Task.Delay(2000);
-                    //await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
-
-
-
-
-                };
+                       
+                    };
                     map.Pins.Add(newFire);
-                } 
-                
-            }
-            
+                }    
+            }  
         }
 
         async Task LoadCurrentPosition()
         {
             var location = await Geolocation.GetLocationAsync();
-
             Circle circle = new Circle()
             {
                 Center = new Position(location.Latitude, location.Longitude),
                 Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
                 StrokeColor = Color.FromHex("#88FF0000"),
                 StrokeWidth = 4,
-                FillColor = Color.FromHex("#88FFC0CB")
+                FillColor = Color.FromHex("#88FFC0CB"),
+                IsClickable = true
             };
             map.Circles.Clear();
             map.Pins.Clear();
@@ -222,17 +215,7 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-                    map.Circles.Remove(circle);
-                   /* Circle circle = new Circle()
-                    {
-                        Center = new Position(location.Latitude, location.Longitude),
-                        Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
-                        StrokeColor = Color.FromHex("#88FF0000"),
-                        StrokeWidth = 4,
-                        FillColor = Color.FromHex("#88FFC0CB")
-                    };*/
                     map.Circles.Add(circle);
-
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
                     foreach (var i in allFires)
@@ -241,77 +224,84 @@ namespace Wildfire.Views
 
                         var comp = Location.CalculateDistance(location.Latitude, location.Longitude, Loc, DistanceUnits.Kilometers);
                         comp.ToString();
+                        // Count fires within the radius
                         try
                         {
-                            if (LoginPageView.token != null)
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
-                                    {
-                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
-                                        notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
+                                fireNotCount++;
                             }
                             else
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
-                                    {
-                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
-                                        notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
-
                             }
                         }
                         catch (Exception ex)
                         {
                             await DisplayAlert("Faild", ex.Message, "OK");
                         }
+                    }
+                    // Send Notification
+                    try
+                    {
+                        if (LoginPageView.token != null)
+                        {
+                            if (notificationCount == 0)
+                            {
+                                if (fireNotCount == 1)
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                    notificationCount++;
+                                }
+                                else
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please Check them out.");
+                                    notificationCount++;
+                                }
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else
+                        {
+                            if (notificationCount == 0)
+                            {
+                                if (fireNotCount == 1)
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please be careful.");
+                                    notificationCount++;
+                                }
+                                else if(fireNotCount == 0)
+                                {
+                                }
+                                else
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please be careful.");
+                                    notificationCount++;
+                                }
+                            }
+                            else
+                            {
+                            }
 
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.Message.ToString();
                     }
 
                 }
                 //Notification SET + Raduis NOT SET
                 else if (SettingsView.isChecked == true && SettingsView.radius == null)
                 {
-                   
+
                     Pin newLoc = new Pin()
                     {
                         Label = "Current Location",
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-                    map.Circles.Remove(circle);
-                    /*Circle circle = new Circle()
-                    {
-                        Center = new Position(location.Latitude, location.Longitude),
-                        Radius = new Distance(Convert.ToDouble(5) * 1000),
-                        StrokeColor = Color.Transparent,
-                        StrokeWidth = 1,
-                        FillColor = Color.Transparent
-                    };*/
-                    map.Circles.Remove(circle);
-
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
                     foreach (var i in allFires)
@@ -322,51 +312,69 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-                            if (LoginPageView.token != null)
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
-                                    {
-                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
-                                        notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
+                                fireNotCount++;
                             }
                             else
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
-                                    {
-                                        DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
-                                        notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
-
                             }
                         }
                         catch (Exception ex)
                         {
-                            await DisplayAlert("Faild", ex.Message, "OK");
+                            ex.Message.ToString();
                         }
+                    }
+                    // Send Notification
+                    try
+                    {
+                        if (LoginPageView.token != null)
+                        {
+                            if (notificationCount == 0)
+                            {
+                                if (fireNotCount == 1)
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                    notificationCount++;
+                                }
+                                else if(fireNotCount == 0)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please Check them out.");
+                                    notificationCount++;
+                                }
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else
+                        {
+                            if (notificationCount == 0)
+                            {
+                                if (fireNotCount == 1)
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please be careful.");
+                                    notificationCount++;
+                                }
+                                else
+                                {
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please be careful.");
+                                    notificationCount++;
+                                }
+                            }
+                            else
+                            {
+                            }
 
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.Message.ToString();
                     }
 
                 }
@@ -379,17 +387,7 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-                    map.Circles.Remove(circle);
-                    /*Circle circle = new Circle()
-                    {
-                        Center = new Position(location.Latitude, location.Longitude),
-                        Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
-                        StrokeColor = Color.FromHex("#88FF0000"),
-                        StrokeWidth = 4,
-                        FillColor = Color.FromHex("#88FFC0CB")
-                    };*/
                     map.Circles.Add(circle);
-
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
                     foreach (var i in allFires)
@@ -400,54 +398,24 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-                            if (LoginPageView.token != null)
+
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
-                                    {
-                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
-                                        //notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
+                                fireNotCount++;
                             }
                             else
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(SettingsView.radius))
-                                    {
-                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
-                                        //notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
 
                             }
                         }
-                        catch (Exception ex)
+                        catch(Exception ex )
                         {
-                            await DisplayAlert("Faild", ex.Message, "OK");
+                            ex.Message.ToString();
                         }
-
                     }
-
+                    //Send Notifications
                 }
+
                 //Notification NOT SET + Raduis NOT SET
                 else if (SettingsView.isChecked == false && SettingsView.radius == null)
                 {
@@ -458,15 +426,6 @@ namespace Wildfire.Views
                     };
                     map.Pins.Add(newLoc);
                     map.Circles.Remove(circle);
-                    /* Circle circle = new Circle()
-                     {
-                         Center = new Position(location.Latitude, location.Longitude),
-                         Radius = new Distance(Convert.ToDouble(5) * 1000),
-                         StrokeColor = Color.Transparent,
-                         StrokeWidth = 1,
-                         FillColor = Color.Transparent
-                     };*/
-                    map.Circles.Remove(circle);
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
                     foreach (var i in allFires)
@@ -477,53 +436,22 @@ namespace Wildfire.Views
                         comp.ToString();
                         try
                         {
-                            if (LoginPageView.token != null)
+                            if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
-                                    {
-                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
-                                        //notificationCount++;
-                                    }
-                                    else
-                                    {
 
-                                    }
-                                }
-                                else
-                                {
-
-                                }
                             }
                             else
                             {
-                                if (notificationCount == 0)
-                                {
-                                    if (Convert.ToDouble(comp) <= Convert.ToDouble(5))
-                                    {
-                                        //DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area");
-                                        //notificationCount++;
-                                    }
-                                    else
-                                    {
-
-                                    }
-                                }
-                                else
-                                {
-
-                                }
 
                             }
                         }
                         catch (Exception ex)
                         {
-                            await DisplayAlert("Faild", ex.Message, "OK");
-                        }
+                            ex.Message.ToString();
+                        }  
 
                     }
-
+                    //Send Notification
                 }
             }
 
@@ -532,10 +460,6 @@ namespace Wildfire.Views
         private void Search_Clicked(object sender, EventArgs e)
         {
             popupSearch.IsVisible = true;
-
-
-            //await Navigation.PushModalAsync(new SearchView() { BindingContext = this.BindingContext }, false);
-
         }
 
         void RemovePopupTapped(object sender, EventArgs e)

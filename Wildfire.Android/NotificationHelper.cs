@@ -23,7 +23,7 @@ namespace Wildfire.Droid
     class NotificationHelper : INotification
     {
         private Context mContext;
-        private NotificationManager mNotificationManager;
+        //private NotificationManager mNotificationManager;
         private NotificationCompat.Builder mBuilder;
         public static String NOTIFICATION_CHANNEL_ID = "10023";
 
@@ -37,6 +37,12 @@ namespace Wildfire.Droid
         {
             try
             {
+                var intent = new Intent(this.mContext, typeof(MainActivity));
+                intent.AddFlags(ActivityFlags.SingleTop);
+                intent.AddFlags(ActivityFlags.NewTask);
+
+                var pendingIntent = PendingIntent.GetActivity(this.mContext, 0, intent, PendingIntentFlags.OneShot);
+
                 mBuilder = new NotificationCompat.Builder(mContext);
                 mBuilder.SetSmallIcon(Resource.Drawable.common_google_signin_btn_icon_dark_normal);
                 mBuilder.SetContentTitle(title)
@@ -47,7 +53,8 @@ namespace Wildfire.Droid
                     .SetPriority((int)NotificationPriority.High)
                     .SetVibrate(new long[0])
                     .SetVisibility((int)NotificationVisibility.Public)
-                    .SetSmallIcon(Resource.Drawable.common_google_signin_btn_icon_dark_normal);
+                    .SetSmallIcon(Resource.Drawable.common_google_signin_btn_icon_dark_normal)
+                    .SetContentIntent(pendingIntent);
 
                 NotificationManager notificationManager = mContext.GetSystemService(Context.NotificationService) as NotificationManager;
                 if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.O){

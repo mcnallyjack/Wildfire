@@ -68,6 +68,7 @@ namespace Wildfire.Views
                 {
                     MapView.notificationCount = 0;
                     LoginPageView.token = null;
+                    MapView.fireNotCount = 0;
                     Application.Current.MainPage = new FirstPageView();
                 }
             }
@@ -94,6 +95,7 @@ namespace Wildfire.Views
             isChecked = notificationSettings.IsChecked;
             MapView.locationCount = 0;
             MapView.notificationCount = 0;
+            MapView.fireNotCount = 0;
             Application.Current.SavePropertiesAsync();
         }
 
