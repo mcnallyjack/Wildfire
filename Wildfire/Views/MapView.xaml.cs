@@ -66,8 +66,8 @@ namespace Wildfire.Views
 
             if (locationCount == 0)
             {
-                await LoadFires();
                 await LoadCurrentPosition();
+                await LoadFires();
                 overlay.IsVisible = false;
                 loading.IsVisible = false;
                 map.IsVisible = true;
@@ -78,8 +78,9 @@ namespace Wildfire.Views
             }
             else if (loginCount == 0)
             {
-                await LoadFires();
                 await LoadCurrentPosition();
+                await LoadFires();
+                
                 overlay.IsVisible = false;
                 loading.IsVisible = false;
                 map.IsVisible = true;
@@ -194,12 +195,22 @@ namespace Wildfire.Views
             
         }
 
-        
-
         async Task LoadCurrentPosition()
         {
-           
             var location = await Geolocation.GetLocationAsync();
+
+            Circle circle = new Circle()
+            {
+                Center = new Position(location.Latitude, location.Longitude),
+                Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
+                StrokeColor = Color.FromHex("#88FF0000"),
+                StrokeWidth = 4,
+                FillColor = Color.FromHex("#88FFC0CB")
+            };
+            map.Circles.Clear();
+            map.Pins.Clear();
+
+
             if (location != null)
             {
                 //Notification SET + Raduis SET
@@ -211,14 +222,15 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-                    Circle circle = new Circle()
+                    map.Circles.Remove(circle);
+                   /* Circle circle = new Circle()
                     {
                         Center = new Position(location.Latitude, location.Longitude),
                         Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
                         StrokeColor = Color.FromHex("#88FF0000"),
                         StrokeWidth = 4,
                         FillColor = Color.FromHex("#88FFC0CB")
-                    };
+                    };*/
                     map.Circles.Add(circle);
 
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
@@ -282,12 +294,23 @@ namespace Wildfire.Views
                 //Notification SET + Raduis NOT SET
                 else if (SettingsView.isChecked == true && SettingsView.radius == null)
                 {
+                   
                     Pin newLoc = new Pin()
                     {
                         Label = "Current Location",
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
+                    map.Circles.Remove(circle);
+                    /*Circle circle = new Circle()
+                    {
+                        Center = new Position(location.Latitude, location.Longitude),
+                        Radius = new Distance(Convert.ToDouble(5) * 1000),
+                        StrokeColor = Color.Transparent,
+                        StrokeWidth = 1,
+                        FillColor = Color.Transparent
+                    };*/
+                    map.Circles.Remove(circle);
 
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
@@ -356,15 +379,15 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-
-                    Circle circle = new Circle()
+                    map.Circles.Remove(circle);
+                    /*Circle circle = new Circle()
                     {
                         Center = new Position(location.Latitude, location.Longitude),
                         Radius = new Distance(Convert.ToDouble(SettingsView.radius) * 1000),
                         StrokeColor = Color.FromHex("#88FF0000"),
                         StrokeWidth = 4,
                         FillColor = Color.FromHex("#88FFC0CB")
-                    };
+                    };*/
                     map.Circles.Add(circle);
 
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
@@ -434,7 +457,16 @@ namespace Wildfire.Views
                         Position = new Position(location.Latitude, location.Longitude)
                     };
                     map.Pins.Add(newLoc);
-
+                    map.Circles.Remove(circle);
+                    /* Circle circle = new Circle()
+                     {
+                         Center = new Position(location.Latitude, location.Longitude),
+                         Radius = new Distance(Convert.ToDouble(5) * 1000),
+                         StrokeColor = Color.Transparent,
+                         StrokeWidth = 1,
+                         FillColor = Color.Transparent
+                     };*/
+                    map.Circles.Remove(circle);
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(2000)));
                     var allFires = await firebaseHelper.GetAllFires();
                     foreach (var i in allFires)
