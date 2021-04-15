@@ -20,7 +20,7 @@
                     <RowDefinition Height="25"></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition Height="25"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="120"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -125,6 +125,7 @@
                        Grid.Column="1"
                        Padding="10,0,0,0"
                        WidthRequest="200"
+                       LineBreakMode="WordWrap"
                        VerticalOptions="CenterAndExpand"
                        BackgroundColor="#2daff0">
                 </Label>
@@ -142,11 +143,15 @@
                     Grid.Row="14"
                     Grid.Column="1"
                     HeightRequest="125"
+                    Source="photo.png"
                     >
                 </Image>
 
-                <ActivityIndicator Grid.Row="14" Grid.Column="1" BindingContext="{x:Reference currentFire}" IsRunning="{Binding IsLoading}"> </ActivityIndicator>
-
+                <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="Transparent"                                   
+                                   Grid.Column="1"
+                                   Grid.Row="14">
+                </ActivityIndicator>
+                
                 <Button  
                     x:Name="BackButton"
                     Text="Back" 

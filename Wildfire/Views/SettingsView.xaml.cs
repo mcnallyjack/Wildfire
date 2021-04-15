@@ -92,6 +92,8 @@ namespace Wildfire.Views
             }
             radius = radiusSettings.Text;
             isChecked = notificationSettings.IsChecked;
+            MapView.locationCount = 0;
+            MapView.notificationCount = 0;
             Application.Current.SavePropertiesAsync();
         }
 

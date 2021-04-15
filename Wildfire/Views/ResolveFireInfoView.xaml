@@ -56,6 +56,16 @@
                 Grid.Column="1" 
                 Source="photo.png"></Image>
 
+                <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="Transparent"
+                                   
+                                   Grid.Column="1"
+                                   Grid.Row="4"
+                                   
+                                   
+                                   >
+
+                </ActivityIndicator>
+
                 <Label x:Name="time" Grid.Row="0" Grid.Column="0" TextColor="white" FontSize="0"></Label>
 
                 <Label x:Name="FireDescription" Text="Fire Description" Grid.Row="5" Grid.Column="1" TextColor="Black" FontSize="18"></Label>

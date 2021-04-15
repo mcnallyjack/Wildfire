@@ -22,26 +22,38 @@ namespace Wildfire.Views
             placeName.Text = PlaceName;
             time.Text = Time;
             fireID.Text = FireID;
-           
             description.Text = ResDescription;
-
-            currentFire.Source = LoadImage().ToString();
         }
 
-        public async Task<ImageSource> LoadImage()
+        protected async override void OnAppearing()
         {
-            var filename = fireID.Text;
+            base.OnAppearing();
+            overlay.IsVisible = true;
+            currentFire.IsVisible = false;
+            await LoadImage();
+            currentFire.IsVisible = true;
+            overlay.IsVisible = false;
+        }
 
-            var webClient = new WebClient();
-            var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
-                .Child("Fires")
-                .Child(filename + "(new)" + ".jpeg")
-                .GetDownloadUrlAsync();
-            string imgurl = storageImage;
-            byte[] imgbytes = webClient.DownloadData(imgurl);
-            currentFire.Source = ImageSource.FromStream(() => new MemoryStream(imgbytes));
-            return currentFire.Source;
-
+        public async Task LoadImage()
+        {
+            try
+            {
+                var filename = fireID.Text;
+                var webClient = new WebClient();
+                var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
+                    .Child("Fires")
+                    .Child(filename + "(new)" + ".jpeg")
+                    .GetDownloadUrlAsync();
+                string imgurl = storageImage;
+                byte[] imgbytes = webClient.DownloadData(imgurl);
+                currentFire.Source = ImageSource.FromStream(() => new MemoryStream(imgbytes));
+            }
+            catch(Exception ex) 
+            {
+                ex.Message.ToString();
+            }
+     
         }
 
         private async void BackButton_Clicked(object sender, EventArgs e)

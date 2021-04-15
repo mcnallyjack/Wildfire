@@ -28,9 +28,9 @@ namespace Wildfire.Views
 
         private async void resFires_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await Task.Delay(500);
+            await Task.Delay(50);
             var fireInfo = e.Item as Fire;
-            await App.Current.MainPage.Navigation.PushModalAsync(new ProResSelectedView(fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.ResolvedDescription));
+            await App.Current.MainPage.Navigation.PushModalAsync(new ProResSelectedView(fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.ResolvedDescription),false);
 
         }
 

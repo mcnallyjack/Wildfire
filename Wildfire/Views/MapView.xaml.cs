@@ -38,9 +38,6 @@ namespace Wildfire.Views
         public MapView()
         {
             InitializeComponent();
-            //Task.Run(LoadFires);
-            //Task.Run(LoadCurrentPosition);
-              
         }
 
         protected async override void OnAppearing()
@@ -89,6 +86,7 @@ namespace Wildfire.Views
                 Report_Clicked.IsVisible = true;
                 searchPopup.IsVisible = true;
                 Location_Clicked.IsVisible = true;
+                loginCount++;
             }
             else
             {
@@ -101,7 +99,6 @@ namespace Wildfire.Views
                 Location_Clicked.IsVisible = true;
             }
         }
-
 
         protected override void OnBindingContextChanged()
         {
@@ -633,8 +630,8 @@ namespace Wildfire.Views
             }
             else
             {
-                
-                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label, e.Pin.Address, e.Pin.Tag.ToString()));
+                await Task.Delay(10);
+                await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label, e.Pin.Address, e.Pin.Tag.ToString()),false);
             } 
             
         }

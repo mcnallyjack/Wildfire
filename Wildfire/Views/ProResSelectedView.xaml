@@ -124,10 +124,14 @@
                     Grid.Row="14"
                     Grid.Column="1"
                     HeightRequest="125"
+                    Source="photo.png"
                     >
                 </Image>
 
-                <ActivityIndicator Grid.Row="14" Grid.Column="1" BindingContext="{x:Reference currentFire}" IsRunning="{Binding IsLoading}"></ActivityIndicator>
+                <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="Transparent"                                   
+                                   Grid.Column="1"
+                                   Grid.Row="14">
+                </ActivityIndicator>
 
                 <Button  
                     x:Name="BackButton"

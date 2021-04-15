@@ -34,28 +34,36 @@ namespace Wildfire.Views
             fireTag.Text = $"{tag}";
             time.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             var filename = fireTag.Text;
-            
-
-
-            imgChoose.Source = LoadImage().ToString();
-            Task.Delay(500);
-            
-            
         }
 
-        public async Task<ImageSource> LoadImage()
+        protected async override void OnAppearing()
         {
-            var filename = fireTag.Text;
+            base.OnAppearing();
+            overlay.IsVisible = true;
+            imgChoose.IsVisible = false;
+            await LoadImage();
+            imgChoose.IsVisible = true;
+            overlay.IsVisible = false;         
+        }
 
-            var webClient = new WebClient();
-            var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
-                .Child("Fires")
-                .Child(filename + ".jpeg")
-                .GetDownloadUrlAsync();
-            string imgurl = storageImage;
-            byte[] imgbytes = webClient.DownloadData(imgurl);
-            imgChoose.Source = ImageSource.FromStream(() => new MemoryStream(imgbytes));
-            return imgChoose.Source;
+        public async Task/*<ImageSource>*/ LoadImage()
+        {
+            try
+            {
+                var filename = fireTag.Text;
+                var webClient = new WebClient();
+                var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
+                    .Child("Fires")
+                    .Child(filename + ".jpeg")
+                    .GetDownloadUrlAsync();
+                string imgurl = storageImage;
+                byte[] imgbytes = webClient.DownloadData(imgurl);
+                imgChoose.Source = ImageSource.FromStream(() => new MemoryStream(imgbytes));
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
             
         }
 
