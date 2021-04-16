@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="HomeInfo" Grid.Row="1" Grid.Column="1"  CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" 
-                        TextColor="Black" BackgroundColor="LightBlue" Text="Home">
+                        TextColor="Black" BackgroundColor="LightBlue" Text="Home" Clicked="HomeInfo_Clicked">
                     
                 </Button>
 

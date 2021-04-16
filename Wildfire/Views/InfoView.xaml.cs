@@ -18,10 +18,6 @@ namespace Wildfire.Views
             InitializeComponent();
             
         }
-
-        
-
-
         private async void LocalInfo_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new LocalInfoView());
@@ -39,6 +35,18 @@ namespace Wildfire.Views
                 {
                     await DisplayAlert("Error", "Only Firefighters can access this Page", "ok");
                 }
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+        }
+
+        private async void HomeInfo_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushModalAsync(new HomeInfoView());
             }
             catch(Exception ex)
             {

@@ -249,12 +249,12 @@ namespace Wildfire.Views
                             {
                                 if (fireNotCount == 1)
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area.");
                                     notificationCount++;
                                 }
                                 else
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please Check them out.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area.");
                                     notificationCount++;
                                 }
                             }
@@ -268,7 +268,7 @@ namespace Wildfire.Views
                             {
                                 if (fireNotCount == 1)
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please be careful.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area.");
                                     notificationCount++;
                                 }
                                 else if(fireNotCount == 0)
@@ -276,7 +276,7 @@ namespace Wildfire.Views
                                 }
                                 else
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please be careful.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area.");
                                     notificationCount++;
                                 }
                             }
@@ -334,7 +334,7 @@ namespace Wildfire.Views
                             {
                                 if (fireNotCount == 1)
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please Check it out.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area.");
                                     notificationCount++;
                                 }
                                 else if(fireNotCount == 0)
@@ -343,7 +343,7 @@ namespace Wildfire.Views
                                 }
                                 else
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please Check them out.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area.");
                                     notificationCount++;
                                 }
                             }
@@ -357,12 +357,12 @@ namespace Wildfire.Views
                             {
                                 if (fireNotCount == 1)
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area, Please be careful.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", "A fire has been Reported in your area.");
                                     notificationCount++;
                                 }
                                 else
                                 {
-                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area, Please be careful.");
+                                    DependencyService.Get<INotification>().CreateNotification("Wildfire", fireNotCount.ToString() + " fires have been Reported in your area.");
                                     notificationCount++;
                                 }
                             }

@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.HomeInfoView"
+             BackgroundColor="White">
+    <ContentPage.Content>
+       <!-- <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="95"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="15"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="15"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="15"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+               
+                <Button x:Name="PreventButton" Grid.Row="3" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Prevention" TextColor="Black"></Button>
+
+                <Button x:Name="DetectionButton" Grid.Row="5" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Detection" TextColor="Black"></Button>
+
+                <Button x:Name="EvacutionButton" Grid.Row="7" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Evaluation" TextColor="Black"></Button>
+
+                
+                
+                
+                
+            </Grid>
+        </ScrollView> -->
+
+        <AbsoluteLayout>
+
+            <Frame BorderColor="Black"
+                        HeightRequest="40"
+                        WidthRequest="300"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                        BackgroundColor="LightGray"
+                        HasShadow="True"
+                        IsVisible="true"
+                        x:Name="FrameLabel"
+                   HorizontalOptions="Center"
+                        >
+                
+                
+
+                <Label Text="Home Fire Safety"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
+            </Frame>
+
+            <Button x:Name="PreventionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Prevention" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="PreventionInfo_Clicked"></Button>
+
+            <Button x:Name="DetectionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Detection" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="DetectionInfo_Clicked"></Button>
+
+            <Button x:Name="EvalutionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Evaluation" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="EvalutionInfo_Clicked"></Button>
+
+            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="15" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="70" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
+
+            <!-- Prevention -->
+            <Frame 
+                        HeightRequest="500"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="preventionInfo"
+                        IsVisible="false"
+                         
+                        
+                        >
+                <Frame>
+
+                    <StackLayout>
+                        <Image HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Source="cancel.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PreventionRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    
+                                    HorizontalOptions="Center"
+                        >
+
+
+
+                            <Label Text="Prevention"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
+                        </Frame>
+                        <Label
+                    
+                                Text="Current Location"
+                                TextColor="Black"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelP"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.2,-1,-1"
+                    
+                    >
+
+                        </Label>
+                        <Label>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
+            <!-- Detection -->
+            <Frame 
+                        HeightRequest="500"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="detectionInfo"
+                        IsVisible="false"
+                         
+                        
+                        >
+                <Frame>
+
+                    <StackLayout>
+                        <Image HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Source="cancel.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DetectionRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    
+                                    HorizontalOptions="Center"
+                        >
+
+
+
+                            <Label Text="Detection"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
+                        </Frame>
+                        <Label
+                    
+                                Text="Current Location"
+                                TextColor="Black"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelD"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.2,-1,-1"
+                    
+                    >
+
+                        </Label>
+                        <Label>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
+            <!-- Evaluation -->
+            <Frame 
+                        HeightRequest="500"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="evaluationInfo"
+                        IsVisible="false"
+                         
+                        
+                        >
+                <Frame>
+
+                    <StackLayout>
+                        <Image HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Source="cancel.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="EvaluationRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    
+                                    HorizontalOptions="Center"
+                        >
+
+
+
+                            <Label Text="Evaluation"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                        ></Label>
+                        </Frame>
+                        <Label
+                    
+                                Text="Current Location"
+                                TextColor="Black"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelE"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.2,-1,-1"
+                    
+                    >
+
+                        </Label>
+                        <Label>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
