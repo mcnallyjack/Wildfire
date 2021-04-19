@@ -58,8 +58,8 @@
             
 
                 <Label Grid.Row="7" Grid.Column="1" FontSize="18" TextColor="Black" HorizontalOptions="Start"  VerticalOptions="Center" Text="Notification Radius"></Label>
-            
-            <Entry x:Name="radiusSettings" HorizontalTextAlignment="End" Grid.Row="7" Grid.Column="1" BackgroundColor="LightGray" HorizontalOptions="End" Text="{Binding Radius}" Placeholder="Set Radius(Km)" Keyboard="Numeric" Completed="OnChange"></Entry>
+
+                <Entry x:Name="radiusSettings" HorizontalTextAlignment="End" Grid.Row="7" Grid.Column="1" BackgroundColor="LightGray" HorizontalOptions="End" Text="{Binding Radius}" Placeholder="Set Radius(Km)" Keyboard="Numeric" Completed="OnChange" ClearButtonVisibility="WhileEditing" ReturnType="Done"></Entry> 
 
             <Button
                 Text="Change Password"

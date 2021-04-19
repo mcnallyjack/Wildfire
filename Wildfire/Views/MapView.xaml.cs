@@ -226,6 +226,7 @@ namespace Wildfire.Views
                     //Notification SET + Raduis SET
                     if (SettingsView.isChecked == true && SettingsView.radius != null)
                     {
+                        await DisplayAlert("Error","Set and Set","ok");
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -312,7 +313,7 @@ namespace Wildfire.Views
                     //Notification SET + Raduis NOT SET
                     else if (SettingsView.isChecked == true && SettingsView.radius == null)
                     {
-
+                        await DisplayAlert("Error", "Set and Not Set", "ok");
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -398,6 +399,7 @@ namespace Wildfire.Views
                     //Notification NOT SET  + Raduis SET
                     else if (SettingsView.isChecked == false && SettingsView.radius != null)
                     {
+                        await DisplayAlert("Error", "Not Set and Set", "ok");
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -436,6 +438,7 @@ namespace Wildfire.Views
                     //Notification NOT SET + Raduis NOT SET
                     else if (SettingsView.isChecked == false && SettingsView.radius == null)
                     {
+                        await DisplayAlert("Error", "not set and not set", "ok"); ;
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",

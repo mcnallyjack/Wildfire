@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Wildfire.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace Wildfire.Views
 {
@@ -19,17 +20,22 @@ namespace Wildfire.Views
         public SettingsView()
         {
             InitializeComponent();
-            if (Application.Current.Properties.ContainsKey("Radius"))
+ 
+            radiusSettings.Text = Preferences.Get("radiusSettings", string.Empty);
+            radiusSettings.Completed += (sender, e) =>
             {
-                radiusSettings.Text = Application.Current.Properties["Radius"].ToString();
-            }
-            if (Application.Current.Properties.ContainsKey("NotificationEnabled"))
-            {
-                notificationSettings.IsChecked = (bool)Application.Current.Properties["NotificationEnabled"];
-            }
+
+            };
+            notificationSettings.IsChecked = Preferences.Get("notificationSettings", false);
+           
             auth = DependencyService.Get<IAuth>();
             settingsDay.Text = DateTime.Now.DayOfWeek.ToString();
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
+        }
+
+        private void RadiusSettings_Completed1(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         private void Login_Button_Clicked(object sender, EventArgs e)
@@ -80,23 +86,32 @@ namespace Wildfire.Views
 
         private void OnChange(object sender, EventArgs e)
         {
-           
-            Application.Current.Properties["Radius"] = radiusSettings.Text;
-            Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
-            if(radiusSettings.Text == string.Empty)
+            Preferences.Set("radiusSettings", radiusSettings.Text);
+            radiusSettings.Completed += RadiusSettings_Completed;
+            Preferences.Set("notificationSettings", notificationSettings.IsChecked);
+
+            //Application.Current.Properties["Radius"] = radiusSettings.Text;
+            //Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
+            //Application.Current.SavePropertiesAsync();
+            /*if (radiusSettings.SelectedIndex.ToString() == string.Empty)
             {
-                radiusSettings.Text = null;
+               // radiusSettings.SelectedIndex.ToString() == 
             }
-            else if (radiusSettings.Text == "0")
+            else if (radiusSettings.SelectedIndex.ToString == "0")
             {
-                radiusSettings.Text = null;
-            }
+                radiusSettings.SelectedIndex = null;
+            }*/
             radius = radiusSettings.Text;
             isChecked = notificationSettings.IsChecked;
             MapView.locationCount = 0;
             MapView.notificationCount = 0;
             MapView.fireNotCount = 0;
-            Application.Current.SavePropertiesAsync();
+            
+        }
+
+        private void RadiusSettings_Completed(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         protected override void OnDisappearing()
@@ -115,5 +130,7 @@ namespace Wildfire.Views
                 await DisplayAlert("Error", "Please Login", "ok");
             }
         }
+
+        
     }
 }
