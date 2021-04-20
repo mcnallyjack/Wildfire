@@ -29,6 +29,7 @@ namespace Wildfire.Views
             { 
                 if (token != string.Empty)
                     {
+                        MapView.loginCount = 0;
                         await Navigation.PushModalAsync(new MainTabPage());
                     }
                 else
