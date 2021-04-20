@@ -46,17 +46,7 @@ namespace Wildfire.Views
             base.OnAppearing();
 
             await ChecksFires();
-            var permissions = await Permissions.CheckStatusAsync<Permissions.Camera>();
-
-            if (permissions != PermissionStatus.Granted)
-            {
-                permissions = await Permissions.RequestAsync<Permissions.Camera>();
-            }
-
-            if (permissions != PermissionStatus.Granted)
-            {
-                return;
-            }
+           
             overlay.IsVisible = true;
             loading.IsVisible = true;
             map.IsVisible = false;
@@ -193,7 +183,20 @@ namespace Wildfire.Views
         {
             try
             {
+                var phonePermissions = await Permissions.CheckStatusAsync<Permissions.Phone>();
 
+                phonePermissions = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+                if (phonePermissions != PermissionStatus.Granted)
+                {
+                    phonePermissions = await Permissions.RequestAsync<Permissions.Phone>();
+                    phonePermissions  = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+
+                if (phonePermissions != PermissionStatus.Granted)
+                {
+                    return;
+                }
 
                 var permissions = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
@@ -203,6 +206,42 @@ namespace Wildfire.Views
                 }
 
                 if (permissions != PermissionStatus.Granted)
+                {
+                    return;
+                }
+
+                var permission = await Permissions.CheckStatusAsync<Permissions.Camera>();
+
+                if (permission != PermissionStatus.Granted)
+                {
+                    permission = await Permissions.RequestAsync<Permissions.Camera>();
+                }
+
+                if (permission != PermissionStatus.Granted)
+                {
+                    return;
+                }
+
+                var storagePermissionRead = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+
+                if (storagePermissionRead != PermissionStatus.Granted)
+                {
+                    storagePermissionRead = await Permissions.RequestAsync<Permissions.StorageRead>();
+                }
+
+                if (storagePermissionRead != PermissionStatus.Granted)
+                {
+                    return;
+                }
+
+                var storagePermissionWrite = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
+
+                if (storagePermissionWrite != PermissionStatus.Granted)
+                {
+                    storagePermissionWrite = await Permissions.RequestAsync<Permissions.StorageWrite>();
+                }
+
+                if (storagePermissionWrite != PermissionStatus.Granted)
                 {
                     return;
                 }
@@ -220,13 +259,15 @@ namespace Wildfire.Views
                 map.Circles.Clear();
                 map.Pins.Clear();
 
+                var x = SettingsView.radius;
+
 
                 if (location != null)
                 {
                     //Notification SET + Raduis SET
                     if (SettingsView.isChecked == true && SettingsView.radius != null)
                     {
-                        await DisplayAlert("Error","Set and Set","ok");
+                        
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -313,7 +354,7 @@ namespace Wildfire.Views
                     //Notification SET + Raduis NOT SET
                     else if (SettingsView.isChecked == true && SettingsView.radius == null)
                     {
-                        await DisplayAlert("Error", "Set and Not Set", "ok");
+                        
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -399,7 +440,7 @@ namespace Wildfire.Views
                     //Notification NOT SET  + Raduis SET
                     else if (SettingsView.isChecked == false && SettingsView.radius != null)
                     {
-                        await DisplayAlert("Error", "Not Set and Set", "ok");
+                        
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -438,7 +479,7 @@ namespace Wildfire.Views
                     //Notification NOT SET + Raduis NOT SET
                     else if (SettingsView.isChecked == false && SettingsView.radius == null)
                     {
-                        await DisplayAlert("Error", "not set and not set", "ok"); ;
+                        
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -478,9 +519,25 @@ namespace Wildfire.Views
             catch(Exception ex)
             {
                 ex.Message.ToString();
-                await DisplayAlert("Error", "Please enable Location services on your mobile device and restart the application", "ok");
-                throw new Exception();
+
+                
+
+                var permissionLocation = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                var current = Connectivity.NetworkAccess;
+                if (permissionLocation != PermissionStatus.Granted)
+                {
+                    await DisplayAlert("Error", "Please enable Location services on your mobile device and restart the application", "ok");
+                    throw new Exception();
+                }
+                if(current != NetworkAccess.Internet)
+                {
+                    await DisplayAlert("Error", "Please enable WiFi services on your mobile device and restart the application", "ok");
+                    throw new Exception();
+                }
             }
+            //await DisplayAlert("Error", "Bug Found", "ok");
+            //throw new Exception();
+            
 
         }
 

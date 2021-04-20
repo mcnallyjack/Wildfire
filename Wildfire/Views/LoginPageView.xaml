@@ -50,7 +50,7 @@
                 x:Name="EmailInput"
                 BackgroundColor="LightGray"
                 WidthRequest="200"
-                Margin="50,5"
+                Margin="20,5"
                 PlaceholderColor="DarkGray"
                 TextColor="black"
                 Grid.Column="1"/>
@@ -61,7 +61,7 @@
                 IsPassword="True"
                 x:Name="PasswordInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"
+                Margin="20,5"
                 PlaceholderColor="DarkGray"
                 TextColor="black"
                      Grid.Column="1"
@@ -73,7 +73,7 @@
                     
                 Text="Login"
                 Clicked="Login_Clicked"
-                Margin="60,20"
+                Margin="20,20"
               WidthRequest="300"
                 BorderColor="Black"
                 TextColor="Black"

@@ -22,12 +22,15 @@ namespace Wildfire.Views
             InitializeComponent();
  
             radiusSettings.Text = Preferences.Get("radiusSettings", string.Empty);
-            radiusSettings.Completed += (sender, e) =>
+            radius = radiusSettings.Text;
+            if (radius == "")
             {
-
-            };
+                radius =null;
+            }
             notificationSettings.IsChecked = Preferences.Get("notificationSettings", false);
-           
+
+            OnPropertyChanged();
+
             auth = DependencyService.Get<IAuth>();
             settingsDay.Text = DateTime.Now.DayOfWeek.ToString();
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
@@ -75,6 +78,7 @@ namespace Wildfire.Views
                     MapView.notificationCount = 0;
                     LoginPageView.token = null;
                     MapView.fireNotCount = 0;
+                    MapView.loginCount = 0;
                     Application.Current.MainPage = new FirstPageView();
                 }
             }
@@ -87,20 +91,16 @@ namespace Wildfire.Views
         private void OnChange(object sender, EventArgs e)
         {
             Preferences.Set("radiusSettings", radiusSettings.Text);
-            radiusSettings.Completed += RadiusSettings_Completed;
             Preferences.Set("notificationSettings", notificationSettings.IsChecked);
-
-            //Application.Current.Properties["Radius"] = radiusSettings.Text;
-            //Application.Current.Properties["NotificationEnabled"] = notificationSettings.IsChecked;
-            //Application.Current.SavePropertiesAsync();
-            /*if (radiusSettings.SelectedIndex.ToString() == string.Empty)
+            
+            if (radiusSettings.Text == string.Empty)
             {
-               // radiusSettings.SelectedIndex.ToString() == 
+                radiusSettings.Text = null;
             }
-            else if (radiusSettings.SelectedIndex.ToString == "0")
+            else if (radiusSettings.Text == "0")
             {
-                radiusSettings.SelectedIndex = null;
-            }*/
+                radiusSettings.Text = null;
+            }
             radius = radiusSettings.Text;
             isChecked = notificationSettings.IsChecked;
             MapView.locationCount = 0;

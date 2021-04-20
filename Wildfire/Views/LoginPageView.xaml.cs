@@ -19,6 +19,7 @@ namespace Wildfire.Views
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
             MapView.notificationCount = 0;
+            MapView.loginCount = 0;
         }
 
         private async void Login_Clicked(object sender, EventArgs e)

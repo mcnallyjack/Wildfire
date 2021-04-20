@@ -53,7 +53,7 @@
                 Keyboard="Email"
                 x:Name="EmailInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"
+                Margin="20,5"
                 PlaceholderColor="DarkGray"
                 TextColor="Black"
                 Grid.Row="3"
@@ -65,7 +65,7 @@
                 IsPassword="True"
                 x:Name="PasswordInput"
                 BackgroundColor="LightGray"
-                Margin="50,5"
+                Margin="20,5"
                 TextColor="Black"
                 PlaceholderColor="DarkGray"
                 Grid.Row="5"
@@ -76,13 +76,16 @@
                    HorizontalOptions="CenterAndExpand"
                    Grid.Row="7"
                    Grid.Column="1"
-                   FontSize="18"
+                   FontSize="16"
+                   LineBreakMode="CharacterWrap"
+                   Margin="40,0"
                    HorizontalTextAlignment="Start"/>
 
             <CheckBox
                 Grid.Row="7"
                 Grid.Column="1"
                 HorizontalOptions="End"
+                Margin=" 30,0"
                 x:Name ="firefighterCon">
                 
             </CheckBox>

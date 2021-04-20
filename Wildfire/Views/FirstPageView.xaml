@@ -9,7 +9,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1"></RowDefinition>
                 <RowDefinition Height="198"></RowDefinition>
-                <RowDefinition Height="129"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
@@ -30,9 +30,10 @@
                    TextColor="White"
                    Margin="0,30"
                    FontAttributes="Bold"
-                       WidthRequest="220"
-                       LineBreakMode="CharacterWrap"
-                       HorizontalTextAlignment="Center"></Label>
+                   WidthRequest="220"
+                   LineBreakMode="CharacterWrap"
+                   HorizontalTextAlignment="Center"
+                   ></Label>
                 <Label Text="Please create an account"
                    Grid.Row="3"
                    FontSize="20"
