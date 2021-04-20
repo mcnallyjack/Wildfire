@@ -42,7 +42,7 @@ namespace Wildfire.Views
             }
         }
 
-        private  void SignUp_Clicked(object sender, EventArgs e)
+        private async void SignUp_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
@@ -50,7 +50,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                     {
-                        Application.Current.MainPage = new SignUpPageView();
+                        await Navigation.PushModalAsync(new SignUpPageView());
                     }
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace Wildfire.Views
         {
             try
             {
-                await Navigation.PushModalAsync(new FirstPageView());
+                await Navigation.PopModalAsync();
             }
             catch (Exception ex)
             {

@@ -41,32 +41,32 @@ namespace Wildfire.Views
             //throw new NotImplementedException();
         }
 
-        private void Login_Button_Clicked(object sender, EventArgs e)
+        private async void Login_Button_Clicked(object sender, EventArgs e)
         {
             if (LoginPageView.token == null)
             {
                 MapView.notificationCount = 0;
-                Application.Current.MainPage = new LoginPageView();
+                await Navigation.PushModalAsync(new LoginPageView());
             }
             else
             {
-                DisplayAlert("Already Logged in", "", "Yes");
+                await DisplayAlert("Already Logged in", "", "Yes");
             }
         }
 
-        private void Signup_Button_Clicked(object sender, EventArgs e)
+        private async void Signup_Button_Clicked(object sender, EventArgs e)
         {
             if (LoginPageView.token != null)
             {
-                DisplayAlert("You already have an account", "", "Yes");
+                await DisplayAlert("You already have an account", "", "Yes");
             }
             else
             {
-                Application.Current.MainPage = new SignUpPageView();
+                await Navigation.PushModalAsync(new SignUpPageView());
             }
         }
 
-        private void Logout_Button_Clicked(object sender, EventArgs e)
+        private async  void Logout_Button_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
@@ -79,12 +79,12 @@ namespace Wildfire.Views
                     LoginPageView.token = null;
                     MapView.fireNotCount = 0;
                     MapView.loginCount = 0;
-                    Application.Current.MainPage = new FirstPageView();
+                    await Navigation.PushModalAsync(new FirstPageView());
                 }
             }
             else
             {
-                DisplayAlert("Not Logged in", "", "Yes");
+               await  DisplayAlert("Not Logged in", "", "Yes");
             }
         }
 

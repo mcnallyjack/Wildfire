@@ -42,7 +42,7 @@ namespace Wildfire.Views
 
                     if (signOut)
                     {
-                        Application.Current.MainPage = new LoginPageView();
+                        await Navigation.PushModalAsync(new LoginPageView());
                     }
                     else
                     {
@@ -54,7 +54,7 @@ namespace Wildfire.Views
         }
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new FirstPageView());
+            await Navigation.PopModalAsync();
         }
     }
 }

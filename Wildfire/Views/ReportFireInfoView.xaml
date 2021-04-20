@@ -4,27 +4,28 @@
              x:Class="Wildfire.Views.ReportFireInfoView"
              BackgroundColor="White">
     <ContentPage.Content>
-        <ScrollView>
+       
             <StackLayout>
-        <Grid>
+                <ScrollView>
+        <Grid RowSpacing="8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="2"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="1"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="84"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="0"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="45"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="56"/>
+                <RowDefinition Height="56"/>
                 <RowDefinition Height="90"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="56"/>
+                <RowDefinition Height="56"/>
                 <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -34,22 +35,21 @@
             </Grid.ColumnDefinitions>
            <Frame
                 BorderColor="Black"
-                HeightRequest="150"
-                WidthRequest="100"
+                
                 Grid.Row="1"
                 Grid.Column="1"
                 BackgroundColor="LightGray"
                 HasShadow="True"
                 
                 >
-                <Label Text="Report Fire" FontSize="24" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
+                <Label Text="Report Fire" FontSize="24" HorizontalOptions="Center" VerticalTextAlignment="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
                
             </Frame> 
 
             <FlexLayout Grid.Row="3" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
                  
                 <Label Text="   Time Found @   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="timeFound" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" BackgroundColor="#2daff0" ></Label>
+                <Label x:Name="timeFound" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" BackgroundColor="#2daff0"></Label>
                 
             </FlexLayout>
 
@@ -63,7 +63,7 @@
 
             <!--Wind Direction // Start-->
             <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" TextColor="Black" Grid.Column="1" BackgroundColor="LightGray" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
+            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" TextColor="Black" Grid.Column="1" FontSize="16" BackgroundColor="LightGray" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
             <!--Wind Direction // End-->
 
             <!-- Latitude & Longitude // Start-->
@@ -96,7 +96,8 @@
                 CornerRadius="10"
                 BorderWidth="3"
                 FontAttributes="Bold"
-                Clicked="photo_Add_Clicked"></Button>
+                Clicked="photo_Add_Clicked"
+                ></Button>
 
             <Button 
                 x:Name="photo_Take"
@@ -157,7 +158,8 @@
            
             
         </Grid>
+            </ScrollView>
             </StackLayout>
-        </ScrollView>
+       
     </ContentPage.Content>
 </ContentPage>

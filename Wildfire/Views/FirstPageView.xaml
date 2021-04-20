@@ -7,12 +7,13 @@
         <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1"></RowDefinition>
+                <RowDefinition Height="0"></RowDefinition>
                 <RowDefinition Height="198"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
                 <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="135"></RowDefinition>
             </Grid.RowDefinitions>
             
             <Label Text="Wildfire"

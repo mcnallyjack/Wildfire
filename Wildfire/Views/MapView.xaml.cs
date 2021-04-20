@@ -53,7 +53,7 @@ namespace Wildfire.Views
             Report_Clicked.IsVisible = false;
             searchPopup.IsVisible = false;
             Location_Clicked.IsVisible = false;
-            await Task.Delay(200);
+            //await Task.Delay(200);
 
             if (locationCount == 0)
             {

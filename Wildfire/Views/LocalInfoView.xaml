@@ -6,21 +6,21 @@
     <ContentPage.Content>
 
         <ScrollView>
-            <Grid>
+            <Grid RowSpacing="6">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition Height="84"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
                     <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
                         >
 
                     <Label Text="Local Information"
-                           FontSize="24"
+                           FontSize="20"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            TextColor="Black"
@@ -137,6 +137,7 @@
                     x:Name="BackButton"
                     Clicked="BackButton_Clicked"
                     IsVisible="true"
+                    
                     >
                     
                 </Button>

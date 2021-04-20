@@ -19,16 +19,16 @@ namespace Wildfire.Views
             auth = DependencyService.Get<IAuth>();
         }
 
-        private void CreateAcc_Clicked(object sender, EventArgs e)
+        private async void CreateAcc_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
             try
             {
                 if (signOut)
-                    {
-                        Application.Current.MainPage = new SignUpPageView();
-                    } 
+                {
+                    await Navigation.PushAsync(new SignUpPageView());
+                } 
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace Wildfire.Views
             }
         }
 
-        private void LoginIn_Clicked(object sender, EventArgs e)
+        private async void LoginIn_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
@@ -44,7 +44,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                     {
-                        Application.Current.MainPage = new LoginPageView();
+                    await Navigation.PushAsync(new LoginPageView());
                     }
             }
             catch (Exception ex)

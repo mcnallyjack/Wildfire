@@ -21,13 +21,13 @@ namespace Wildfire
             CurrentPage = Children[1];
         }
 
-        private void SignOut_Clicked(object sender, EventArgs e)
+        private async void SignOut_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
             if (signOut)
             {
-                Application.Current.MainPage = new LoginPageView();
+                await Navigation.PushModalAsync(new LoginPageView());
             }
         }
     }

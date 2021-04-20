@@ -8,11 +8,11 @@
         <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="120"></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>
                     <RowDefinition Height="2"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="58"></RowDefinition>
+                    <RowDefinition Height="58"></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
@@ -52,6 +52,7 @@
                 WidthRequest="200"
                 Margin="20,5"
                 PlaceholderColor="DarkGray"
+                
                 TextColor="black"
                 Grid.Column="1"/>
 

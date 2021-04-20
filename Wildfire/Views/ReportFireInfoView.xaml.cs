@@ -46,8 +46,11 @@ namespace Wildfire.Views
             directionEntry.Items.Add("South-East");
             directionEntry.Items.Add("South-West");
             directionEntry.Items.Add("Unknown");
-            deviceID.Text = Android.OS.Build.GetSerial().ToString();
-            
+
+
+            // deviceID.Text = Android.OS.Build.GetSerial().ToString(); Optimal solution
+
+            deviceID.Text = Android.OS.Build.Fingerprint;
         }
 
       
@@ -57,6 +60,16 @@ namespace Wildfire.Views
             if (directionEntry.SelectedIndex == -1)
             {
                 await DisplayAlert("Error", "Please Select Wind Direction", "Yes");
+                return;
+            }
+            if (FireDesc.Text == null)
+            {
+                await DisplayAlert("Error", "Please enter a description to help the firefigter ", "Yes");
+                return;
+            }
+            if (FireDesc.Text == "")
+            {
+                await DisplayAlert("Error", "Please enter a description to help the firefigter ", "Yes");
                 return;
             }
             else
