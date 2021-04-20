@@ -86,6 +86,7 @@ namespace Wildfire.Views
             placeName.Text = string.Empty;
             deviceID.Text = string.Empty;
             MapView.reportedIndicator = 1;
+            MapView.locationCount = 0;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
             await Navigation.PushModalAsync(new MainTabPage());
