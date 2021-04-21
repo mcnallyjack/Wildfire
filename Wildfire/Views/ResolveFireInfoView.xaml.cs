@@ -69,7 +69,17 @@ namespace Wildfire.Views
 
         private async void btn_Res_Clicked(object sender, EventArgs e)
         {
-            
+            if (newDesc.Text == null)
+            {
+                await DisplayAlert("Error", "Please enter a description to resolve the fire ", "Yes");
+                return;
+            }
+            if (newDesc.Text == "")
+            {
+                await DisplayAlert("Error", "Please enter a description to resolve the fire ", "Yes");
+                return;
+            }
+            MapView.locationCount = 0;
             await firebaseHelper.ResolveFire(Convert.ToString(fireTag.Text));
             await DisplayAlert("Success", "Fire Resolved", "OK");
             await firebaseHelper.AddResolvedFire(fireTag.Text, firePlaceName.Text, fireID.Text, newDesc.Text,time.Text);
@@ -78,6 +88,7 @@ namespace Wildfire.Views
 
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
+            MapView.locationCount = 0;
             await Navigation.PushModalAsync(new MainTabPage());
         }
 
