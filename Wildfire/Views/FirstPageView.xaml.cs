@@ -27,7 +27,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                 {
-                    await Navigation.PushAsync(new SignUpPageView());
+                    await Navigation.PushModalAsync(new SignUpPageView());
                 } 
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                     {
-                    await Navigation.PushAsync(new LoginPageView());
+                    await Navigation.PushModalAsync(new LoginPageView());
                     }
             }
             catch (Exception ex)
