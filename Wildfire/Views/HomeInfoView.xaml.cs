@@ -16,7 +16,7 @@ namespace Wildfire.Views
         {
             InitializeComponent();
         }
-
+       
         private void PreventionInfo_Clicked(object sender, EventArgs e)
         {
             try
@@ -73,7 +73,7 @@ namespace Wildfire.Views
             evaluationInfo.IsVisible = false;
             EvalutionInfo.IsVisible = true;
         }
-
+  
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             try

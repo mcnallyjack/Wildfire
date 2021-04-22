@@ -8,7 +8,7 @@
         <ScrollView>
             <Grid RowSpacing="6">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="84"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="35"></RowDefinition>

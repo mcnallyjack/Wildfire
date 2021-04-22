@@ -44,7 +44,7 @@
                         HeightRequest="40"
                         WidthRequest="300"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
-                        AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
                         BackgroundColor="LightGray"
                         HasShadow="True"
                         IsVisible="true"
@@ -62,30 +62,35 @@
                         ></Label>
             </Frame>
 
-            <Button x:Name="PreventionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Prevention" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="PreventionInfo_Clicked"></Button>
+            <Button x:Name="PreventionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Prevention" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="PreventionInfo_Clicked"></Button>
 
-            <Button x:Name="DetectionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Detection" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="DetectionInfo_Clicked"></Button>
+            <Button x:Name="DetectionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Detection" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="DetectionInfo_Clicked"></Button>
 
-            <Button x:Name="EvalutionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Evaluation" TextColor="Black" HeightRequest="70" WidthRequest="250" Clicked="EvalutionInfo_Clicked"></Button>
+            <Button x:Name="EvalutionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Evacuation" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="EvalutionInfo_Clicked"></Button>
 
-            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="15" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="70" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
+            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="10" FontSize="20" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="56" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
 
             <!-- Prevention -->
             <Frame 
-                        HeightRequest="500"
+                        HeightRequest="650"
                         WidthRequest="310"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                         BackgroundColor="Transparent"
                         x:Name="preventionInfo"
                         IsVisible="false"
-                         
+                        HasShadow="True"
+                        
                         
                         >
-                <Frame>
+                <Frame BackgroundColor="#f2f2f2">
 
                     <StackLayout>
-                        <Image HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Source="cancel.png">
+                        <Image HorizontalOptions="End" 
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               Source="cancel.png"
+                               >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="PreventionRemovePopupTapped"
                                                       NumberOfTapsRequired="1">
@@ -114,20 +119,177 @@
                            TextColor="Black"
                         ></Label>
                         </Frame>
-                        <Label
-                    
-                                Text="Current Location"
+                        <ScrollView>
+                            <StackLayout>
+
+                                <Label
+                                    
+                                Text="In 2019 there was 3,700 deaths from house fires in the US."
                                 TextColor="Black"
+                                FontSize="18"
+                                
+                                IsVisible="true"
+                                x:Name="TopLabel"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1">
+                                  
+                                </Label>
+
+                                <BoxView   VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="1"
+                                           WidthRequest="300"  
+                                           Color="#5b5d68"></BoxView>
+                                
+                                <Label
+                                    
+                                Text="Follow the ( STOP ) acronym to give yourself the best chance"
+                                TextColor="Black"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabel2"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1">
+
+                                </Label>
+
+                                <BoxView   VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="1"
+                                           WidthRequest="300"  
+                                           Color="#5b5d68"></BoxView>
+                                
+                                <Label
+                    
+                                Text="S  -  Smoke Alarms"
+                                TextColor="DarkRed"
                                 FontSize="20"
                                 FontAttributes="Bold"
                                 IsVisible="true"
-                                x:Name="TopLabelP"
+                                x:Name="TopLabelS"
+                                  
                                 AbsoluteLayout.LayoutFlags="PositionProportional" 
-                                AbsoluteLayout.LayoutBounds="0.6,0.2,-1,-1"
-                    
-                    >
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1">
 
-                        </Label>
+                                </Label>
+                                <Label
+                    
+                                Text="Make sure you have smoke alarms in your home/ living space."
+                                TextColor="Black"
+                                FontSize="16"
+                                FontAttributes="None"
+                                IsVisible="true"
+                                x:Name="TopLabelSInfo"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1"
+                                >
+                                
+                                </Label>
+
+                                <BoxView   VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="1"
+                                           WidthRequest="300"  
+                                           Color="#5b5d68"></BoxView>
+                                
+                                <Label
+                    
+                                Text="T  -  Test your Smoke Alarms"
+                                TextColor="DarkRed"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelT"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1">
+
+                                    </Label>
+                                <Label
+                    
+                                Text="Test your alarms frequently."
+                                TextColor="Black"
+                                FontSize="16"
+                                FontAttributes="None"
+                                IsVisible="true"
+                                x:Name="TopLabelTInfo"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1"
+                                >
+
+                                </Label>
+
+                                <BoxView   VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="1"
+                                           WidthRequest="300"  
+                                           Color="#5b5d68"></BoxView>
+
+
+                                <Label
+                    
+                                Text="O  -  Obvious Dangers"
+                                TextColor="DarkRed"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelo"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1">
+
+                                </Label>
+
+                                <Label
+                    
+                                Text="Keep an eye on obvious danger points e.g. Candles and Chimneys ."
+                                TextColor="Black"
+                                FontSize="16"
+                                FontAttributes="None"
+                                IsVisible="true"
+                                x:Name="TopLabelOInfo"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1"
+                                >
+
+                                </Label>
+
+                                <BoxView   VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="1"
+                                           WidthRequest="300"  
+                                           Color="#5b5d68"></BoxView>
+
+
+                                <Label
+                    
+                                Text="P  -  Have a Plan"
+                                TextColor="DarkRed"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                IsVisible="true"
+                                x:Name="TopLabelp"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="1.0,0.22,-1,-1">
+
+                                </Label>
+
+                                <Label
+                    
+                                Text="Have a escape route for all floor plans and always know house keys are stored."
+                                TextColor="Black"
+                                FontSize="16"
+                                FontAttributes="None"
+                                IsVisible="true"
+                                x:Name="TopLabelPInfo"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.6,0.22,-1,-1"
+                                >
+
+                                </Label>
+
+                            </StackLayout>
+                        </ScrollView>
+                        
                         <Label>
                         </Label>
                     </StackLayout>
