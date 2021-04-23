@@ -53,5 +53,17 @@ namespace Wildfire.Views
                 ex.Message.ToString();
             }
         }
+
+        private async void WildlandInfo_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushModalAsync(new WildlandInfoView());
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+        }
     }
 }

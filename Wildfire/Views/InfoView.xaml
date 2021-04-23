@@ -30,11 +30,11 @@
                     
                 </Button>
 
-                <Button x:Name="WildlandInfo" Grid.Row="3" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Wildland" TextColor="Black"></Button>
+                <Button x:Name="WildlandInfo" Grid.Row="3" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Wildland" TextColor="Black" Clicked="WildlandInfo_Clicked"></Button>
 
                 <Button x:Name="LocalInfo" Grid.Row="5" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Local Information" TextColor="Black" Clicked="LocalInfo_Clicked"></Button>
 
-                <Button x:Name="ProfessionalInfo" Grid.Row="7" Grid.Column="1" BackgroundColor="LightYellow" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Firefighters" TextColor="Black" Clicked="ProfessionalInfo_Clicked" ></Button>
+                <Button x:Name="ProfessionalInfo" Grid.Row="7" Grid.Column="1" BackgroundColor="LightYellow" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Firefighters" TextColor="Black" Clicked="ProfessionalInfo_Clicked"  ></Button>
 
             </Grid>
         </ScrollView>

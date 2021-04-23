@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wildfire.Views.WildlandInfoView"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="10" FontSize="20" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="56" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
