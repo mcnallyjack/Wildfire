@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   ForgotPassword
+ * Purpose:     Backend for Forgot Password.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +21,35 @@ namespace Wildfire.Views
             InitializeComponent();
         }
 
+        //Forgot Password Event Handler
         private async void ForgotPass_Clicked(object sender, EventArgs e)
         {
-            var authService = DependencyService.Resolve<IAuth>();
-            await authService.ForgotPassword(emailPass.Text);
-            await DisplayAlert("Success", "Please check email inbox", "ok");
-            await Navigation.PushModalAsync(new LoginPageView());
+            try
+            {
+                var authService = DependencyService.Resolve<IAuth>();
+                await authService.ForgotPassword(emailPass.Text);
+                await DisplayAlert("Success", "Please check email inbox", "ok");
+                await Navigation.PushModalAsync(new LoginPageView());
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+            
         }
 
+        //Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new LoginPageView());
+            try
+            {
+                await Navigation.PushModalAsync(new LoginPageView());
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+            
         }
     }
 }

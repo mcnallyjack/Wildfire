@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.HomeInfoView"
-             BackgroundColor="White">
-    <ContentPage.Content>
-       
-        <AbsoluteLayout>
+             x:Class="Wildfire.Views.HomeInfoView">
 
-            <Frame BorderColor="Black"
-                        HeightRequest="40"
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#ff8c19"  Offset="0.1" />
+            <GradientStop Color="White" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <ContentPage.Content>
+
+        <AbsoluteLayout>
+            <Frame      BorderColor="LightGray"
+                        Padding="7"
+                        HeightRequest="80"
                         WidthRequest="300"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
@@ -16,26 +23,135 @@
                         HasShadow="True"
                         IsVisible="true"
                         x:Name="FrameLabel"
-                   HorizontalOptions="Center"
-                        >
-                
-                
+                        HorizontalOptions="Center">
 
-                <Label Text="Home Fire Safety"
-                           FontSize="24"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           TextColor="Black"
-                        ></Label>
+            <Frame      BorderColor="LightGray"
+                        Padding="7"
+                        HeightRequest="80"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                        BackgroundColor="LightGray"
+                        HasShadow="True"
+                        IsVisible="true"
+                        x:Name="FrameLabel1"
+                        HorizontalOptions="Center">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="White"  Offset="0.9" />
+                            <GradientStop Color="LightBlue" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <Label      Text="Home Fire Safety"
+                                FontSize="26"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Black"
+                                FontAttributes="Bold">
+                    </Label>
+                </Frame>
             </Frame>
 
-            <Button x:Name="PreventionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Prevention" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="PreventionInfo_Clicked"></Button>
+            <Button     x:Name="PreventionInfo" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Italic" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Prevention" 
+                        TextColor="Black" 
+                        HeightRequest="110" 
+                        WidthRequest="270"
+                        ImageSource="hand.png"
+                        Padding="0,0,30,0"
+                        ContentLayout="Right"
+                        Clicked="PreventionInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>                
+            </Button>
 
-            <Button x:Name="DetectionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Detection" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="DetectionInfo_Clicked"></Button>
+            <Button     x:Name="DetectionInfo" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" 
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Italic" 
+                        BorderWidth="3" 
+                        BorderColor="Black"
+                        Text="Detection" 
+                        TextColor="Black" 
+                        HeightRequest="110" 
+                        WidthRequest="270" 
+                        ImageSource="detect.png"
+                        Padding="0,0,30,0"
+                        ContentLayout="Right"
+                        Clicked="DetectionInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
-            <Button x:Name="EvalutionInfo" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  BackgroundColor="LightBlue" CornerRadius="20" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Evacuation" TextColor="Black" HeightRequest="90" WidthRequest="250" Clicked="EvalutionInfo_Clicked"></Button>
+            <Button     x:Name="EvalutionInfo" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Italic" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Evacuation" 
+                        TextColor="Black" 
+                        HeightRequest="110" 
+                        WidthRequest="270" 
+                        ImageSource="evacuation.png"
+                        Padding="0,0,30,0"
+                        ContentLayout="Right"
+                        Clicked="EvalutionInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
-            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="10" FontSize="20" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="56" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
+            <Button     x:Name="BackButton" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  
+                        BackgroundColor="LightGray" 
+                        CornerRadius="10" 
+                        FontSize="20" 
+                        FontAttributes="Bold" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Back" 
+                        TextColor="Black" 
+                        HeightRequest="56" 
+                        WidthRequest="300"
+                        ImageSource="backarrow.png"
+                        ContentLayout="Left"
+                        Padding="40,0,75,0"
+                        Clicked="BackButton_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="LightGray"  Offset="0.1" />
+                        <GradientStop Color="white" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
             <!-- Prevention -->
             <Frame 

@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   ChangePass
+ * Purpose:     Backend for change password functionality.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +14,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Wildfire.Views
 {
-
-   
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChangePass : ContentPage
     { 
@@ -20,24 +23,42 @@ namespace Wildfire.Views
             InitializeComponent();
         }
 
+        // Change Password Event Handler
         private async void ChangePassword_Clicked(object sender, EventArgs e)
         {
-            if (oldPass.Text.Length < 8)
+            try
             {
-                await DisplayAlert("Error", "Password length must be greater than 8", "ok");
+                if (oldPass.Text.Length < 8)
+                {
+                    await DisplayAlert("Error", "Password length must be greater than 8", "ok");
+                }
+                else
+                {
+                    var authService = DependencyService.Resolve<IAuth>();
+                    await authService.ChangePassword(oldPass.Text);
+                    await DisplayAlert("Success", "Password Changed", "ok");
+                    await Navigation.PushModalAsync(new MainTabPage());
+                }
             }
-            else
+            catch(Exception ex)
             {
-                var authService = DependencyService.Resolve<IAuth>();
-                await authService.ChangePassword(oldPass.Text);
-                await DisplayAlert("Success", "Password Changed", "ok");
-                await Navigation.PushModalAsync(new MainTabPage());
-            }
+                ex.Message.ToString();
             }
 
+        }
+
+        // Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            try
+            {
+                await Navigation.PopModalAsync();
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+            
         }
     }
-    }
+}

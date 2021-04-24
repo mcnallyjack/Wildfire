@@ -1,92 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     FirstPageView
+     Purpose:       The first Page the user can use.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.FirstPageView"
              BackgroundImageSource="b_g.png">
+    <!--Content Page-->
     <ContentPage.Content>
         <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0"></RowDefinition>
-                <RowDefinition Height="198"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="55"></RowDefinition>
-                <RowDefinition Height="55"></RowDefinition>
-                <RowDefinition Height="55"></RowDefinition>
-                <RowDefinition Height="135"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <Label Text="Wildfire"
-                   Grid.Row="1"
-                   FontSize="50"
-                   HorizontalOptions="Center"
-                   TextColor="Black"
-                   Margin="0,30"
-                   FontAttributes="Bold"></Label>
-            
-                <Label Text="If you are a Firefighter Please create an account"
-                   Grid.Row="2"
-                   FontSize="20"
-                   HorizontalOptions="CenterAndExpand"
-                   TextColor="White"
-                   Margin="0,30"
-                   FontAttributes="Bold"
-                   WidthRequest="220"
-                   LineBreakMode="CharacterWrap"
-                   HorizontalTextAlignment="Center"
-                   ></Label>
-                <Label Text="Please create an account"
-                   Grid.Row="3"
-                   FontSize="20"
-                   HorizontalOptions="CenterAndExpand"
-                   TextColor="White"
-                   Margin="0,30"
-                   FontAttributes="Bold"></Label>
-                <Button 
-                Grid.Row="5"
-                Text="Create Account"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                BackgroundColor="#ff8c19"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontSize="16"
-                FontAttributes="Bold"
-                
-                BorderColor="Black"
-                Clicked="CreateAcc_Clicked"/>
+            <Grid RowSpacing="13">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition Height="158"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="135"></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <Button 
-                Grid.Row="4"
-                Text="Login"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                VerticalOptions="EndAndExpand"
-                BorderWidth="3"
-                BorderColor="Black"
-                CornerRadius="10"
-                FontSize="16"
-                FontAttributes="Bold"
-                BackgroundColor="#ff8c19"
-                Clicked="LoginIn_Clicked"
-                />
+                <!--Header Label-->
+                <Label      Text="Wildfire"
+                            Grid.Row="1"
+                            FontSize="50"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            Margin="0,30"
+                            FontAttributes="Bold">
+                </Label>
 
-            <Button 
-                Grid.Row="6"
-                Text="Continue without Account"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                VerticalOptions="EndAndExpand"
-                Margin="0,20"
-                CornerRadius="10"
-                BorderWidth="3"
-                BorderColor="Black"
-                FontAttributes="Bold"
-                BackgroundColor="LightGray"
-                
-                Clicked="Continue_Clicked"/>
-            
-        </Grid>
+                <!--Message Label-->
+                <Label      Text="If you are a Firefighter Please create an account"
+                            Grid.Row="2"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            Margin="0,30"
+                            FontAttributes="Bold"
+                            WidthRequest="220"
+                            LineBreakMode="CharacterWrap"
+                            HorizontalTextAlignment="Center">
+                </Label>
+
+                <!--Login Button-->
+                <Button     Text="Login"
+                            Grid.Row="4"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            VerticalOptions="EndAndExpand"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            CornerRadius="10"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            BackgroundColor="#ff8c19"
+                            Clicked="LoginIn_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19"  Offset="0.7" />
+                            <GradientStop Color="White"  Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--Create Account Button-->
+                <Button     Text="Create Account"
+                            Grid.Row="5"                
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            BackgroundColor="#ff8c19"
+                            CornerRadius="10"
+                            BorderWidth="3"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            BorderColor="Black"
+                            Clicked="CreateAcc_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19"  Offset="0.7" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--Continue without Account Button-->
+                <Button     Text="Continue without Account"
+                            Grid.Row="6"                
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            VerticalOptions="EndAndExpand"
+                            Margin="0,20"
+                            CornerRadius="10"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            FontAttributes="Bold"
+                            BackgroundColor="LightGray"
+                            Clicked="Continue_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="LightGray"  Offset="0.1" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

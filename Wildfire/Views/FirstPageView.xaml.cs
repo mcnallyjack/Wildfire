@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   FirstPageView
+ * Purpose:     Backend for FirstPageView.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +23,10 @@ namespace Wildfire.Views
             auth = DependencyService.Get<IAuth>();
         }
 
+        // Create Account Event Handler
         private async void CreateAcc_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
-
             try
             {
                 if (signOut)
@@ -36,16 +40,16 @@ namespace Wildfire.Views
             }
         }
 
+        // Login Event Handler
         private async void LoginIn_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
-
             try
             {
                 if (signOut)
-                    {
+                {
                     await Navigation.PushModalAsync(new LoginPageView());
-                    }
+                }
             }
             catch (Exception ex)
             {
@@ -53,12 +57,12 @@ namespace Wildfire.Views
             }
         }
 
+        // Continue without account Event Handler
         private async void Continue_Clicked(object sender, EventArgs e)
         {
             try
             {
-                await Navigation.PushModalAsync(new MainTabPage());
-               
+                await Navigation.PushModalAsync(new MainTabPage());              
             }
             catch (Exception ex)
             {

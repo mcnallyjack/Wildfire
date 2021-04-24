@@ -1,19 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     ChangePass
+     Purpose:       Change password interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.ChangePass"
              BackgroundColor="White">
+    <!--Background Color-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="White"  Offset="0.7" />
+            <GradientStop Color="#ff8c19" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid RowSpacing="17">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="135"></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -21,81 +33,87 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-
-                <Label
-                Text="Change Password"
-                HorizontalTextAlignment="Center"
-                TextColor="Black"
-                FontSize="50"
-                Margin="0, 10"
-                FontAttributes="Bold"
-                Grid.Row="0"
-                Grid.Column="1">
-
+                <!--Change Password Label-->
+                <Label      Text="Change Password"
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="50"
+                            Margin="0, 10"
+                            FontAttributes="Bold"
+                            Grid.Row="0"
+                            Grid.Column="1">
                 </Label>
-
-
-                <Image Source="xhdpi.png"
-                       Grid.Row="1"
-                       HeightRequest="150"
-                       WidthRequest="150"
-                       Grid.Column="1">
+                
+                <!--Image Import-->
+                <Image      Source="xhdpi.png"
+                            Grid.Row="1"
+                            HeightRequest="150"
+                            WidthRequest="150"
+                            Grid.Column="1">
                 </Image>
 
+                <!--Label for entering password-->
+                <Label      Text="Please enter your new password"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            FontSize="20"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center">
+                </Label>
 
-                <Label Text="Please enter New password"
-                       Grid.Row="2"
-                       Grid.Column="1"
-                       FontSize="20"
-                       TextColor="Black"
-                       HorizontalTextAlignment="Center"
-                       ></Label>
+                <!--Entry for Password-->
+                <Entry      Placeholder="Password"
+                            PlaceholderColor="White"
+                            BackgroundColor="LightGray"
+                            TextColor="Black"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            x:Name="oldPass"
+                            IsPassword="True">
+                </Entry>
 
-                <Entry Placeholder="Password"
-                       PlaceholderColor="White"
-                       BackgroundColor="LightGray"
-                       TextColor="Black"
-                       Grid.Row="3"
-                       Grid.Column="1"
-                       x:Name="oldPass"
-                       IsPassword="True"
-                       ></Entry>
-
-                
-
-                <Button Text="Change Password"
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        BackgroundColor="#ff8c19"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="3"
-                        CornerRadius="10"
-                        x:Name="ChangePassword"
-                        Clicked="ChangePassword_Clicked"
-                        FontAttributes="Bold"
-                        FontSize="20"
-                        >
-
+                <!--Button to Confirm Password -->
+                <Button     Text="Change Password"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BorderWidth="3"
+                            CornerRadius="10"
+                            x:Name="ChangePassword"
+                            Clicked="ChangePassword_Clicked"
+                            FontAttributes="Bold"
+                            FontSize="20">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19"  Offset="0.4" />
+                            <GradientStop Color="LightGray" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
 
-                <Button
-                    Text="Back"
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    BackgroundColor="LightGray"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="3"
-                    CornerRadius="10"
-                    x:Name="BackButton"
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    Clicked="BackButton_Clicked"
-                    >
-                    
+                <!--Back Button-->
+                <Button     Text="Back"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BorderWidth="3"
+                            CornerRadius="10"
+                            x:Name="BackButton"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Clicked="BackButton_Clicked"
+                            ImageSource="backarrow.png"
+                            ContentLayout="Left"
+                            Padding="40,0,75,0">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="LightGray"  Offset="0.1" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
-
             </Grid>
         </ScrollView>
     </ContentPage.Content>
