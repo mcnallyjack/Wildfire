@@ -11,6 +11,7 @@ namespace Wildfire
         IAuth auth;
         public App()
         {
+            Device.SetFlags(new string[] {"Brush_Experimental"});
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
             GoogleMapsApiService.Initialize(Constants.GoogleMapsApiKey);

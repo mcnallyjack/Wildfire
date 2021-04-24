@@ -5,7 +5,513 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <Button x:Name="BackButton" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  BackgroundColor="LightGray" CornerRadius="10" FontSize="20" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Back" TextColor="Black" HeightRequest="56" WidthRequest="300" Clicked="BackButton_Clicked"></Button>
+            
+            <Frame      BorderColor="Black"
+                        HeightRequest="40"
+                        WidthRequest="300"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                        BackgroundColor="LightGray"
+                        HasShadow="True"
+                        IsVisible="true"
+                        x:Name="FrameLabel"
+                        HorizontalOptions="Center">
+
+                <Label  Text="Wildland Fire Safety"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+            </Frame>
+
+            <Button     x:Name="BeforeFireInfo" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="20" 
+                        FontSize="25" 
+                        FontAttributes="Bold" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Before a Wildfire" 
+                        TextColor="Black" 
+                        HeightRequest="90" 
+                        WidthRequest="255"
+                        Clicked="BeforeFireInfo_Clicked">
+            </Button>
+
+            <Button     x:Name="DuringFireInfo" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" 
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="20" 
+                        FontSize="25" 
+                        FontAttributes="Bold" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="During a Wildfire" 
+                        TextColor="Black" 
+                        HeightRequest="90" 
+                        WidthRequest="255" 
+                        Clicked="DuringFireInfo_Clicked">
+            </Button>
+
+            <Button     x:Name="AfterFireInfo"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="20" 
+                        FontSize="25" 
+                        FontAttributes="Bold" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="After a Wildfire" 
+                        TextColor="Black" 
+                        HeightRequest="90" 
+                        WidthRequest="255" 
+                        Clicked="AfterFireInfo_Clicked">
+            </Button>
+
+            <Button     x:Name="BackButton" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  
+                        BackgroundColor="LightGray" 
+                        CornerRadius="10" 
+                        FontSize="20" 
+                        FontAttributes="Bold" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Back" 
+                        TextColor="Black" 
+                        HeightRequest="56" 
+                        WidthRequest="300" 
+                        Clicked="BackButton_Clicked">
+            </Button>
+
+            <!-- Before Fire -->
+            <Frame      HeightRequest="650"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="beforeInfo"
+                        IsVisible="false"
+                        HasShadow="True">
+                
+                <Frame BackgroundColor="#f2f2f2">
+
+                    <StackLayout>
+                        
+                        <Image HorizontalOptions="End" 
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               Source="cancel.png">
+                            
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BeforeRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                            
+                        </Image>
+
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    HorizontalOptions="Center">
+
+                            <Label  Text="Before a Wildfire"
+                                    FontSize="24"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                            </Label>
+                        </Frame>
+                        
+                        <ScrollView>
+                            
+                            <StackLayout>
+
+                                <Label      Text="The best measure to keep your home or business safe from a Wildfire is to plan ahead."
+                                            TextColor="Black"
+                                            FontSize="18"
+                                            HorizontalTextAlignment="Center"                                     
+                                            WidthRequest="255"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="Follow these tips to give yourself the best chance"
+                                            TextColor="Black"
+                                            FontSize="19"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Clear combustible materials "
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Clear materials such as leaves or firewood away from the home."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Remove vegetation"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Remove flowers, vines or any vegetation that could catch fire."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Clear furniture."
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Place outdoor furniture such a tables and chairs in a safe storage area."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Create fuel breaks"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Fuel breaks are made from non combustible materials and act as a barrier to stop a wildfire from getting to a building."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+                                
+                                
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
+            <!-- During -->
+            <Frame      HeightRequest="650"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="duringInfo"
+                        IsVisible="false"
+                        HasShadow="True">
+
+                <Frame BackgroundColor="#f2f2f2">
+
+                    <StackLayout>
+
+                        <Image HorizontalOptions="End" 
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               Source="cancel.png">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DuringRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    HorizontalOptions="Center">
+
+                            <Label  Text="During a Wildfire"
+                                    FontSize="24"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                            </Label>
+                        </Frame>
+
+                        <ScrollView>
+
+                            <StackLayout>
+
+                                <Label      Text="If a wildfire has been reported in your area, Activate your safety plan."
+                                            TextColor="Black"
+                                            FontSize="18"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="Here are some tips to aid you during a wildfire."
+                                            TextColor="Black"
+                                            FontSize="19"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Prepare to Evacuate"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="If a wildifire has been reported it is important to listen to emergency advice, if the call to evacute is made. You must be ready to evacuate as quickly and as safely as possible"
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Evacuate"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="When evacuating it is important to do so in the safest manner. Follow professional advice of where to go, if you are in a vehicle keep vents closed and keep the door unlocked as in the event of an emergency, locked door may slow rescue time."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                               
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
+            <!-- After -->
+            <Frame      HeightRequest="650"
+                        WidthRequest="310"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        BackgroundColor="Transparent"
+                        x:Name="afterInfo"
+                        IsVisible="false"
+                        HasShadow="True">
+
+                <Frame BackgroundColor="#f2f2f2">
+
+                    <StackLayout>
+
+                        <Image HorizontalOptions="End" 
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               Source="cancel.png">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AfterRemovePopupTapped"
+                                                      NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                        <Frame      BorderColor="Black"
+                                    HeightRequest="40"
+                                    WidthRequest="300"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    IsVisible="true"
+                                    HorizontalOptions="Center">
+
+                            <Label  Text="After a Wildfire"
+                                    FontSize="24"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                            </Label>
+                        </Frame>
+
+                        <ScrollView>
+
+                            <StackLayout>
+
+                                <Label      Text="Once a wildfire has finished, you should only return if it is safe to do so."
+                                            TextColor="Black"
+                                            FontSize="18"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="Here are some tips to make your return as safe and as stress free as possible"
+                                            TextColor="Black"
+                                            FontSize="19"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Listen to the professionals."
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Make sure your area has been cleared by qualified personal before you return."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Document the damage"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="Once you have returned you should do a thorough inspection and note all the damage dealt. This may help with insurance claims"
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                                </BoxView>
+
+                                <Label      Text="- Remain vigilant"
+                                            TextColor="DarkRed"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            IsVisible="true">
+                                </Label>
+
+                                <Label      Text="It is important to keep a close eye for the next few days to ensure nothing has evaded the professional inspection."
+                                            TextColor="Black"
+                                            FontSize="16"
+                                            FontAttributes="None"
+                                            IsVisible="true">
+                                </Label>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.InfoView"
              Title="Info Centre"
-             BackgroundColor="White">
-   
+             >
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#ff8c19"  Offset="0.1" />
+            <GradientStop Color="white" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     <ContentPage.Content>
+        
         <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
@@ -25,16 +31,51 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="HomeInfo" Grid.Row="1" Grid.Column="1"  CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" 
-                        TextColor="Black" BackgroundColor="LightBlue" Text="Home" Clicked="HomeInfo_Clicked">
-                    
+                <Button x:Name="HomeInfo" Grid.Row="1" Grid.Column="1"  CornerRadius="25" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" 
+                        TextColor="Black" BackgroundColor="LightBlue" Padding="0,0,40,0" Text="Home" ContentLayout="Right" ImageSource="home.png" Clicked="HomeInfo_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="LightBlue" Offset="0.3" />
+                            <GradientStop Color="LightSalmon" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
 
-                <Button x:Name="WildlandInfo" Grid.Row="3" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Wildland" TextColor="Black" Clicked="WildlandInfo_Clicked"></Button>
+                <Button x:Name="WildlandInfo" Grid.Row="3" Grid.Column="1"  CornerRadius="25" Padding="0,0,40,0" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" Text="Wildland" TextColor="Black" ContentLayout="Right" ImageSource="tree.png" Clicked="WildlandInfo_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="LightBlue" Offset="0.3" />
+                            <GradientStop Color="LightSalmon" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
 
-                <Button x:Name="LocalInfo" Grid.Row="5" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Local Information" TextColor="Black" Clicked="LocalInfo_Clicked"></Button>
+                <Button x:Name="LocalInfo" Grid.Row="5" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" Text="Local Info" Padding="0,0,40,0" TextColor="Black" ContentLayout="Right" ImageSource="local.png" Clicked="LocalInfo_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="LightBlue" Offset="0.3" />
+                            <GradientStop Color="LightSalmon" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
 
-                <Button x:Name="ProfessionalInfo" Grid.Row="7" Grid.Column="1" BackgroundColor="LightYellow" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Firefighters" TextColor="Black" Clicked="ProfessionalInfo_Clicked"  ></Button>
+                <BoxView    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="1"
+                                            Grid.Row="6"
+                                            Grid.Column="1"
+                                            WidthRequest="300"  
+                                            Color="#5b5d68">
+                </BoxView>
+
+                <Button x:Name="ProfessionalInfo" Grid.Row="7" Grid.Column="1" BackgroundColor="#ff8c19" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Firefighters" TextColor="Black" Clicked="ProfessionalInfo_Clicked"  >
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19" Offset="0.3" />
+                            <GradientStop Color="LightGray" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
 
             </Grid>
         </ScrollView>
