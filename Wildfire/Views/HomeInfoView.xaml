@@ -56,7 +56,7 @@
                                 FontSize="26"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
-                                TextColor="Black"
+                                TextColor="#282828"
                                 FontAttributes="Bold">
                     </Label>
                 </Frame>
@@ -226,7 +226,7 @@
                                                 FontSize="26"
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="Center"
-                                                TextColor="Black"
+                                                TextColor="#282828"
                                                 FontAttributes="Bold">
                                     </Label>
                                 </Frame>
@@ -408,7 +408,7 @@
                                                 FontSize="26"
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="Center"
-                                                TextColor="Black"
+                                                TextColor="#282828"
                                                 FontAttributes="Bold">
                                     </Label>
                             </Frame>
@@ -587,8 +587,8 @@
                                                 FontSize="26"
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="Center"
-                                                TextColor="Black"
-                                                FontAttributes="Italic">
+                                                TextColor="#282828"
+                                                FontAttributes="Bold">
                                 </Label>
 
                             </Frame>

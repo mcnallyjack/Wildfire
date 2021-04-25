@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   LocalInfoView
+ * Purpose:     Backend for Local Info.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,28 +18,17 @@ namespace Wildfire.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
-
-
-    public class Dispatch
-    {
-        public List<string> all { get; set; }
-        public object gsm { get; set; }
-        public object @fixed { get; set; }
-    }
-
-
-
     public partial class LocalInfoView : ContentPage
     {
-
-
-
         public LocalInfoView()
         {
             InitializeComponent();
             
         }
 
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
 
@@ -62,6 +55,10 @@ namespace Wildfire.Views
             BackButton.IsVisible = true;
         }
 
+        /// <summary>
+        /// Load the current location of the user
+        /// </summary>
+        /// <returns></returns>
         async Task LoadLocation()
         {
 
@@ -99,15 +96,22 @@ namespace Wildfire.Views
 
         }
 
+        // Back Button Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
-
+            try
+            {
+                await Navigation.PopModalAsync();
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }     
         }
 
+        // Dialer Button Handler
         private void DialerButton_Clicked(object sender, EventArgs e)
         {
-
             var emergencyNum = EmerNum.Text;
             if (emergencyNum != null)
             {
@@ -132,7 +136,6 @@ namespace Wildfire.Views
             {
                 DisplayAlert("Error", "No number", "ok");
             }
-
         }
     }
 }

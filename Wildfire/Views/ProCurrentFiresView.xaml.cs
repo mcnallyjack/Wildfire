@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   ProCurrentFiresView
+ * Purpose:     Backend for Current Fires View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +22,9 @@ namespace Wildfire.Views
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -26,14 +32,22 @@ namespace Wildfire.Views
             currentFires.ItemsSource = fires;
         }
 
+        // List Item tap event handler
         private async void CurrentFires_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await Task.Delay(10);
-            var fireInfo = e.Item as Fire;
-            await Navigation.PushModalAsync(new ProCurrrentSelectedView(fireInfo.WindDirection, fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.Description));
-            
+            try
+            {
+                await Task.Delay(10);
+                var fireInfo = e.Item as Fire;
+                await Navigation.PushModalAsync(new ProCurrrentSelectedView(fireInfo.WindDirection, fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.Description));
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
 
+        // Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             try

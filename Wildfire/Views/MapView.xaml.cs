@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   MapView
+ * Purpose:     Backend for Map View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +45,9 @@ namespace Wildfire.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -53,7 +60,6 @@ namespace Wildfire.Views
             Report_Clicked.IsVisible = false;
             searchPopup.IsVisible = false;
             Location_Clicked.IsVisible = false;
-            //await Task.Delay(200);
 
             if (locationCount == 0)
             {
@@ -124,12 +130,15 @@ namespace Wildfire.Views
 
             }
         }
-
+        /// <summary>
+        /// Load Fires 
+        /// </summary>
 
         async Task LoadFires()
         {
             try
             {
+                // Get Fires from Firebase
                 var displayFires = await firebaseHelper.GetAllFires();
                 foreach (var i in displayFires)
                 {
@@ -142,24 +151,16 @@ namespace Wildfire.Views
                             Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
                             Address = i.PlaceName.ToString(),
                             Tag = i.FireID.ToString()
-
                         };
                         map.PinClicked += (sender, e) =>
                         {
 
-                        //await Task.Delay(2000);
-                        //await Navigation.PushModalAsync(new ResolveFireInfoView(e.Pin.Label));
-
-
-
-
-                    };
+                        };
                         map.Pins.Add(newFire);
                     }
                     else if (i.Description.Length > 10)
                     {
                         string newW = String.Concat(i.Description.Select((c, j) => j > 0 && (j % 20) == 0 ? c.ToString() + Environment.NewLine : c.ToString()));
-
 
                         Pin newFire = new Pin()
                         {
@@ -168,7 +169,6 @@ namespace Wildfire.Views
                             Position = new Position(Convert.ToDouble(i.Latitude), Convert.ToDouble(i.Longitude)),
                             Address = i.PlaceName.ToString(),
                             Tag = i.FireID.ToString()
-
                         };
                         map.PinClicked += (sender, e) =>
                         {
@@ -184,12 +184,15 @@ namespace Wildfire.Views
             }
         }
 
+        /// <summary>
+        /// Load current position
+        /// </summary>
         async Task LoadCurrentPosition()
         {
             try
             {
+                // Permissions
                 var phonePermissions = await Permissions.CheckStatusAsync<Permissions.Phone>();
-
                 phonePermissions = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
                 if (phonePermissions != PermissionStatus.Granted)
@@ -251,6 +254,7 @@ namespace Wildfire.Views
                     return;
                 }
 
+                // Get Location
                 var location = await Geolocation.GetLocationAsync();
                 Circle circle = new Circle()
                 {
@@ -264,15 +268,11 @@ namespace Wildfire.Views
                 map.Circles.Clear();
                 map.Pins.Clear();
 
-                var x = SettingsView.radius;
-
-
                 if (location != null)
                 {
                     //Notification SET + Raduis SET
                     if (SettingsView.isChecked == true && SettingsView.radius != null)
-                    {
-                        
+                    {                        
                         Pin newLoc = new Pin()
                         {
                             Label = "Current Location",
@@ -540,16 +540,16 @@ namespace Wildfire.Views
                     throw new Exception();
                 }
             }
-            //await DisplayAlert("Error", "Bug Found", "ok");
-            //throw new Exception();
-            
-
         }
 
+        // search button event handler
         private void Search_Clicked(object sender, EventArgs e)
         {
             try
             {
+                Report_Clicked.IsVisible = false;
+                searchPopup.IsVisible = false;
+                Location_Clicked.IsVisible = false;
                 popupSearch.IsVisible = true;
             }
             catch(Exception ex)
@@ -558,23 +558,28 @@ namespace Wildfire.Views
             }
         }
 
+        // Remove popup event handler
         void RemovePopupTapped(object sender, EventArgs e)
         {
             try
             {
+                Report_Clicked.IsVisible = true;
+                searchPopup.IsVisible = true;
+                Location_Clicked.IsVisible = true;
                 popupSearch.IsVisible = false;
             }
             catch(Exception ex)
             {
                 ex.Message.ToString();
-            }
-            
+            }            
         }
 
+        // Map click event handler
         private async void map_MapClicked(object sender, MapClickedEventArgs e)
         {
             try
             {
+                // Permission check
                 var permissions = await Permissions.CheckStatusAsync<Permissions.Phone>();
 
                 if (permissions != PermissionStatus.Granted)
@@ -595,7 +600,6 @@ namespace Wildfire.Views
                 string areaCode1 = placemarkDetails1.CountryCode;
                 string Place1 = locality1 + ", " + areaCode1;
 
-
                 Pin newFire = new Pin()
                 {
                     Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("FlamePins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "FlamePins.png", WidthRequest = 20, HeightRequest = 20 }),
@@ -603,8 +607,6 @@ namespace Wildfire.Views
                     Position = new Position(e.Point.Latitude, e.Point.Longitude),
                     Address = Place1,
                     IsDraggable = true
-
-
                 };
 
                 map.Pins.Add(newFire);
@@ -617,15 +619,14 @@ namespace Wildfire.Views
                 Lat.ToString();
                 Long.ToString();
                 await Navigation.PushModalAsync(new ReportFireInfoView(Lat, Long, Place) { BindingContext = this.BindingContext }, false);
-                }
-                catch(Exception ex)
-                {
-                    ex.Message.ToString();
-                }
             }
-
-       
-
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
+        }
+      
+        // Location Button Handler
         private async void Location_Button_Clicked(object sender, EventArgs e)
         {
             try
@@ -648,6 +649,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Report fire button Handler
         private async void ReportFire_Clicked(object sender, EventArgs e)
         {
             try
@@ -704,11 +706,11 @@ namespace Wildfire.Views
             }
         }
 
+        // Map Clicked event handler
         private async void map_PinClicked(object sender, PinClickedEventArgs e)
         {
             try
             {
-
                 if (LoginPageView.token == null)
                 {
 
@@ -726,6 +728,7 @@ namespace Wildfire.Views
             
         }
 
+        // search place event handler
         public async void SearchPlace_Clicked(object sender, EventArgs e)
         {
             try

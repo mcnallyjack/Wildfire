@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   InfoView
+ * Purpose:     Backend for Information View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +22,13 @@ namespace Wildfire.Views
             InitializeComponent();
             
         }
+        // Local Info Button Handler
         private async void LocalInfo_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new LocalInfoView());
         }
 
+        // Firefighter Info Button Handler
         private async void ProfessionalInfo_Clicked(object sender, EventArgs e)
         {
             try
@@ -42,6 +48,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Home Info Button Handler
         private async void HomeInfo_Clicked(object sender, EventArgs e)
         {
             try
@@ -54,6 +61,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Wildland Info Button Handler
         private async void WildlandInfo_Clicked(object sender, EventArgs e)
         {
             try

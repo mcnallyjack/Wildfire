@@ -1,22 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     LoginPageView
+     Purpose:       Login Page interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.LoginPageView"
-             BackgroundColor="White"
-             >
+             x:Class="Wildfire.Views.LoginPageView">
+
+    <!--Background-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="White"  Offset="0.8" />
+            <GradientStop Color="#ff8c19" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid RowSpacing="17">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="120"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
-                    <RowDefinition Height="2"></RowDefinition>
-                    <RowDefinition Height="58"></RowDefinition>
-                    <RowDefinition Height="58"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="105"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="56"></RowDefinition>
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
@@ -24,120 +36,142 @@
                     <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <Label 
-               Text="Login"
-                   Grid.Row="0"
-                   FontSize="50"
-                   HorizontalOptions="Center"
-                   TextColor="Black"
-                   Margin="0,10"
-                   FontAttributes="Bold"
-                   Grid.Column="1"
-                   ></Label>
 
-                <Image Source="xhdpi.png"
-                       Grid.Row="1"
-                       HeightRequest="150"
-                       WidthRequest="150"
-                       Grid.Column="1">
+                <!--Login Label-->
+                <Label      Text="Login"
+                            Grid.Row="0"
+                            FontSize="50"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            Margin="0,10"
+                            FontAttributes="Bold"
+                            Grid.Column="1">
+                </Label>
+
+                <!--Image Import-->
+                <Image      Source="xhdpi.png"
+                            Grid.Row="1"
+                            HeightRequest="150"
+                            WidthRequest="150"
+                            Grid.Column="1">
                 </Image>
 
-                <Entry 
-                Grid.Row="3"
-                Placeholder="E-mail"
-                Keyboard="Email"
-                x:Name="EmailInput"
-                BackgroundColor="LightGray"
-                WidthRequest="200"
-                Margin="20,5"
-                PlaceholderColor="DarkGray"
-                
-                TextColor="black"
-                Grid.Column="1"/>
+                <!--Email Entry-->
+                <Entry      Grid.Row="3"
+                            Placeholder="E-mail"
+                            Keyboard="Email"
+                            x:Name="EmailInput"
+                            BackgroundColor="LightGray"
+                            WidthRequest="200"               
+                            PlaceholderColor="DarkGray"                
+                            TextColor="black"
+                            Grid.Column="1">
+                </Entry>
 
-                <Entry 
-                Grid.Row="4"
-                Placeholder="Password"
-                IsPassword="True"
-                x:Name="PasswordInput"
-                BackgroundColor="LightGray"
-                Margin="20,5"
-                PlaceholderColor="DarkGray"
-                TextColor="black"
-                     Grid.Column="1"
-                    />
+                <!-- Password Entry-->
+                <Entry      Grid.Row="4"
+                            Placeholder="Password"
+                            IsPassword="True"
+                            x:Name="PasswordInput"
+                            BackgroundColor="LightGray"               
+                            PlaceholderColor="DarkGray"
+                            TextColor="black"
+                            Grid.Column="1">
+                </Entry>
 
-                <Button 
-                Grid.Row="5"
-                     Grid.Column="1"
-                    
-                Text="Login"
-                Clicked="Login_Clicked"
-                Margin="20,20"
-              WidthRequest="300"
-                BorderColor="Black"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                BackgroundColor="#ff8c19"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontSize="16"
-                FontAttributes="Bold"
-                     
-                    
-                  
-                    />
-
-                <Button 
-                Grid.Row="6"
-                Text="Create Account"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="3"
-                CornerRadius="10"
-                Clicked="SignUp_Clicked"
-                FontAttributes="Bold"
-                WidthRequest="170"
-                FontSize="16"
-                     Grid.Column="1"
-                />
-
-                <Button
-                Grid.Row="7"
-                Text="Back"
-                Clicked="Back_Clicked"
-                HorizontalOptions="Center"
-                BackgroundColor="LightGray"
-                TextColor="black"
-                BorderColor="Black"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontSize="16"
-                FontAttributes="Bold"
-                     Grid.Column="1"
-                    />
-
-                <Button Grid.Row="8"
-                        Text="Forgot Password?"
-                        HorizontalOptions="Center"
-                        BackgroundColor="#2daFF0"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        CornerRadius="10"
-                        BorderWidth="3"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        Margin="10,0"
-                        x:Name="Forgot_Button"
-                        Clicked="Forgot_Button_Clicked"
-                         Grid.Column="1"
-                        >
-                    
+                <!--Login Button-->
+                <Button     Grid.Row="5"
+                            Grid.Column="1"
+                            WidthRequest="300"    
+                            Text="Login"
+                            Clicked="Login_Clicked"
+                            FontAttributes="Bold"
+                            BorderColor="Black"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            BackgroundColor="#ff8c19"
+                            CornerRadius="10"
+                            BorderWidth="3"
+                            FontSize="20">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19"  Offset="0.7" />
+                            <GradientStop Color="White" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
 
+                <!--Create Account Button-->
+                <Button     Grid.Row="6"
+                            Text="Create Account"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            BackgroundColor="LightGray"
+                            BorderColor="Black"
+                            BorderWidth="3"
+                            CornerRadius="10"
+                            Clicked="SignUp_Clicked"
+                            FontAttributes="Bold"
+                            WidthRequest="195"
+                            FontSize="20"
+                            Grid.Column="1">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="LightGray"  Offset="0.1" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--Forgot Button-->
+                <Button     Grid.Row="7"
+                            Text="Forgot Password?"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            BackgroundColor="White"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Margin="10,0"
+                            x:Name="Forgot_Button"
+                            Clicked="Forgot_Button_Clicked"
+                            Grid.Column="1"
+                            BorderColor="Black"
+                            WidthRequest="195"
+                            BorderWidth="3"
+                            CornerRadius="10">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+
+                            <GradientStop Color="LightBlue"  Offset="0.9" />
+                            <GradientStop Color="White" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--Back Button-->
+                <Button     Grid.Row="8"
+                            Text="Back"
+                            Clicked="Back_Clicked"
+                            HorizontalOptions="Center"
+                            BackgroundColor="LightGray"
+                            TextColor="black"
+                            BorderColor="Black"
+                            CornerRadius="10"
+                            BorderWidth="3"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            Grid.Column="1"
+                            WidthRequest="300"
+                            ImageSource="backarrow.png"
+                            ContentLayout="Left"
+                            Padding="40,0,75,0">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="LightGray"  Offset="0.1" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

@@ -1,66 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     ProCurrentFireaView
+     Purpose:       Current fires View interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.ProCurrentFiresView"
-             BackgroundColor="White">
+             x:Class="Wildfire.Views.ProCurrentFiresView">
+
+    <!--Background-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#F7D9BB"  Offset="0.1" />
+            <GradientStop Color="White" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
         <StackLayout>
-      <StackLayout>
-                    <Frame BorderColor="Black" CornerRadius="0" BackgroundColor="LightGray" >
-                        <Label Text="Current Fires"
-                               FontSize="20"
-                               FontAttributes="Bold"
-                               TextColor="Black"
-                                   HeightRequest="50"
-                                   VerticalTextAlignment="Center"
-                                   HorizontalTextAlignment="Center"
-                                   
-                                   BackgroundColor="LightGray">
+            <StackLayout>
+                <!--Header-->
+                <Frame      BorderColor="LightGray"
+                            Padding="7"
+                            WidthRequest="400"
+                            HeightRequest="80"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" 
+                            AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                            BackgroundColor="LightGray"
+                            HasShadow="True"
+                            CornerRadius="15"
+                            IsVisible="true"
+                            HorizontalOptions="Center">
 
-                            </Label>
-                        </Frame>
-                            
-                        </StackLayout>
-        
-            <ListView x:Name="currentFires" HasUnevenRows="True" RowHeight="70" BackgroundColor="White" SeparatorColor="Black"  ItemTapped="CurrentFires_ItemTapped">
-                   
-                    <ListView.ItemTemplate>
+                    <Frame      BorderColor="LightGray"
+                                Padding="7"
+                                HeightRequest="80"
+                                WidthRequest="400"
+                                AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                                BackgroundColor="LightGray"
+                                HasShadow="True"
+                                CornerRadius="15"
+                                IsVisible="true"
+                                HorizontalOptions="Center">
+                        <Frame.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="White"  Offset="0.9" />
+                                <GradientStop Color="LightBlue" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
 
-                        <DataTemplate>
+                        <Label      Text="Current Fires"
+                                    FontSize="26"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="#282828"
+                                    FontAttributes="Bold">
+                        </Label>
+                    </Frame>
+                </Frame>
 
-                            <TextCell
-                                Grid.Row="1"
-                              Text="{Binding PlaceName}"
-                              Detail="{Binding Description}"
-                              TextColor="Black"
-                              DetailColor="Gray"
-                              
-                              >
-                            </TextCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            </StackLayout>
 
-            <Button  
-                    x:Name="BackButton"
-                    Text="Back" 
-                    WidthRequest="100"   
-                    HeightRequest="50"
-                    BackgroundColor="LightGray"
-                    FontSize="20"
-                    FontAttributes="Bold"
-                    
-                    BorderWidth="3"
-                    BorderColor="Black"
-                    TextColor="Black"
-                    Clicked="BackButton_Clicked">
+            <!--ListView-->
+            <ListView   x:Name="currentFires" 
+                        HasUnevenRows="True" 
+                        RowHeight="70" 
+                        SeparatorColor="Black" 
+                        ItemTapped="CurrentFires_ItemTapped">
+                <ListView.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#F7D9BB"  Offset="0.1" />
+                        <GradientStop Color="white" Offset="1.0" />
+                    </LinearGradientBrush>
+                </ListView.Background>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell   Grid.Row="1"
+                                    Text="{Binding PlaceName}"
+                                    Detail="{Binding Description}"
+                                    TextColor="Black"
+                                    DetailColor="Gray">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
+            <!--Back Button-->
+            <Button     x:Name="BackButton"
+                        Text="Back" 
+                        HeightRequest="56"
+                        BackgroundColor="LightGray"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        BorderWidth="3"
+                        BorderColor="Black"
+                        TextColor="#282828"
+                        ImageSource="backarrow.png"
+                        ContentLayout="Left"
+                        Padding="50,0,75,0"
+                        Clicked="BackButton_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="LightGray"  Offset="0.1" />
+                        <GradientStop Color="white" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
             </Button>
-
-
         </StackLayout>
-
-       
-  
     </ContentPage.Content>
 </ContentPage>

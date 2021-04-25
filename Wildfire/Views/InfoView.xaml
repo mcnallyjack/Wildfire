@@ -1,15 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     InfoView
+     Purpose:       Informatio view interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.InfoView"
              Title="Info Centre"
              >
+    <!--Background Color-->
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Color="#ff8c19"  Offset="0.1" />
             <GradientStop Color="#F7D9BB" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
         
         <ScrollView>
@@ -31,8 +38,22 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="HomeInfo" Grid.Row="1" Grid.Column="1"  CornerRadius="25" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" 
-                        TextColor="Black" BackgroundColor="LightBlue" Padding="0,0,40,0" Text="Home" ContentLayout="Right" ImageSource="home.png" Clicked="HomeInfo_Clicked">
+                <!--Home Button-->
+                <Button x:Name="HomeInfo"
+                        Grid.Row="1" 
+                        Grid.Column="1"  
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Italic" 
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        TextColor="Black" 
+                        BackgroundColor="LightBlue" 
+                        Padding="0,0,40,0"
+                        Text="Home" 
+                        ContentLayout="Right" 
+                        ImageSource="home.png" 
+                        Clicked="HomeInfo_Clicked">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
                             <GradientStop Color="LightBlue" Offset="0.3" />
@@ -41,7 +62,21 @@
                     </Button.Background>
                 </Button>
 
-                <Button x:Name="WildlandInfo" Grid.Row="3" Grid.Column="1"  CornerRadius="25" Padding="0,0,40,0" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" Text="Wildland" TextColor="Black" ContentLayout="Right" ImageSource="tree.png" Clicked="WildlandInfo_Clicked">
+                <!--Wildland Button-->
+                <Button x:Name="WildlandInfo" 
+                        Grid.Row="3" 
+                        Grid.Column="1" 
+                        CornerRadius="25" 
+                        Padding="0,0,40,0" 
+                        FontSize="25" 
+                        FontAttributes="Italic"
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Wildland" 
+                        TextColor="Black" 
+                        ContentLayout="Right" 
+                        ImageSource="tree.png" 
+                        Clicked="WildlandInfo_Clicked">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
                             <GradientStop Color="LightBlue" Offset="0.3" />
@@ -50,7 +85,22 @@
                     </Button.Background>
                 </Button>
 
-                <Button x:Name="LocalInfo" Grid.Row="5" Grid.Column="1" BackgroundColor="LightBlue" CornerRadius="25" FontSize="25" FontAttributes="Italic" BorderWidth="3" BorderColor="Black" Text="Local Info" Padding="0,0,40,0" TextColor="Black" ContentLayout="Right" ImageSource="local.png" Clicked="LocalInfo_Clicked">
+                <!--Local Button -->
+                <Button x:Name="LocalInfo"
+                        Grid.Row="5" 
+                        Grid.Column="1" 
+                        BackgroundColor="LightBlue" 
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Italic"
+                        BorderWidth="3" 
+                        BorderColor="Black"
+                        Text="Local Info" 
+                        Padding="0,0,40,0" 
+                        TextColor="Black" 
+                        ContentLayout="Right" 
+                        ImageSource="local.png" 
+                        Clicked="LocalInfo_Clicked">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
                             <GradientStop Color="LightBlue" Offset="0.3" />
@@ -59,16 +109,28 @@
                     </Button.Background>
                 </Button>
 
+                <!--Spacing Line-->
                 <BoxView    VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            HeightRequest="1"
-                                            Grid.Row="6"
-                                            Grid.Column="1"
-                                            WidthRequest="300"  
-                                            Color="#5b5d68">
+                            HorizontalOptions="Center"
+                            HeightRequest="1"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            WidthRequest="300"  
+                            Color="#5b5d68">
                 </BoxView>
 
-                <Button x:Name="ProfessionalInfo" Grid.Row="7" Grid.Column="1" BackgroundColor="#ff8c19" CornerRadius="25" FontSize="25" FontAttributes="Bold" BorderWidth="3" BorderColor="Black" Text="Firefighters" TextColor="Black" Clicked="ProfessionalInfo_Clicked"  >
+                <!--Firefghter Button-->
+                <Button x:Name="ProfessionalInfo" 
+                        Grid.Row="7" Grid.Column="1" 
+                        BackgroundColor="#ff8c19" 
+                        CornerRadius="25" 
+                        FontSize="25" 
+                        FontAttributes="Bold"
+                        BorderWidth="3" 
+                        BorderColor="Black" 
+                        Text="Firefighters" 
+                        TextColor="Black" 
+                        Clicked="ProfessionalInfo_Clicked"  >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0,1">
                             <GradientStop Color="#ff8c19" Offset="0.3" />
@@ -76,7 +138,6 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-
             </Grid>
         </ScrollView>
     </ContentPage.Content>

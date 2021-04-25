@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   LoginPageView
+ * Purpose:     Backend for Login Page.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,33 +26,33 @@ namespace Wildfire.Views
             MapView.loginCount = 0;
         }
 
+        // Login Button Handler
         private async void Login_Clicked(object sender, EventArgs e)
         {
-             if(EmailInput.Text == null)
-                { 
-                    await DisplayAlert("Error", "Please enter email", "Ok");
+            if(EmailInput.Text == null)
+            { 
+                await DisplayAlert("Error", "Please enter email", "Ok");
                 return;
-                }
-                if(PasswordInput.Text == null)
-                {
-                    await DisplayAlert("Error", "Please enter password", "Ok");
+            }
+            if (PasswordInput.Text == null)
+            {
+                await DisplayAlert("Error", "Please enter password", "Ok");
                 return;
-                }
-
+            }
             token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
 
             try
             { 
                
                 if (token != string.Empty)
-                    {
-                        MapView.loginCount = 0;
-                        await Navigation.PushModalAsync(new MainTabPage());
-                    }
+                {
+                    MapView.loginCount = 0;
+                    await Navigation.PushModalAsync(new MainTabPage());
+                }
                 else
-                    {
-                        await DisplayAlert("Auth Failed", "Email & Password Incorrect", "Ok");
-                    }
+                {
+                    await DisplayAlert("Auth Failed", "Email & Password Incorrect", "Ok");
+                }
             }
             catch (Exception ex)
             {
@@ -56,6 +60,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Sign Up Button Handler
         private async void SignUp_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
@@ -63,9 +68,9 @@ namespace Wildfire.Views
             try
             {
                 if (signOut)
-                    {
-                        await Navigation.PushModalAsync(new SignUpPageView());
-                    }
+                {
+                    await Navigation.PushModalAsync(new SignUpPageView());
+                }
             }
             catch (Exception ex)
             {
@@ -73,6 +78,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Back Button Handler
         private async void Back_Clicked(object sender, EventArgs e)
         {
             try
@@ -85,9 +91,17 @@ namespace Wildfire.Views
             }
         }
 
+        // Forgot Button Handler
         private async void Forgot_Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new ForgotPassword());
+            try
+            {
+                await Navigation.PushModalAsync(new ForgotPassword());
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }            
         }
     }
 }

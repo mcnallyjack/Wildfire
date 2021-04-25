@@ -1,21 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     LocalInfoView
+     Purpose:       Local Info interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.LocalInfoView"
-             BackgroundColor="White">
+             x:Class="Wildfire.Views.LocalInfoView">
+    
+    <!--Background Color-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="White"  Offset="0.7" />
+            <GradientStop Color="#ff8c19" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
 
         <ScrollView>
-            <Grid RowSpacing="6">
+            <Grid RowSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="84"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="35"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
                     <RowDefinition Height="0"></RowDefinition>
-                    <RowDefinition Height="70"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="0"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="56"></RowDefinition>
@@ -29,138 +42,180 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                 <Frame BorderColor="Black"
-                        HeightRequest="150"
-                        WidthRequest="100"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        BackgroundColor="LightGray"
-                        HasShadow="True"
-                        IsVisible="true"
-                        x:Name="FrameLabel"
-                        >
+                <!--Header-->
+                <Frame      BorderColor="LightGray"
+                            Padding="7"
+                            HeightRequest="80"
+                            WidthRequest="300"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            BackgroundColor="LightGray"
+                            HasShadow="True"
+                            IsVisible="true"
+                            CornerRadius="15"
+                            x:Name="FrameLabel"
+                            HorizontalOptions="Center">
 
-                    <Label Text="Local Information"
-                           FontSize="20"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           TextColor="Black"
-                        ></Label>
+                    <Frame      BorderColor="LightGray"
+                                Padding="7"
+                                HeightRequest="80"
+                                WidthRequest="310"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                BackgroundColor="LightGray"
+                                HasShadow="True"
+                                CornerRadius="15"
+                                IsVisible="true"
+                                x:Name="FrameLabel1"
+                                HorizontalOptions="Center">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="0,1">
+                                    <GradientStop Color="White"  Offset="0.9" />
+                                    <GradientStop Color="LightBlue" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+
+                        <Label      Text="Local Information"
+                                    FontSize="26"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="#282828"
+                                    FontAttributes="Bold">
+                        </Label>
+                    </Frame>
                 </Frame>
 
-
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Text="Current Location"
-                    TextColor="Black"
-                    FontSize="20"
-                    FontAttributes="Bold"
-                    IsVisible="true"
-                    x:Name="TopLabel"
-                    >
-                    
+                <!--Current Location -->
+                <Label      Grid.Row="3"
+                            Grid.Column="1"
+                            Text="Current Location"
+                            TextColor="Black"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            IsVisible="true"
+                            x:Name="TopLabel">
                 </Label>
 
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    BackgroundColor="#2daff0"
-                    TextColor="Black"
-                    FontSize="18"
-                   
-                    Padding="10,0,0,0"
-                    WidthRequest="200"
-                    x:Name="InfoLocation"
-                    IsVisible="true"
-                    >
-                    
+                <!--Location Binding-->
+                <Label      Grid.Row="4"
+                            Grid.Column="1"
+                            BackgroundColor="#2daff0"
+                            TextColor="Black"
+                            FontSize="18"
+                            VerticalTextAlignment="Center"
+                            Padding="10,0,0,0"
+                            WidthRequest="200"
+                            x:Name="InfoLocation"
+                            IsVisible="true">
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="LightBlue"  Offset="0.5" />
+                            <GradientStop Color="#2daff0" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Label.Background>
                 </Label>
 
-                <Label
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Text="Local Emergency Contact Information"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    x:Name="EmerLabel"
-                    IsVisible="true"
-                    >
-                    
+                <!--Local Number-->
+                <Label      Grid.Row="6"
+                            Grid.Column="1"
+                            Text="Local Emergency Contact Information"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            x:Name="EmerLabel"
+                            IsVisible="true"
+                            HorizontalTextAlignment="Start">
                 </Label>
 
-                <Label
-                    Grid.Row="8"
-                    Grid.Column="1"
-                    BackgroundColor="#2daff0"
-                    TextColor="Black"
-                    
-                    Padding="10,0,0,0"
-                    FontSize="18"
-                    x:Name="EmerNum"
-                    IsVisible="true"
-                    >
-                    
-                    
+                <!--Location Number Binding-->
+                <Label      Grid.Row="8"
+                            Grid.Column="1"
+                            BackgroundColor="#2daff0"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            Padding="10,0,0,0"
+                            FontSize="18"                    
+                            x:Name="EmerNum"
+                            IsVisible="true">
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="LightBlue"  Offset="0.3" />
+                            <GradientStop Color="#2daff0" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Label.Background>
                 </Label>
 
-                <Button
-                    Grid.Row="10"
-                    Grid.Column="1"
-                    BorderColor="Black"
-                    BorderWidth="3"
-                    FontSize="20"
-                    BackgroundColor="#ff8c19"
-                    CornerRadius="10"
-                    Text="Dial Emergency Number"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    x:Name="DialerButton"
-                    Clicked="DialerButton_Clicked"
-                    IsVisible="true"
-                    >
-                    
+                <!--Dialer Button-->
+                <Button     Grid.Row="10"
+                            Grid.Column="1"
+                            BorderColor="Black"
+                            BorderWidth="3"
+                            FontSize="20"
+                            BackgroundColor="#ff8c19"
+                            CornerRadius="10"
+                            Text="Dial Emergency Number"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            x:Name="DialerButton"
+                            Clicked="DialerButton_Clicked"
+                            IsVisible="true">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#ff8c19"  Offset="0.7" />
+                            <GradientStop Color="White" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
 
-                <Button
-                    Grid.Row="12"
-                    Grid.Column="1"
-                    BorderColor="Black"
-                    BorderWidth="3"
-                    FontSize="20"
-                    BackgroundColor="LightGray"
-                    CornerRadius="10"
-                    Text="Back"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    x:Name="BackButton"
-                    Clicked="BackButton_Clicked"
-                    IsVisible="true"
-                    
-                    >
-                    
+                <!--Back Button-->
+                <Button     Grid.Row="12"
+                            Grid.Column="1"
+                            BorderColor="Black"
+                            BorderWidth="3"
+                            FontSize="20"
+                            BackgroundColor="LightGray"
+                            CornerRadius="10"
+                            Text="Back"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            x:Name="BackButton"
+                            Clicked="BackButton_Clicked"
+                            IsVisible="true"
+                            ImageSource="backarrow.png"
+                            ContentLayout="Left"
+                            Padding="40,0,75,0">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="LightGray"  Offset="0.1" />
+                            <GradientStop Color="white" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
                 </Button>
 
-
-                <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="Transparent"
+                <!--Activity Indicator-->
+                <ActivityIndicator x:Name="overlay"  
+                                   IsRunning="True" 
+                                   IsVisible="True" 
+                                   Color="Black" 
+                                   BackgroundColor="Transparent"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
-                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                                    Grid.Column="1"
-                                   Grid.Row="6"
-                                   
-                                   
-                                   >
-
+                                   Grid.Row="6">
                 </ActivityIndicator>
 
-                <Label x:Name="loading" Text="Loading Local Information..."
-                       TextColor="Black" FontSize="20" IsVisible="false" AbsoluteLayout.LayoutFlags="PositionProportional" 
-                 AbsoluteLayout.LayoutBounds="0.5,0.6,-1,-1" HorizontalTextAlignment="Center"
-                       Grid.Column="1"
-                       Grid.Row="8"
-                       ></Label>
-
+                <!--Indicator Label-->
+                <Label  x:Name="loading" 
+                        Text="Loading Local Information..."
+                        TextColor="Black" 
+                        FontSize="20" 
+                        IsVisible="false" 
+                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                        AbsoluteLayout.LayoutBounds="0.5,0.6,-1,-1" 
+                        HorizontalTextAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="8">
+                </Label>
             </Grid>
         </ScrollView> 
     </ContentPage.Content>

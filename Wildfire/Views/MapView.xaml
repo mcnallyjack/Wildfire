@@ -1,91 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     MapView
+     Purpose:       Map View interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.Views.MapView"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              Title="Map"
              xmlns:vm="clr-namespace:Wildfire.ViewModels"
-             BackgroundColor="White"
-             FocusOriginCommand="{Binding FocusOriginCommand}"
-             >
+             FocusOriginCommand="{Binding FocusOriginCommand}">
+    
+    <!--Background-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#ff8c19"  Offset="0.1" />
+            <GradientStop Color="#F7D9BB" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Binding-->
     <ContentPage.BindingContext>
         <vm:MainViewModel/>
     </ContentPage.BindingContext>
 
-    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <maps:Map x:Name="map" 
-                  AbsoluteLayout.LayoutBounds="0,0,1,1"
-               AbsoluteLayout.LayoutFlags="All" 
-               HorizontalOptions="FillAndExpand"
-               VerticalOptions="FillAndExpand"
-               maps:MapLongClicked="map_MapClicked"
-               PinClicked="map_PinClicked"
-               IsVisible="true"
-               ></maps:Map>
+    <!--Absolute Layout Page-->
+    <AbsoluteLayout     HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand">
+        
+        <!--Map -->
+        <maps:Map   x:Name="map" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    maps:MapLongClicked="map_MapClicked"
+                    PinClicked="map_PinClicked"
+                    IsVisible="true">
+        </maps:Map>
 
-
-        <ActivityIndicator x:Name="overlay"  IsRunning="True" IsVisible="True" Color="Black" BackgroundColor="White" AbsoluteLayout.LayoutFlags="PositionProportional" 
-                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
-           
+        <!--Activity Indicator-->
+        <ActivityIndicator  x:Name="overlay" 
+                            IsRunning="True" 
+                            IsVisible="True" 
+                            Color="Black" 
+                            BackgroundColor="Transparent" 
+                            AbsoluteLayout.LayoutFlags="PositionProportional" 
+                            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
         </ActivityIndicator>
 
-        <Label x:Name="loading" Text="Loading Fires and Location..." TextColor="Black" FontSize="20" IsVisible="false" AbsoluteLayout.LayoutFlags="PositionProportional" 
-                 AbsoluteLayout.LayoutBounds="0.5,0.6,-1,-1"></Label>
-        
-        <Button AbsoluteLayout.LayoutBounds="0.98,0.73,AutoSize,AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="52"
-                WidthRequest="52"
-                CornerRadius="25"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="3"
-                ImageSource="flame.png"
-                Clicked="ReportFire_Clicked"
-                IsVisible="true"
-                x:Name="Report_Clicked"/>
-        
-        
-        <Button AbsoluteLayout.LayoutBounds="0.98, 0.84, AutoSize, AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="52"
-                WidthRequest="52"
-                CornerRadius="25"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="3"
-                ImageSource="search.png"
-                x:Name="searchPopup"
-                Clicked="Search_Clicked"
-                IsVisible="true"/>
+        <!--Indicator Label-->
+        <Label      x:Name="loading" 
+                    Text="Loading Fires and Location..." 
+                    TextColor="Black" FontSize="20" 
+                    IsVisible="false" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    AbsoluteLayout.LayoutBounds="0.5,0.6,-1,-1">
+        </Label>
 
-        
-        
-       
-       
-        <Frame
-            x:Name="popupSearch"
-            BackgroundColor="Transparent"
-            Padding="10, 10"
-            IsVisible="false"
-            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-            AbsoluteLayout.LayoutFlags="All"
-            BorderColor="Black"
-            HasShadow="True">
-            
-            <Frame
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                BorderColor="Black"
-                HasShadow="true"
-                WidthRequest="300"
-                HeightRequest="500">
-               
-                <Grid VerticalOptions="FillAndExpand"
-              BackgroundColor="White"
-              RowSpacing="0"
-              ColumnSpacing="0">
-                    
+        <!--Report Button-->
+        <Button     AbsoluteLayout.LayoutBounds="0.98,0.73,AutoSize,AutoSize"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HeightRequest="52"
+                    WidthRequest="52"
+                    CornerRadius="25"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    ImageSource="flame.png"
+                    Clicked="ReportFire_Clicked"
+                    IsVisible="true"
+                    x:Name="Report_Clicked">
+        </Button>
+
+        <!--Search Button-->
+        <Button     AbsoluteLayout.LayoutBounds="0.98, 0.84, AutoSize, AutoSize"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HeightRequest="52"
+                    WidthRequest="52"
+                    CornerRadius="25"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    ImageSource="search.png"
+                    x:Name="searchPopup"
+                    Clicked="Search_Clicked"
+                    IsVisible="true">
+        </Button>
+    
+        <!--Search Popup-->
+        <Frame      x:Name="popupSearch"
+                    BackgroundColor="Transparent"
+                    Padding="10, 10"
+                    IsVisible="false"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BorderColor="Black"
+                    HasShadow="True">
+
+            <Frame      VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        BorderColor="Black"
+                        WidthRequest="300"
+                        HeightRequest="500"
+                        CornerRadius="15"
+                        HasShadow="True">
+
+                <Grid   VerticalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        RowSpacing="7"
+                        ColumnSpacing="0">
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -94,83 +119,98 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <StackLayout Grid.Row="0"  
-                             Padding="10"
-                             BackgroundColor="White"
-                             Orientation="Horizontal">
-                        <Image Grid.Row="2" HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Source="cancel.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="RemovePopupTapped"
-                                                      NumberOfTapsRequired="1">
 
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="search.png"
-                               HeightRequest="20"
-                               WidthRequest="20"/>
-                        <Entry Placeholder="Search a Location"
-                               Text="{Binding PickupText}"
-                               FontSize="18"
-                               x:Name="originEntry"
-                               ClassId="origin"
-                               FontAttributes="Italic"
-                               ReturnType="Search"
-                               HorizontalOptions="FillAndExpand"
-                               TextColor="Black"
-                               PlaceholderColor="LightGray"
-                               BackgroundColor="DarkGray"/>
-                        <Button ImageSource="search.png"
-                    Clicked="SearchPlace_Clicked"
-                                BackgroundColor="White"
+                    <Image      Grid.Row="0"
+                                HorizontalOptions="End" 
+                                HeightRequest="20" 
+                                WidthRequest="20" 
+                                Source="cancel.png"
+                                Aspect="AspectFill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer   Tapped="RemovePopupTapped"
+                                                    NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Entry      Placeholder="Search a Location"
+                                Text="{Binding PickupText}"
+                                FontSize="18"
+                                x:Name="originEntry"
+                                ClassId="origin"
+                                ReturnType="Search"
+                                HorizontalOptions="Start"
+                                TextColor="Black"
+                                Grid.Row="1"
+                                WidthRequest="205"
+                                PlaceholderColor="White"
+                                BackgroundColor="LightGray"
+                                ClearButtonVisibility="WhileEditing">
+                    </Entry>
+
+                    <Button     ImageSource="search.png"
+                                Clicked="SearchPlace_Clicked"
+                                BackgroundColor="LightGray"
                                 BorderColor="Black"
                                 BorderWidth="2"
                                 CornerRadius="10"
-                                WidthRequest="80"/>
+                                HorizontalOptions="End"
+                                Grid.Row="1"
+                                WidthRequest="80">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Color="LightGray"  Offset="0.1" />
+                                <GradientStop Color="white" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
 
-                    </StackLayout>
+                    <ListView   VerticalOptions="FillAndExpand"
+                                BackgroundColor="Transparent"
+                                Grid.Row="2"
+                                Footer=""
+                                SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
+                                x:Name="list"
+                                ItemsSource="{Binding Places}"
+                                HasUnevenRows="true"
+                                SeparatorColor="Gray">
 
-
-
-                    <ListView VerticalOptions="FillAndExpand"
-                        BackgroundColor="Transparent"
-                        Grid.Row="2"
-                        Footer=""
-                        SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
-                        x:Name="list"
-                        ItemsSource="{Binding Places}"
-                        HasUnevenRows="true"
-                        SeparatorColor="Gray"
-                        >
                         <ListView.Triggers>
-                            <DataTrigger TargetType="ListView"
-                                 Binding="{Binding ShowRecentPlaces}"
-                                 Value="True">
-                                <Setter Property="ItemsSource" Value="{Binding RecentPlaces}" />
+                            <DataTrigger    TargetType="ListView"
+                                            Binding="{Binding ShowRecentPlaces}"
+                                            Value="True">
+
+                                <Setter     Property="ItemsSource" 
+                                            Value="{Binding RecentPlaces}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="ListView"
-                                 Binding="{Binding ShowRecentPlaces}"
-                                 Value="False">
-                                <Setter Property="ItemsSource" Value="{Binding Places}" />
+                            <DataTrigger    TargetType="ListView"
+                                            Binding="{Binding ShowRecentPlaces}"
+                                            Value="False">
+
+                                <Setter     Property="ItemsSource" 
+                                            Value="{Binding Places}" />
                             </DataTrigger>
                         </ListView.Triggers>
                         <ListView.Header>
-                            <StackLayout  x:Name="recentSearchText"
-                                      IsVisible="{Binding ShowRecentPlaces}">
-                                <Label LineBreakMode="WordWrap"
-                                 FontAttributes="Bold"
-                                 Margin="20,10"
-                                 x:Name="recentSearch"
-                                 Text="History"/>
+
+                            <StackLayout    x:Name="recentSearchText"
+                                            IsVisible="{Binding ShowRecentPlaces}">
+
+                                <Label      LineBreakMode="WordWrap"
+                                            FontAttributes="Bold"
+                                            Margin="20,10"
+                                            x:Name="recentSearch"
+                                            Text="History">
+                                </Label>
+
                             </StackLayout>
                         </ListView.Header>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid Padding="15"
-                                      RowSpacing="2"
-                                      ColumnSpacing="15">
+                                    <Grid   Padding="15"
+                                            RowSpacing="2"
+                                            ColumnSpacing="15">
 
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -181,25 +221,28 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Source="pin.png"
-                                             HeightRequest="20"
-                                             WidthRequest="20"
-                                             VerticalOptions="Start"
-                                             Grid.Row="0"
-                                             Grid.Column="0"
-                                             Grid.RowSpan="2"/>
+                                        <Image      Source="pin.png"
+                                                    HeightRequest="20"
+                                                    WidthRequest="20"
+                                                    VerticalOptions="Start"
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Grid.RowSpan="2">
+                                        </Image>
 
-                                        <Label LineBreakMode="MiddleTruncation"
-                                               Text="{Binding StructuredFormatting.MainText}"
-                                               Grid.Row="0"
-                                               Grid.Column="1"
-                                               TextColor="Black"/>
+                                        <Label      LineBreakMode="MiddleTruncation"
+                                                    Text="{Binding StructuredFormatting.MainText}"
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    TextColor="Black">
+                                        </Label>
 
-                                        <Label LineBreakMode="MiddleTruncation"
-                                                 Text="{Binding StructuredFormatting.SecondaryText}" 
-                                                 TextColor="Black" 
-                                                 Grid.Row="1"
-                                                 Grid.Column="1"/>
+                                        <Label      LineBreakMode="MiddleTruncation"
+                                                    Text="{Binding StructuredFormatting.SecondaryText}" 
+                                                    TextColor="Black" 
+                                                    Grid.Row="1"
+                                                    Grid.Column="1">
+                                        </Label>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
@@ -208,22 +251,19 @@
                 </Grid>
             </Frame>
         </Frame>
-<!--Search-->
-        <Button AbsoluteLayout.LayoutBounds="0.98,0.95,AutoSize,AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="52"
-                WidthRequest="52"
-                CornerRadius="25"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="3"
-                ImageSource="pin.png"
-                Clicked="Location_Button_Clicked"
-               IsVisible="true"
-                x:Name="Location_Clicked"/>
+        
+        <!--Location Button-->
+        <Button     AbsoluteLayout.LayoutBounds="0.98,0.95,AutoSize,AutoSize"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HeightRequest="52"
+                    WidthRequest="52"
+                    CornerRadius="25"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    ImageSource="pin.png"
+                    Clicked="Location_Button_Clicked"
+                    IsVisible="true"
+                    x:Name="Location_Clicked"/>
     </AbsoluteLayout>
-
-  
-    
-    
 </ContentPage>
