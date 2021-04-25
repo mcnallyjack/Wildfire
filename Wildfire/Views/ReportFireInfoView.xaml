@@ -1,165 +1,327 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     ReportFireInfoView
+     Purpose:       Report fire interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.ReportFireInfoView"
-             BackgroundColor="White">
+             x:Class="Wildfire.Views.ReportFireInfoView">
+
+    <!--Background-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="White" Offset="0.1" />
+            <GradientStop Color="#F7D9BB"  Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
+    <!--Content Page-->
     <ContentPage.Content>
-       
-            <StackLayout>
-                <ScrollView>
-        <Grid RowSpacing="8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="84"/>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="32" />
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="56"/>
-                <RowDefinition Height="56"/>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="56"/>
-                <RowDefinition Height="56"/>
-                <RowDefinition Height="5"/>
+        <StackLayout>
+            <ScrollView>
+                <Grid RowSpacing="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="84"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-           <Frame
-                BorderColor="Black"
-                
-                Grid.Row="1"
-                Grid.Column="1"
-                BackgroundColor="LightGray"
-                HasShadow="True"
-                
-                >
-                <Label Text="Report Fire" FontSize="24" HorizontalOptions="Center" VerticalTextAlignment="Center"  VerticalOptions="Center" TextColor="Black" ></Label>
-               
-            </Frame> 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <FlexLayout Grid.Row="3" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
-                 
-                <Label Text="   Time Found @   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="timeFound" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" BackgroundColor="#2daff0"></Label>
-                
-            </FlexLayout>
+                    <!--Header-->
+                    <Frame      BorderColor="LightGray"
+                                Padding="7"
+                                HeightRequest="80"
+                                WidthRequest="300"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                BackgroundColor="LightGray"
+                                HasShadow="True"
+                                CornerRadius="15"
+                                IsVisible="true"
+                                HorizontalOptions="Center">
 
-            <FlexLayout Grid.Row="4" Grid.Column="1" BackgroundColor="#2daff0"  HorizontalOptions="Center">
+                        <Frame      BorderColor="LightGray"
+                                    Padding="7"
+                                    HeightRequest="80"
+                                    WidthRequest="310"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="LightGray"
+                                    HasShadow="True"
+                                    CornerRadius="15"
+                                    IsVisible="true"
+                                    HorizontalOptions="Center">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="0,1">
+                                    <GradientStop Color="White"  Offset="0.9" />
+                                    <GradientStop Color="LightBlue" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
 
-                <Label Text="   Place Name   " BackgroundColor="#2daFF0" FontSize="18" TextColor="black"></Label>
-                <Label x:Name="placeName" TextColor="Black" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" BackgroundColor="#2daff0" ></Label>
+                            <Label      Text="Report Fire"
+                                        FontSize="26"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        TextColor="#282828"
+                                        FontAttributes="Bold">
+                            </Label>
+                        </Frame>
+                    </Frame>
 
-            </FlexLayout>
+                    <!--Time Found Label-->
+                    <FlexLayout     Grid.Row="3" 
+                                    Grid.Column="1" 
+                                    BackgroundColor="#2daff0"  
+                                    HorizontalOptions="Center">
+
+                        <Label      Text="   Time Found @   " 
+                                    BackgroundColor="#2daFF0" 
+                                    FontSize="18"
+                                    TextColor="black">
+                            <Label.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="LightBlue"  Offset="0.8" />
+                                    <GradientStop Color="#2daff0" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Label.Background>
+                        </Label>
+                        <Label      x:Name="timeFound" 
+                                    TextColor="Black" 
+                                    FontSize="16" 
+                                    VerticalTextAlignment="Center"
+                                    BackgroundColor="#2daff0">
+                        </Label>
+
+                    </FlexLayout>
+
+                    <!--Place Label-->
+                    <FlexLayout     Grid.Row="4"
+                                    Grid.Column="1" 
+                                    BackgroundColor="#2daff0"  
+                                    HorizontalOptions="Center">
+                        <Label Text="   Place Name   " 
+                               BackgroundColor="#2daFF0" 
+                               FontSize="18" 
+                               TextColor="black">
+                            <Label.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="LightBlue"  Offset="0.8" />
+                                    <GradientStop Color="#2daff0" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Label.Background>
+                        </Label>
+                        <Label  x:Name="placeName" 
+                                TextColor="Black" 
+                                FontSize="16" 
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="Center" 
+                                Margin="18,0,0,0" 
+                                VerticalOptions="Center"
+                                BackgroundColor="#2daff0">
+                        </Label>
+                    </FlexLayout>
+
+                    <!--Wind Direction // Start-->
+                    <Label      Text="Wind Direction" 
+                                Grid.Row="6" 
+                                Grid.Column="1" 
+                                TextColor="Black" 
+                                FontSize="18">
+                    </Label>
+                    <Picker     x:Name="directionEntry" 
+                                Title="--Select--" 
+                                Grid.Row="7" 
+                                TextColor="Black" 
+                                Grid.Column="1" 
+                                FontSize="18" 
+                                BackgroundColor="LightGray" 
+                                SelectedIndexChanged="directionEntry_SelectedIndexChanged">
+                    </Picker>
+                    <!--Wind Direction // End-->
+
+                    <!-- Latitude & Longitude // Start-->
+                    <Label      x:Name="myLat" 
+                                Grid.Row="0" 
+                                Grid.Column="0" 
+                                TextColor="Black" 
+                                FontSize="2">
+                    </Label>
+                    <Label      x:Name="myLong" 
+                                Grid.Row="0"
+                                Grid.Column="0" 
+                                TextColor="Black" 
+                                FontSize="2">
+                    </Label>
+                    <!-- Latitude & Longitude // End-->
+
+                    <Label      x:Name="deviceID" 
+                                Grid.Row="0" 
+                                Grid.Column="0" 
+                                TextColor="Black" 
+                                FontSize="1">
+                    </Label>
+
+                    <!-- Description // Start-->
+                    <Label      x:Name="FireDescription" 
+                                Text="Fire Description" 
+                                Grid.Row="9" 
+                                Grid.Column="1" 
+                                TextColor="Black" 
+                                FontSize="18">
+                    </Label>
+                    <Editor     x:Name="FireDesc" 
+                                Placeholder="Quick Description" 
+                                MaxLength="100" 
+                                HeightRequest="100" 
+                                Grid.Row="10" 
+                                FontSize="18" 
+                                TextColor="Black" 
+                                BackgroundColor="LightGray"
+                                Grid.Column="1" 
+                                Keyboard="Text">
+                    </Editor>
+                    <!-- Description // End-->
 
 
-            <!--Wind Direction // Start-->
-            <Label Text="Wind Direction" Grid.Row="6" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Picker x:Name="directionEntry" Title="--Select--" Grid.Row="7" TextColor="Black" Grid.Column="1" FontSize="16" BackgroundColor="LightGray" SelectedIndexChanged="directionEntry_SelectedIndexChanged"/>
-            <!--Wind Direction // End-->
+                    <Entry      x:Name="fireID"  
+                                Grid.Row="0" 
+                                Grid.Column="0" 
+                                FontSize="1" 
+                                Keyboard="Numeric">
+                    </Entry>
 
-            <!-- Latitude & Longitude // Start-->
-            <Label x:Name="myLat" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
-            <Label x:Name="myLong" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="2"></Label>
-            <!-- Latitude & Longitude // End-->
+                    <!-- Photo // Start-->
+                    <Button     x:Name="photo_Add"
+                                Grid.Row="11" 
+                                Grid.Column="1" 
+                                FontSize="20" 
+                                Text="Add Photo" 
+                                BackgroundColor="LightGray" 
+                                WidthRequest="300"
+                                BorderColor="Black"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                CornerRadius="10"
+                                BorderWidth="3"
+                                ImageSource="add.png"
+                                ContentLayout="Right"
+                                Padding="75,0,40,0"
+                                FontAttributes="Bold"
+                                Clicked="photo_Add_Clicked">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="LightGray"  Offset="0.1" />
+                                <GradientStop Color="white" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
 
-            <Label x:Name="deviceID" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="1"></Label>
+                    <!--Photo Take Button-->
+                    <Button     x:Name="photo_Take"
+                                Grid.Row="12" 
+                                Grid.Column="1" 
+                                FontSize="20" 
+                                Text="Take Photo" 
+                                BackgroundColor="LightGray" 
+                                WidthRequest="300"
+                                BorderColor="Black"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                CornerRadius="10"
+                                BorderWidth="3"
+                                ImageSource="take.png"
+                                ContentLayout="Right"
+                                Padding="75,0,40,0"
+                                FontAttributes="Bold"
+                                Clicked="photo_Take_Clicked">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="LightGray"  Offset="0.1" />
+                                <GradientStop Color="white" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
 
-            <!-- Description // Start-->
-            <Label x:Name="FireDescription" Text="Fire Description" Grid.Row="9" Grid.Column="1" TextColor="Black" FontSize="18"></Label>
-            <Editor x:Name="FireDesc" Placeholder="Quick Description" MaxLength="100" HeightRequest="100" Grid.Row="10" FontSize="16" TextColor="Black" BackgroundColor="LightGray" Grid.Column="1" Keyboard="Text"></Editor>
-            <!-- Description // End-->
-            
-            
-            <Entry x:Name="fireID"  Grid.Row="0" Grid.Column="0" FontSize="1" Keyboard="Numeric"></Entry>
+                    <!--Image Import-->
+                    <Image      x:Name="imgChoose" 
+                                HeightRequest="150" 
+                                Grid.Row="13" 
+                                Grid.Column="1" 
+                                Source="photo.png">
+                    </Image>
+                    <!-- Photo // End-->
 
-            <!-- Photo // Start-->
-            <Button 
-                x:Name="photo_Add"
-                Grid.Row="11" 
-                Grid.Column="1" 
-                FontSize="20" 
-                Text="Add Photo +" 
-                BackgroundColor="LightGray" 
-                WidthRequest="300"
-                BorderColor="Black"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontAttributes="Bold"
-                Clicked="photo_Add_Clicked"
-                ></Button>
+                    <!--Report Fire Button-->
+                    <Button     WidthRequest="300"
+                                BorderColor="Black"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                Text="Report Fire"
+                                CornerRadius="10"
+                                BorderWidth="3"
+                                FontSize="20"
+                                ImageSource="flame.png"
+                                ContentLayout="Right"
+                                Padding="75,0,40,0"
+                                FontAttributes="Bold"
+                                Grid.Row="15" 
+                                Grid.Column="1" 
+                                Clicked="btn_Add_Clicked" 
+                                BackgroundColor="#ff8c19">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#ff8c19"  Offset="0.7" />
+                                <GradientStop Color="White" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
 
-            <Button 
-                x:Name="photo_Take"
-                Grid.Row="12" 
-                Grid.Column="1" 
-                FontSize="20" 
-                Text="Take Photo +" 
-                BackgroundColor="LightGray" 
-                WidthRequest="300"
-                BorderColor="Black"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontAttributes="Bold"
-                Clicked="photo_Take_Clicked"></Button>
-
-            <Image 
-                x:Name="imgChoose" 
-                HeightRequest="150" 
-                Grid.Row="13" 
-                Grid.Column="1" 
-                Source="photo.png"
-               ></Image>
-            <!-- Photo // End-->
-
-                   
-            
-            
-            <Button  
-                WidthRequest="300"
-                BorderColor="Black"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                Text="Report Fire"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontSize="20"
-                FontAttributes="Bold" Grid.Row="15" Grid.Column="1" Clicked="btn_Add_Clicked" BackgroundColor="#ff8c19"></Button>
-
-
-
-
-            <Button  Text="Cancel" x:Name="btn_Cancel" Grid.Row="16" Grid.Column="1"  WidthRequest="300"
-                BorderColor="Black"
-                TextColor="Black"
-                HorizontalOptions="Center"
-                BackgroundColor="LightGray"
-                CornerRadius="10"
-                BorderWidth="3"
-                FontSize="20"
-                FontAttributes="Bold" Clicked="btn_Cancel_Clicked"></Button>
-
-               
-            
-           
-
-           
-            
-        </Grid>
+                    <!--Cancel Button-->
+                    <Button     Text="Cancel" 
+                                x:Name="btn_Cancel" 
+                                Grid.Row="16" 
+                                Grid.Column="1"  
+                                WidthRequest="300"
+                                BorderColor="Black"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                BackgroundColor="LightGray"
+                                CornerRadius="10"
+                                BorderWidth="3"
+                                FontSize="20"
+                                ImageSource="backarrow.png"
+                                ContentLayout="Left"
+                                Padding="40,0,75,0"
+                                FontAttributes="Bold" 
+                                Clicked="btn_Cancel_Clicked">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="LightGray"  Offset="0.1" />
+                                <GradientStop Color="white" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
             </ScrollView>
-            </StackLayout>
-       
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

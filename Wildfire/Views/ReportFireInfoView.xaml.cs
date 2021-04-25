@@ -1,4 +1,7 @@
-﻿
+﻿/* Author:      Jack McNally
+ * Page Name:   ReportFireInfoView
+ * Purpose:     Backend for Report Fire.
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,14 +50,12 @@ namespace Wildfire.Views
             directionEntry.Items.Add("South-West");
             directionEntry.Items.Add("Unknown");
 
-
             // deviceID.Text = Android.OS.Build.GetSerial().ToString(); Optimal solution
 
             deviceID.Text = Android.OS.Build.Fingerprint;
         }
 
-      
-
+        // Report Fire Event Handler
         private async void btn_Add_Clicked(object sender, EventArgs e)
         {
             if (directionEntry.SelectedIndex == -1)
@@ -89,10 +90,10 @@ namespace Wildfire.Views
             MapView.locationCount = 0;
             await DisplayAlert("Success", "Added", "OK");
             var allFires = await firebaseHelper.GetAllFires();
-            await Navigation.PushModalAsync(new MainTabPage());
-            
+            await Navigation.PushModalAsync(new MainTabPage());           
         }
 
+        // Cancel Button Event Handler
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
             try
@@ -106,6 +107,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Picker Index Event Handler
         private void directionEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -118,6 +120,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Photo Add Event Handler
         private async void photo_Add_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -143,6 +146,7 @@ namespace Wildfire.Views
            await StoreImages(file.GetStream());
         }
 
+        // Photo Take Event Handler
         private async void photo_Take_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -153,10 +157,6 @@ namespace Wildfire.Views
                     PhotoSize = PhotoSize.Medium,
                     AllowCropping = true
                 });
-                
-               // var result = await MediaPicker.CapturePhotoAsync();
-
-               // var imageStream = await result.OpenReadAsync();
 
                 imgChoose.Source = ImageSource.FromStream(() =>
                 {
@@ -171,6 +171,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Store Image Task
         public async Task<string> StoreImages(Stream imageStream)
         {
             var fileName = Id;

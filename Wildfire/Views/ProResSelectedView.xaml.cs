@@ -1,4 +1,8 @@
-﻿using Firebase.Storage;
+﻿/* Author:      Jack McNally
+ * Page Name:   ProResSelectedView
+ * Purpose:     Backend for Resolved fire selected view.
+ */
+using Firebase.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +29,9 @@ namespace Wildfire.Views
             description.Text = ResDescription;
         }
 
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -34,7 +41,9 @@ namespace Wildfire.Views
             currentFire.IsVisible = true;
             overlay.IsVisible = false;
         }
-
+        /// <summary>
+        /// Load image task from firebase
+        /// </summary>
         public async Task LoadImage()
         {
             try
@@ -52,10 +61,10 @@ namespace Wildfire.Views
             catch(Exception ex) 
             {
                 ex.Message.ToString();
-            }
-     
+            }     
         }
 
+        // Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             try

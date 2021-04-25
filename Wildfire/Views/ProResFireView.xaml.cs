@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   ProResfireView
+ * Purpose:     Backend for Res Fire View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +22,9 @@ namespace Wildfire.Views
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -26,14 +32,22 @@ namespace Wildfire.Views
             resFires.ItemsSource = fires;
         }
 
+        // // List Item tap event handler
         private async void resFires_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await Task.Delay(50);
-            var fireInfo = e.Item as Fire;
-            await App.Current.MainPage.Navigation.PushModalAsync(new ProResSelectedView(fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.ResolvedDescription),false);
-
+            try
+            {
+                await Task.Delay(50);
+                var fireInfo = e.Item as Fire;
+                await App.Current.MainPage.Navigation.PushModalAsync(new ProResSelectedView(fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.ResolvedDescription), false);
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
 
+        // Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             try

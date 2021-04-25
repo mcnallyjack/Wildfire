@@ -1,4 +1,8 @@
-﻿using Firebase.Storage;
+﻿/* Author:      Jack McNally
+ * Page Name:   ProCurrentSelectedView
+ * Purpose:     Backend for Current Selected fires View.
+ */
+using Firebase.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +30,9 @@ namespace Wildfire.Views
             windDir.Text = WindDirection;
             fireID.Text = FireID;
         }
-
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -37,6 +43,9 @@ namespace Wildfire.Views
             overlay.IsVisible = false;
         }
 
+        /// <summary>
+        /// Loading images from firebase
+        /// </summary>
         public async Task LoadImage()
         {
             try
@@ -57,6 +66,7 @@ namespace Wildfire.Views
             }
         }
 
+        // Back Button Event Handler
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             try

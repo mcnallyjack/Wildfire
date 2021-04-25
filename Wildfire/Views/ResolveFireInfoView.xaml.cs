@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   ResolveFireInfoView
+ * Purpose:     Backend for Resolve Fire.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +40,9 @@ namespace Wildfire.Views
             var filename = fireTag.Text;
         }
 
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -46,7 +53,10 @@ namespace Wildfire.Views
             overlay.IsVisible = false;         
         }
 
-        public async Task/*<ImageSource>*/ LoadImage()
+        /// <summary>
+        /// Task to Load an image frm firebase
+        /// </summary>
+        public async Task LoadImage()
         {
             try
             {
@@ -63,10 +73,10 @@ namespace Wildfire.Views
             catch(Exception ex)
             {
                 ex.Message.ToString();
-            }
-            
+            }            
         }
 
+        // Resolve Button Event Handler
         private async void btn_Res_Clicked(object sender, EventArgs e)
         {
             if (newDesc.Text == null)
@@ -86,12 +96,21 @@ namespace Wildfire.Views
             await Navigation.PushModalAsync(new MainTabPage());
         }
 
+        // Cancel Button Event Handler
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
-            MapView.locationCount = 0;
-            await Navigation.PushModalAsync(new MainTabPage());
+            try
+            {
+                MapView.locationCount = 0;
+                await Navigation.PushModalAsync(new MainTabPage());
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
 
+        // Add Photo Event Handler
         private async void photo_Add_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -117,6 +136,7 @@ namespace Wildfire.Views
             await StoreImages(file.GetStream());
         }
 
+        // Store Images Task
         public async Task<string> StoreImages(Stream imageStream)
         {
             var fileName = fireTag.Text;
@@ -129,6 +149,7 @@ namespace Wildfire.Views
             return imgurl;
         }
 
+        // Take Photo Event Handler
         private async void photo_Take_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -139,10 +160,6 @@ namespace Wildfire.Views
                     PhotoSize = PhotoSize.Medium,
                     AllowCropping = true
                 });
-
-                // var result = await MediaPicker.CapturePhotoAsync();
-
-                // var imageStream = await result.OpenReadAsync();
 
                 imgNewChoose.Source = ImageSource.FromStream(() =>
                 {

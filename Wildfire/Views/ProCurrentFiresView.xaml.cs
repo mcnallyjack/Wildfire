@@ -39,7 +39,7 @@ namespace Wildfire.Views
             {
                 await Task.Delay(10);
                 var fireInfo = e.Item as Fire;
-                await Navigation.PushModalAsync(new ProCurrrentSelectedView(fireInfo.WindDirection, fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.Description));
+                await Navigation.PushModalAsync(new ProCurrrentSelectedView(fireInfo.WindDirection, fireInfo.PlaceName, fireInfo.FireID, fireInfo.Time, fireInfo.Description),false);
             }
             catch(Exception ex)
             {
