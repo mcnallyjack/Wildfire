@@ -28,6 +28,10 @@ namespace Wildfire.Views
         {
             try
             {
+                if(oldPass.Text == null)
+                {
+                    await DisplayAlert("Error", "Please enter password", "Ok");
+                }
                 if (oldPass.Text.Length < 8)
                 {
                     await DisplayAlert("Error", "Password length must be greater than 8", "ok");

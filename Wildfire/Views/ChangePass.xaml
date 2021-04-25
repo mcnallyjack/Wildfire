@@ -86,8 +86,8 @@
                             FontSize="20">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Color="#ff8c19"  Offset="0.4" />
-                            <GradientStop Color="LightGray" Offset="1.0" />
+                            <GradientStop Color="#ff8c19"  Offset="0.6" />
+                            <GradientStop Color="white" Offset="1.0" />
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>

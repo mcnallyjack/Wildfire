@@ -24,8 +24,13 @@ namespace Wildfire.Views
         //Forgot Password Event Handler
         private async void ForgotPass_Clicked(object sender, EventArgs e)
         {
+            
             try
             {
+                if(emailPass.Text == null)
+                {
+                    await DisplayAlert("Error", "Please enter email", "Ok");
+                }
                 var authService = DependencyService.Resolve<IAuth>();
                 await authService.ForgotPassword(emailPass.Text);
                 await DisplayAlert("Success", "Please check email inbox", "ok");

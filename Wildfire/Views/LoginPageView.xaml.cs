@@ -24,9 +24,22 @@ namespace Wildfire.Views
 
         private async void Login_Clicked(object sender, EventArgs e)
         {
+             if(EmailInput.Text == null)
+                { 
+                    await DisplayAlert("Error", "Please enter email", "Ok");
+                return;
+                }
+                if(PasswordInput.Text == null)
+                {
+                    await DisplayAlert("Error", "Please enter password", "Ok");
+                return;
+                }
+
             token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+
             try
             { 
+               
                 if (token != string.Empty)
                     {
                         MapView.loginCount = 0;

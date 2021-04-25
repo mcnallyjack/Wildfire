@@ -22,6 +22,17 @@ namespace Wildfire.Views
 
         async void SignUp_Clicked(object sender, EventArgs e)
         {
+            if(EmailInput.Text == null)
+            {
+                await DisplayAlert("Error", "Please enter email", "Ok");
+                return;
+            }
+            if(PasswordInput.Text == null)
+            {
+                await DisplayAlert("Error", "Please enter password", "Ok");
+                return;
+            }
+
 
             if (PasswordInput.Text.Length < 8)
             {
