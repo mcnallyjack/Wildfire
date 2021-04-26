@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   App
+ * Purpose:     Main App Backend Page.
+ */
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Wildfire.Services;

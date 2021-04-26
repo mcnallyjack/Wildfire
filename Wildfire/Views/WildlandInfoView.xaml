@@ -1,78 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     WildlandInfoView
+     Purpose:       wildiland fire interface.
+-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wildfire.Views.WildlandInfoView"
-             BackgroundColor="White">
+             x:Class="Wildfire.Views.WildlandInfoView">
+
+    <!--Background-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#ff8c19"  Offset="0.1" />
+            <GradientStop Color="#F7D9BB" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <!--Content Page-->
     <ContentPage.Content>
+        
         <AbsoluteLayout>
-            
-            <Frame      BorderColor="Black"
-                        HeightRequest="40"
+
+            <!--Header-->
+            <Frame      BorderColor="LightGray"
+                        Padding="7"
+                        HeightRequest="80"
                         WidthRequest="300"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
                         BackgroundColor="LightGray"
                         HasShadow="True"
                         IsVisible="true"
+                        CornerRadius="15"
                         x:Name="FrameLabel"
                         HorizontalOptions="Center">
 
-                <Label  Text="Wildland Fire Safety"
-                        FontSize="24"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        TextColor="Black">
-                </Label>
+                <Frame      BorderColor="LightGray"
+                            Padding="7"
+                            HeightRequest="80"
+                            WidthRequest="310"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" 
+                            AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                            BackgroundColor="LightGray"
+                            HasShadow="True"
+                            CornerRadius="15"
+                            IsVisible="true"
+                            x:Name="FrameLabel1"
+                            HorizontalOptions="Center">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="White"  Offset="0.9" />
+                            <GradientStop Color="LightBlue" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <Label      Text="Wildland Fire Safety"
+                                FontSize="26"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#282828"
+                                FontAttributes="Bold">
+                    </Label>
+                </Frame>
             </Frame>
 
+            <!--Button 1-->
             <Button     x:Name="BeforeFireInfo" 
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.25,-1,-1"  
                         BackgroundColor="LightBlue" 
                         CornerRadius="20" 
                         FontSize="25" 
-                        FontAttributes="Bold" 
+                        FontAttributes="Italic" 
                         BorderWidth="3" 
                         BorderColor="Black" 
                         Text="Before a Wildfire" 
                         TextColor="Black" 
-                        HeightRequest="90" 
-                        WidthRequest="255"
+                        HeightRequest="110" 
+                        WidthRequest="270"
                         Clicked="BeforeFireInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
             </Button>
 
+            <!--Button 2-->
             <Button     x:Name="DuringFireInfo" 
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.45,-1,-1" 
                         BackgroundColor="LightBlue" 
                         CornerRadius="20" 
                         FontSize="25" 
-                        FontAttributes="Bold" 
+                        FontAttributes="Italic" 
                         BorderWidth="3" 
                         BorderColor="Black" 
                         Text="During a Wildfire" 
                         TextColor="Black" 
-                        HeightRequest="90" 
-                        WidthRequest="255" 
+                        HeightRequest="110" 
+                        WidthRequest="270"
                         Clicked="DuringFireInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
             </Button>
 
+            <!--Button 3-->
             <Button     x:Name="AfterFireInfo"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.65,-1,-1"  
                         BackgroundColor="LightBlue" 
                         CornerRadius="20" 
                         FontSize="25" 
-                        FontAttributes="Bold" 
+                        FontAttributes="Italic" 
                         BorderWidth="3" 
                         BorderColor="Black" 
                         Text="After a Wildfire" 
                         TextColor="Black" 
-                        HeightRequest="90" 
-                        WidthRequest="255" 
+                        HeightRequest="110" 
+                        WidthRequest="270"
                         Clicked="AfterFireInfo_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="LightSalmon" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
             </Button>
 
+            <!--Back Button-->
             <Button     x:Name="BackButton" 
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.85,-1,-1"  
@@ -84,13 +144,22 @@
                         BorderColor="Black" 
                         Text="Back" 
                         TextColor="Black" 
-                        HeightRequest="56" 
+                        HeightRequest="56"
+                        ImageSource="backarrow.png"
+                        ContentLayout="Left"
+                        Padding="40,0,75,0"
                         WidthRequest="300" 
                         Clicked="BackButton_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="LightGray"  Offset="0.1" />
+                        <GradientStop Color="white" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
             </Button>
 
             <!-- Before Fire -->
-            <Frame      HeightRequest="650"
+            <Frame      HeightRequest="680"
                         WidthRequest="310"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
@@ -99,7 +168,9 @@
                         IsVisible="false"
                         HasShadow="True">
                 
-                <Frame BackgroundColor="#f2f2f2">
+                <Frame BackgroundColor="#f2f2f2"
+                       CornerRadius="15"
+                       HasShadow="True">
 
                     <StackLayout>
                         
@@ -116,24 +187,46 @@
                             
                         </Image>
 
-                        <Frame      BorderColor="Black"
-                                    HeightRequest="40"
+                        <Frame      BorderColor="LightGray"
+                                    Padding="7"
+                                    HeightRequest="80"
                                     WidthRequest="300"
                                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
                                     BackgroundColor="LightGray"
                                     HasShadow="True"
+                                    CornerRadius="15"
                                     IsVisible="true"
                                     HorizontalOptions="Center">
 
-                            <Label  Text="Before a Wildfire"
-                                    FontSize="24"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    TextColor="Black">
-                            </Label>
+                            <Frame      BorderColor="LightGray"
+                                        Padding="7"
+                                        HeightRequest="80"
+                                        WidthRequest="310"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                                        BackgroundColor="LightGray"
+                                        HasShadow="True"
+                                        CornerRadius="15"
+                                        IsVisible="true"
+                                        HorizontalOptions="Center">
+                                <Frame.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="White"  Offset="0.9" />
+                                        <GradientStop Color="LightBlue" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+
+                                <Label      Text="Before a Wildfire"
+                                            FontSize="26"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            TextColor="#282828"
+                                            FontAttributes="Bold">
+                                </Label>
+                            </Frame>
                         </Frame>
-                        
+
                         <ScrollView>
                             
                             <StackLayout>
@@ -253,7 +346,7 @@
             </Frame>
 
             <!-- During -->
-            <Frame      HeightRequest="650"
+            <Frame      HeightRequest="620"
                         WidthRequest="310"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
@@ -262,7 +355,9 @@
                         IsVisible="false"
                         HasShadow="True">
 
-                <Frame BackgroundColor="#f2f2f2">
+                <Frame BackgroundColor="#f2f2f2"
+                       CornerRadius="15"
+                       HasShadow="True">
 
                     <StackLayout>
 
@@ -279,22 +374,44 @@
 
                         </Image>
 
-                        <Frame      BorderColor="Black"
-                                    HeightRequest="40"
+                        <Frame      BorderColor="LightGray"
+                                    Padding="7"
+                                    HeightRequest="80"
                                     WidthRequest="300"
                                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
                                     BackgroundColor="LightGray"
                                     HasShadow="True"
+                                    CornerRadius="15"
                                     IsVisible="true"
                                     HorizontalOptions="Center">
 
-                            <Label  Text="During a Wildfire"
-                                    FontSize="24"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    TextColor="Black">
-                            </Label>
+                            <Frame      BorderColor="LightGray"
+                                        Padding="7"
+                                        HeightRequest="80"
+                                        WidthRequest="310"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                                        BackgroundColor="LightGray"
+                                        HasShadow="True"
+                                        CornerRadius="15"
+                                        IsVisible="true"
+                                        HorizontalOptions="Center">
+                                <Frame.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="White"  Offset="0.9" />
+                                        <GradientStop Color="LightBlue" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+
+                                <Label      Text="During a Wildfire"
+                                            FontSize="26"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            TextColor="#282828"
+                                            FontAttributes="Bold">
+                                </Label>
+                            </Frame>
                         </Frame>
 
                         <ScrollView>
@@ -373,7 +490,7 @@
             </Frame>
 
             <!-- After -->
-            <Frame      HeightRequest="650"
+            <Frame      HeightRequest="670"
                         WidthRequest="310"
                         AbsoluteLayout.LayoutFlags="PositionProportional" 
                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
@@ -382,7 +499,9 @@
                         IsVisible="false"
                         HasShadow="True">
 
-                <Frame BackgroundColor="#f2f2f2">
+                <Frame BackgroundColor="#f2f2f2"
+                       CornerRadius="15"
+                       HasShadow="True">
 
                     <StackLayout>
 
@@ -399,22 +518,44 @@
 
                         </Image>
 
-                        <Frame      BorderColor="Black"
-                                    HeightRequest="40"
+                        <Frame      BorderColor="LightGray"
+                                    Padding="7"
+                                    HeightRequest="80"
                                     WidthRequest="300"
                                     AbsoluteLayout.LayoutFlags="PositionProportional" 
-                                    AbsoluteLayout.LayoutBounds="0.5,0.02,-1,-1"
+                                    AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
                                     BackgroundColor="LightGray"
                                     HasShadow="True"
+                                    CornerRadius="15"
                                     IsVisible="true"
                                     HorizontalOptions="Center">
 
-                            <Label  Text="After a Wildfire"
-                                    FontSize="24"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    TextColor="Black">
-                            </Label>
+                            <Frame      BorderColor="LightGray"
+                                        Padding="7"
+                                        HeightRequest="80"
+                                        WidthRequest="310"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                        AbsoluteLayout.LayoutBounds="0.5,0.03,-1,-1"
+                                        BackgroundColor="LightGray"
+                                        HasShadow="True"
+                                        CornerRadius="15"
+                                        IsVisible="true"
+                                        HorizontalOptions="Center">
+                                <Frame.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="White"  Offset="0.9" />
+                                        <GradientStop Color="LightBlue" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+
+                                <Label      Text="After a Wildfire"
+                                            FontSize="26"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            TextColor="#282828"
+                                            FontAttributes="Bold">
+                                </Label>
+                            </Frame>
                         </Frame>
 
                         <ScrollView>
@@ -511,7 +652,6 @@
                     </StackLayout>
                 </Frame>
             </Frame>
-
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

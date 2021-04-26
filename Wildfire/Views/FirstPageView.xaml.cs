@@ -31,6 +31,7 @@ namespace Wildfire.Views
             {
                 if (signOut)
                 {
+                    MapView.loginCount = 0;
                     await Navigation.PushModalAsync(new SignUpPageView());
                 } 
             }

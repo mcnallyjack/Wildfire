@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   SettingsView
+ * Purpose:     Backend for Settings View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,16 +40,12 @@ namespace Wildfire.Views
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
         }
 
-        private void RadiusSettings_Completed1(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
+        // Login Button Event Handler
         private async void Login_Button_Clicked(object sender, EventArgs e)
         {
             if (LoginPageView.token == null)
             {
-                MapView.notificationCount = 0;
+                MapView.notificationCount = 1;
                 await Navigation.PushModalAsync(new LoginPageView());
             }
             else
@@ -54,6 +54,7 @@ namespace Wildfire.Views
             }
         }
 
+        // SignUp Button Event Handler
         private async void Signup_Button_Clicked(object sender, EventArgs e)
         {
             if (LoginPageView.token != null)
@@ -66,13 +67,13 @@ namespace Wildfire.Views
             }
         }
 
+        // Logout Button Event Handler
         private async  void Logout_Button_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
 
             if (LoginPageView.token != null)
             {
-
                 if (signOut)
                 {
                     MapView.notificationCount = 0;
@@ -88,6 +89,7 @@ namespace Wildfire.Views
             }
         }
 
+        // OnChange Event Handler
         private void OnChange(object sender, EventArgs e)
         {
             Preferences.Set("radiusSettings", radiusSettings.Text);
@@ -105,20 +107,16 @@ namespace Wildfire.Views
             isChecked = notificationSettings.IsChecked;
             MapView.locationCount = 0;
             MapView.notificationCount = 0;
-            MapView.fireNotCount = 0;
-            
+            MapView.fireNotCount = 0;           
         }
 
-        private void RadiusSettings_Completed(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
+        // OnDisapperaing Event Handler
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
         }
 
+        // Change Password Button Event Handler
         private async void ChangePass_Clicked(object sender, EventArgs e)
         {
             if (LoginPageView.token != null)
@@ -130,7 +128,5 @@ namespace Wildfire.Views
                 await DisplayAlert("Error", "Please Login", "ok");
             }
         }
-
-        
     }
 }

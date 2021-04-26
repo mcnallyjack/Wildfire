@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   GoogleMapsApiService
+ * Purpose:     Google map api implementation
+ */
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -30,8 +34,7 @@ namespace Wildfire.Services
             _googleMapsKey = googleMapsKey;
         }
 
-        
-
+        // GetPlaces
         public async Task<GooglePlaceAutoCompleteResult> GetPlaces(string text)
         {
             GooglePlaceAutoCompleteResult results = null;
@@ -55,6 +58,7 @@ namespace Wildfire.Services
             return results;
         }
 
+        // GetPlaceDetails
         public async Task<GooglePlace> GetPlaceDetails(string placeId)
         {
             GooglePlace result = null;

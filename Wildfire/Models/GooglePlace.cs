@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   GooglePlace
+ * Purpose:     used for autocomplet search functionality.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Linq;

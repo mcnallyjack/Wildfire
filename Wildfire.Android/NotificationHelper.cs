@@ -1,4 +1,8 @@
-﻿using Android.App;
+﻿/* Author:      Jack McNally
+ * Page Name:   NotificationHelper
+ * Purpose:     Notification Builder.
+ */
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;

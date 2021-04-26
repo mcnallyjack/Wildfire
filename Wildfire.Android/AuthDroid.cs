@@ -1,4 +1,8 @@
-﻿using Android.App;
+﻿/* Author:      Jack McNally
+ * Page Name:   AuthDroid
+ * Purpose:     Authentication for Android.
+ */
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -19,6 +23,7 @@ namespace Wildfire.Droid
 {
     public class AuthDroid : IAuth
     {
+        // Login 
         public async Task<string> LoginWithEmailAndPassword(string email, string password)
         {
             try
@@ -40,12 +45,14 @@ namespace Wildfire.Droid
             };
         }
 
+        // Sign In
         public bool SignIn()
         {
             var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;
             return user != null;
         }
 
+        // Sign Out
         public bool SignOut()
         {
             try
@@ -59,6 +66,7 @@ namespace Wildfire.Droid
             }
         }
 
+        // Sign Up
         public async Task<string> SignUpWithEmailAndPassword(string email, string password)
         {
             try
@@ -79,20 +87,20 @@ namespace Wildfire.Droid
             }
         }
 
+        // Forgot Password
         public async Task ForgotPassword(string email)
         {
             await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
         }
 
+        // Chnage Password
         public async Task ChangePassword(string newPassword)
         {
             
             var currentUser = FirebaseAuth.Instance.CurrentUser;
 
             await currentUser.UpdatePasswordAsync(newPassword);
-                
-            
-            
+
         }
     }
 

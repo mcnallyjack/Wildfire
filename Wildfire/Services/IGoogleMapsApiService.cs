@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿/* Author:      Jack McNally
+ * Page Name:   IGoogleMapsApiService
+ * Purpose:     IGoogleMapsApiService for places.
+ */
+using System.Threading.Tasks;
 using Wildfire.Models;
 
 namespace Wildfire.Services

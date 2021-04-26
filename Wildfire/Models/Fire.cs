@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   Fire
+ * Purpose:     All information for fire reporting.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 

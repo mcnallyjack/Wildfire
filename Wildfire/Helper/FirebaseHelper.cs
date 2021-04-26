@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   FirebaseHelper
+ * Purpose:     All Firebase helper logic.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Wildfire.Models;
@@ -15,6 +19,7 @@ namespace Wildfire.Helper
     {
         FirebaseClient firebase = new FirebaseClient("https://driven-bulwark-297919-default-rtdb.firebaseio.com/");
 
+        // Get all fires
         public async Task<List<Fire>> GetAllFires()
         {
             return (await firebase
@@ -33,6 +38,7 @@ namespace Wildfire.Helper
                 }).ToList();
         }
 
+        // Get all resolved fires
         public async Task<List<Fire>> GetResolvedFires()
         {
             return (await firebase
@@ -47,6 +53,7 @@ namespace Wildfire.Helper
                 }).ToList();
         }
 
+        // Add a fire
         public async Task AddFire(string fireId, string lat, string longi, string time, string direction, string desc, string plaName, string deviceID)
         {
             await firebase
@@ -54,6 +61,7 @@ namespace Wildfire.Helper
                 .PostAsync(new Fire() { FireID = fireId, Latitude = lat, Longitude = longi, Time=time, WindDirection = direction, Description = desc, PlaceName = plaName, DeviceID = deviceID});
         }
 
+        // Resolve a fire
         public async Task ResolveFire(string fireId)
         {
             var toResolve = (await firebase
@@ -62,6 +70,7 @@ namespace Wildfire.Helper
             await firebase.Child("Fire").Child(toResolve.Key).DeleteAsync();
         }
 
+        // Add Resolves a fire
         public async Task AddResolvedFire(string fireId, string desc, string place, string newDesc, string time)
         {
             await firebase
@@ -69,6 +78,7 @@ namespace Wildfire.Helper
                 .PostAsync(new Fire() { FireID = fireId, Description = desc, PlaceName = place, ResolvedDescription = newDesc, Time = time });
         }
 
+        // Get a fire
         public async Task<Fire> GetFire(string fireId)
         {
             var allFires = await GetAllFires();

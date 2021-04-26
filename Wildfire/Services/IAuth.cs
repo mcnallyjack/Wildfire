@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   IAuth
+ * Purpose:     Used for authentication.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;

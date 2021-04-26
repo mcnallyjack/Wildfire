@@ -174,8 +174,8 @@
                         x:Name="preventionInfo"
                         IsVisible="false"
                         HasShadow="True">
-                
-                <Frame  BackgroundColor="White"
+
+                <Frame  BackgroundColor="#f2f2f2"
                         CornerRadius="15"
                         HasShadow="True">
 

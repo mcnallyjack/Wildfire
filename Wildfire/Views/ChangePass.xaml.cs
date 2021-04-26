@@ -38,6 +38,7 @@ namespace Wildfire.Views
                 }
                 else
                 {
+                    MapView.locationCount = 0;
                     var authService = DependencyService.Resolve<IAuth>();
                     await authService.ChangePassword(oldPass.Text);
                     await DisplayAlert("Success", "Password Changed", "ok");

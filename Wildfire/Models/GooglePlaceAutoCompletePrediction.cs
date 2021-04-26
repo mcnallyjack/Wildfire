@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   GooglePlaceAutoCompletePrediction
+ * Purpose:     GooglePlaceAutoCompletePrediction functionality.
+ */
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 

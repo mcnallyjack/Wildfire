@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   INotification
+ * Purpose:     notification service.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 

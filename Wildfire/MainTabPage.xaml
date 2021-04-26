@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Author:        Jack McNally
+     Page Name:     MainTabPage
+     Purpose:       Main navigation bar.
+-->
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wildfire.MainTabPage"
@@ -9,9 +13,7 @@
              android:TabbedPage.BarItemColor="Black"
              android:TabbedPage.BarSelectedItemColor="White"
              android:TabbedPage.IsSwipePagingEnabled="False">
-    
-    
-          
+                  
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
 
@@ -24,10 +26,8 @@
         </Views:MapView>
 
         <Views:SettingsView IconImageSource="settings.png">
-            
+
         </Views:SettingsView>
-
-
-
+        
     </TabbedPage.Children>
 </TabbedPage>

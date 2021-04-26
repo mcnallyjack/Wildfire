@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   SignUpPageView
+ * Purpose:     Backend for Sign Up View.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +24,7 @@ namespace Wildfire.Views
             MapView.loginCount = 0;
         }
 
+        // Sign Up Button Event Handler
         async void SignUp_Clicked(object sender, EventArgs e)
         {
             if(EmailInput.Text == null)
@@ -33,7 +38,6 @@ namespace Wildfire.Views
                 return;
             }
 
-
             if (PasswordInput.Text.Length < 8)
             {
                 await DisplayAlert("Error", "Password must be greater than 8 characters", "ok");
@@ -42,9 +46,8 @@ namespace Wildfire.Views
             {
                 await DisplayAlert("Error", "Please verify is you are a firefighter", "ok");
             }
-            else {
-
-
+            else 
+            {
                 var user = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
                 if (user != null)
                 {
@@ -59,13 +62,21 @@ namespace Wildfire.Views
                     {
                         await DisplayAlert("Error", "unable to LogOut", "Ok");
                     }
-                }
-            
+                }           
             }
         }
+
+        // Back Button Event Handler
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            try
+            {
+                await Navigation.PopModalAsync();
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }          
         }
     }
 }

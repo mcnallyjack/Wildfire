@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   Splash Screen
+ * Purpose:     Screen that appears while app opens.
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -29,7 +33,9 @@ namespace Wildfire.Views
             this.BackgroundColor = Color.FromHex("#ffffff");
             this.Content = sub;
         }
-
+        /// <summary>
+        /// Loading Logic
+        /// </summary>
         protected override async void OnAppearing()
         {
             base.OnAppearing();

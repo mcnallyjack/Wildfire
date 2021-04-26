@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Author:      Jack McNally
+ * Page Name:   MainViewModel
+ * Purpose:     Functionality for search place.
+ */
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -141,9 +145,6 @@ namespace Wildfire.ViewModels
                     if (_originLatitud == _destinationLatitud && _originLongitud == _destinationLongitud)
                     {
                         var search = new MapView();
-                       
-                        
-                        
                         await App.Current.MainPage.DisplayAlert("", "Please Click the Search Button", "Ok");
                     }
                     else
@@ -163,10 +164,6 @@ namespace Wildfire.ViewModels
             ShowRecentPlaces = true;
             PlaceSelected = null;
         }
-
-
-        
-        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

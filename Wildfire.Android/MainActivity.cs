@@ -1,5 +1,8 @@
-﻿using System;
-
+﻿/* Author:      Jack McNally
+ * Page Name:   MainActivity
+ * Purpose:     Android main activity.
+ */
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
