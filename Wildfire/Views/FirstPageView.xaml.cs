@@ -23,6 +23,11 @@ namespace Wildfire.Views
             auth = DependencyService.Get<IAuth>();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         // Create Account Event Handler
         private async void CreateAcc_Clicked(object sender, EventArgs e)
         {

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wildfire.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -83,7 +84,8 @@ namespace Wildfire.Views
         {
             try
             {
-                await Navigation.PopModalAsync();
+                MapView.loginCount = 0;
+                await Navigation.PushModalAsync(new FirstPageView());
             }
             catch (Exception ex)
             {

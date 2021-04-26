@@ -45,6 +45,11 @@ namespace Wildfire.Views
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Loading Logic
         /// </summary>
@@ -754,6 +759,9 @@ namespace Wildfire.Views
                     originEntry.Text = string.Empty;
                     search = string.Empty;
                     popupSearch.IsVisible = false;
+                    Report_Clicked.IsVisible = true;
+                    searchPopup.IsVisible = true;
+                    Location_Clicked.IsVisible = true;
                 }
                 else
                 {

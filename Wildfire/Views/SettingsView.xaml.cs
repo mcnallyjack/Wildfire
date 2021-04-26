@@ -40,6 +40,11 @@ namespace Wildfire.Views
             settingsDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy");
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         // Login Button Event Handler
         private async void Login_Button_Clicked(object sender, EventArgs e)
         {

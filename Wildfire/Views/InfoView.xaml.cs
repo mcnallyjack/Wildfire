@@ -22,6 +22,12 @@ namespace Wildfire.Views
             InitializeComponent();
             
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         // Local Info Button Handler
         private async void LocalInfo_Clicked(object sender, EventArgs e)
         {
