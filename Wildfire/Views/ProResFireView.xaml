@@ -78,7 +78,7 @@
                     <DataTemplate>
                         <TextCell   Grid.Row="1"
                                     Text="{Binding PlaceName}"
-                                    Detail="{Binding ResolvedDescription}"
+                                    Detail="{Binding Time}"
                                     TextColor="Black"
                                     DetailColor="Gray">
                         </TextCell>
