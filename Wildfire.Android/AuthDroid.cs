@@ -90,18 +90,29 @@ namespace Wildfire.Droid
         // Forgot Password
         public async Task ForgotPassword(string email)
         {
-            await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
+            try
+            {
+                await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }           
         }
 
         // Chnage Password
         public async Task ChangePassword(string newPassword)
         {
-            
-            var currentUser = FirebaseAuth.Instance.CurrentUser;
+            try
+            {
+                var currentUser = FirebaseAuth.Instance.CurrentUser;
 
-            await currentUser.UpdatePasswordAsync(newPassword);
-
+                await currentUser.UpdatePasswordAsync(newPassword);
+            }
+            catch(Exception ex)
+            {
+                ex.Message.ToString();
+            }           
         }
     }
-
 }

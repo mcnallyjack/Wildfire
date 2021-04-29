@@ -23,8 +23,7 @@ namespace Wildfire.Views
 
         //Forgot Password Event Handler
         private async void ForgotPass_Clicked(object sender, EventArgs e)
-        {
-            
+        {           
             try
             {
                 if(emailPass.Text == null)
