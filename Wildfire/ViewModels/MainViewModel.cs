@@ -67,11 +67,22 @@ namespace Wildfire.ViewModels
             }
             set
             {
-                _pickupText = value;
-                if (!string.IsNullOrEmpty(_pickupText))
+                try
                 {
-                    _isPickupFocused = true;
-                    GetPlacesCommand.Execute(_pickupText);
+                    _pickupText = value;
+                    if (!string.IsNullOrEmpty(_pickupText))
+                    {
+                        _isPickupFocused = true;
+                        GetPlacesCommand.Execute(_pickupText);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ex.Message.ToString();
                 }
             }
         }
@@ -102,13 +113,10 @@ namespace Wildfire.ViewModels
                    
          }
 
-        
         public void StopRoute()
         {
             _hasRouteRunning = false;
         }
-
-
 
         public async Task GetPlacesByName(string placeText)
         {

@@ -134,7 +134,7 @@
                     </Image>
 
                     <Entry      Placeholder="Search a Location"
-                                Text="{Binding PickupText}"
+
                                 FontSize="18"
                                 x:Name="originEntry"
                                 ClassId="origin"
@@ -145,7 +145,8 @@
                                 WidthRequest="205"
                                 PlaceholderColor="White"
                                 BackgroundColor="LightGray"
-                                ClearButtonVisibility="WhileEditing">
+                                ClearButtonVisibility="WhileEditing"
+                                IsEnabled="True">
                     </Entry>
 
                     <Button     ImageSource="search.png"
