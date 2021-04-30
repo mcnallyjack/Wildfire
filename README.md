@@ -14,3 +14,9 @@ Copyright (C) Year: 2020  Author: Jack McNally
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Steps to install APK file:
+1. Download APK file onto Android Device.
+2. Ignore the Play protect message.
+3. Ignore Scanning.
+4. Grant all permissions when asked.
