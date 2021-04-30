@@ -62,7 +62,7 @@ namespace Wildfire.Views
             {
                 var filename = fireTag.Text;
                 var webClient = new WebClient();
-                var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
+                var storageImage = await new FirebaseStorage("FB_CONN_1")
                     .Child("Fires")
                     .Child(filename + ".jpeg")
                     .GetDownloadUrlAsync();
@@ -140,7 +140,7 @@ namespace Wildfire.Views
         public async Task<string> StoreImages(Stream imageStream)
         {
             var fileName = fireTag.Text;
-            var stroageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
+            var stroageImage = await new FirebaseStorage("FB_CONN_1")
                 .Child("Fires")
                 .Child(fileName + "(new)" + ".jpeg")
 
