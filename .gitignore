@@ -3,9 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-Constants.cs
-AndroidManifest.xml
-google-services.json
+Wildfire/Constants.cs
+Wildifre/AndroidManifest.xml
+Wildfire/google-services.json
 
 # User-specific files
 *.rsuser
