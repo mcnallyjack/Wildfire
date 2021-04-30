@@ -52,7 +52,7 @@ namespace Wildfire.Views
             {
                 var filename = fireID.Text;
                 var webClient = new WebClient();
-                var storageImage = await new FirebaseStorage("driven-bulwark-297919.appspot.com")
+                var storageImage = await new FirebaseStorage("FB_CONN_1")
                     .Child("Fires")
                     .Child(filename + ".jpeg")
                     .GetDownloadUrlAsync();
