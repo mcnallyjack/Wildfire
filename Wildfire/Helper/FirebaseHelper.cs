@@ -17,7 +17,7 @@ namespace Wildfire.Helper
 {
     public class FirebaseHelper
     {
-        FirebaseClient firebase = new FirebaseClient("https://driven-bulwark-297919-default-rtdb.firebaseio.com/");
+        FirebaseClient firebase = new FirebaseClient("FB_CONN");
 
         // Get all fires
         public async Task<List<Fire>> GetAllFires()
